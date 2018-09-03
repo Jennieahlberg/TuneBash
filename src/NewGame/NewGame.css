@@ -1,12 +1,13 @@
-h1{
-    margin-top: 0px;
+.headline {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 75px;
+    margin-left: 77.5px;
 }
 
 select {
@@ -14,7 +15,6 @@ select {
     font-size: 22px;
     font-weight: bold;
     min-width: 220px;
-    text-align: center;
     width: 100%;
     cursor: pointer;
     padding: 10px 15px;
@@ -30,34 +30,21 @@ select:hover {
     background: #CCCCCC;
 }
 
-#createPinCode {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    font-weight: bold;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    border-radius: 50px;
-    border: solid 0px;
-    transition: all 0.3s ease;
-}
-
 #createPinCode:hover {
     opacity: 0.5;
     cursor: pointer;
 }
 
-option{
+option {
     font-size: 20px;
 }
 
-.generateCustomGame {
+#generateCustomGame {
     display: flex;
     width: 100%;
     justify-content: center;
     margin-top: -10px;
-}
-
-#generateCustomGame {
+    margin-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: #551A8B;
@@ -74,10 +61,10 @@ option{
     opacity: 1;
 }
 
-#generateCustomGame:visited{
+#generateCustomGame:visited {
     text-decoration: none;
 }
 
-textarea:focus, input:focus{
+textarea:focus, input:focus {
     outline: none;
 }
