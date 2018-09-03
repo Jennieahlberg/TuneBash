@@ -58,6 +58,9 @@ class App extends Component {
   static audio;
 
   componentDidMount() {
+    fetch('https://api.mydomain.com')
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
     let hashParams = {};
     let e,
       r = /([^&;=]+)=?([^&;]*)/g,
