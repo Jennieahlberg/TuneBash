@@ -1,14 +1,32 @@
-import React, { Component } from 'react';
-import './App.css';
-import StartPage from './StartPage/StartPage';
-import Quiz from './Quiz/Quiz';
-import NewGame from './NewGame/NewGame';
-import WaitForStart from './WaitForStart/WaitForStart';
-import GameLeaderPage from './GameLeaderPage/GameLeaderPage';
-import CustomGame from './CustomGame/CustomGame';
+import React, { Component } from "react";
+import "./App.css";
+import StartPage from "./StartPage/StartPage";
+import Quiz from "./Quiz/Quiz";
+import NewGame from "./NewGame/NewGame";
+import WaitForStart from "./WaitForStart/WaitForStart";
+import GameLeaderPage from "./GameLeaderPage/GameLeaderPage";
+import CustomGame from "./CustomGame/CustomGame";
+import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { fetchUser } from "./actions/userActions";
+import { setToken } from "./actions/tokenActions";
+import {
+  playSong,
+  stopSong,
+  pauseSong,
+  resumeSong
+} from "./actions/songActions";
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import UserPlaylists from "./components/UserPlaylists";
+import MainView from "./components/MainView";
+import ArtWork from "./components/ArtWork";
+import MainHeader from "./components/MainHeader";
+import SideMenu from "./components/SideMenu";
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.handleClickPlay = this.handleClickPlay.bind(this);
@@ -23,139 +41,76 @@ class App extends Component {
     this.handleClickStart = this.handleClickStart.bind(this);
     this.state = { start: false };
 
-    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
-    this.state = { custom: false};
-    this.state = {
-      token: "",
-      deviceId: "",
-      loggedIn: false,
-      error: "",
-      trackName: "Track Name",
-      artistName: "Artist Name",
-      albumName: "Album Name",
-      playing: false,
-      position: 0,
-      duration: 1,
-    };
-    // this will later be set by setInterval
-    this.playerCheckInterval = null;
+    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(
+      this
+    );
   }
-  
-  handleLogin() {
-    if (this.state.token !== "") {
-      // change the loggedIn variable, then start checking for the window.Spotify variable
-      this.setState({ loggedIn: true });
-      this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 1000);
+
+  static audio;
+
+  componentDidMount() {
+    let hashParams = {};
+    let e,
+      r = /([^&;=]+)=?([^&;]*)/g,
+      q = window.location.hash.substring(1);
+    while ((e = r.exec(q))) {
+      hashParams[e[1]] = decodeURIComponent(e[2]);
     }
-  }
-  
-  // when we receive a new update from the player
-  onStateChanged(state) {
-    // only update if we got a real state
-    if (state !== null) {
-      const {
-        current_track: currentTrack,
-        position,
-        duration,
-      } = state.track_window;
-      const trackName = currentTrack.name;
-      const albumName = currentTrack.album.name;
-      const artistName = currentTrack.artists
-        .map(artist => artist.name)
-        .join(", ");
-      const playing = !state.paused;
-      this.setState({
-        position,
-        duration,
-        trackName,
-        albumName,
-        artistName,
-        playing
-      });
+
+    if (!hashParams.access_token) {
+      window.location.href =
+        "https://accounts.spotify.com/authorize?client_id=230be2f46909426b8b80cac36446b52a&scope=playlist-read-private%20playlist-read-collaborative%20playlist-modify-public%20user-read-recently-played%20playlist-modify-private%20ugc-image-upload%20user-follow-modify%20user-follow-read%20user-library-read%20user-library-modify%20user-read-private%20user-read-email%20user-top-read%20user-read-playback-state&response_type=token&redirect_uri=http://localhost:3000/callback";
     } else {
-      // state was null, user might have swapped to another device
-      this.setState({ error: "Looks like you might have swapped to another device?" });
+      this.props.setToken(hashParams.access_token);
     }
   }
-  
-  createEventHandlers() {
-    // problem setting up the player
-    this.player.on('initialization_error', e => { console.error(e); });
-    // problem authenticating the user.
-    // either the token was invalid in the first place,
-    // or it expired (it lasts one hour)
-    this.player.on('authentication_error', e => {
-      console.error(e);
-      this.setState({ loggedIn: false });
-    });
-    // currently only premium accounts can use the API
-    this.player.on('account_error', e => { console.error(e); });
-    // loading/playing the track failed for some reason
-    this.player.on('playback_error', e => { console.error(e); });
-  
-    // Playback status updates
-    this.player.on('player_state_changed', state => this.onStateChanged(state));
-  
-    // Ready
-    this.player.on('ready', async data => {
-      let { device_id } = data;
-      console.log("Let the music play on!");
-      // set the deviceId variable, then let's try
-      // to swap music playback to *our* player!
-      await this.setState({ deviceId: device_id });
-      this.transferPlaybackHere();
-    });
-  }
-  
-  checkForPlayer() {
-    const { token } = this.state;
-    
-    // if the Spotify SDK has loaded
-    if (window.Spotify !== null) {
-      // cancel the interval
-      clearInterval(this.playerCheckInterval);
-      // create a new player
-      this.player = new window.Spotify.Player({
-        name: "Matt's Spotify Player",
-        getOAuthToken: cb => { cb(token); },
-      });
-      // set up the player's event handlers
-      this.createEventHandlers();
-      
-      // finally, connect!
-      this.player.connect();
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.token) {
+      this.props.fetchUser(nextProps.token);
+    }
+
+    if (this.audio !== undefined) {
+      this.audio.volume = nextProps.volume / 100;
     }
   }
-  
-  onPrevClick() {
-    this.player.previousTrack();
-  }
-  
-  onPlayClick() {
-    this.player.togglePlay();
-  }
-  
-  onNextClick() {
-    this.player.nextTrack();
-  }
-  
-  transferPlaybackHere() {
-    const { deviceId, token } = this.state;
-    // https://beta.developer.spotify.com/documentation/web-api/reference/player/transfer-a-users-playback/
-    fetch("https://api.spotify.com/v1/me/player", {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "device_ids": [ deviceId ],
-        // true: start playing music if it was paused on the other device
-        // false: paused if paused on other device, start playing music otherwise
-        "play": true,
-      }),
-    });
-  }
+
+  stopSong = () => {
+    if (this.audio) {
+      this.props.stopSong();
+      this.audio.pause();
+    }
+  };
+
+  pauseSong = () => {
+    if (this.audio) {
+      this.props.pauseSong();
+      this.audio.pause();
+    }
+  };
+
+  resumeSong = () => {
+    if (this.audio) {
+      this.props.resumeSong();
+      this.audio.play();
+    }
+  };
+
+  audioControl = song => {
+    const { playSong, stopSong } = this.props;
+
+    if (this.audio === undefined) {
+      playSong(song.track);
+      this.audio = new Audio(song.track.preview_url);
+      this.audio.play();
+    } else {
+      stopSong();
+      this.audio.pause();
+      playSong(song.track);
+      this.audio = new Audio(song.track.preview_url);
+      this.audio.play();
+    }
+  };
 
   handleClickPlay() {
     this.setState({ playGame: true });
@@ -170,11 +125,11 @@ class App extends Component {
   }
 
   handleClickStart() {
-    this.setState({ start: true })
+    this.setState({ start: true });
   }
 
-  handleClickGenerateCustomGame(){
-    this.setState({ custom: true })
+  handleClickGenerateCustomGame() {
+    this.setState({ custom: true });
   }
 
   render() {
@@ -183,22 +138,13 @@ class App extends Component {
     const generate = this.state.generate;
     const start = this.state.start;
     const custom = this.state.custom;
-    const {
-      token,
-      loggedIn,
-      trackName,
-      artistName,
-      albumName,
-      error,
-      playing
-    } = this.state;
-  
+
     if (start) {
       return (
         <div>
           <Quiz />
         </div>
-      )
+      );
     }
 
     if (playGame) {
@@ -206,7 +152,7 @@ class App extends Component {
         <div className="App">
           <WaitForStart />
         </div>
-      )
+      );
     }
 
     if (generate) {
@@ -214,15 +160,15 @@ class App extends Component {
         <div className="App">
           <GameLeaderPage onClickStart={this.handleClickStart} />
         </div>
-      )
+      );
     }
 
-    if(custom){
-      return(
+    if (custom) {
+      return (
         <div>
           <CustomGame onClickGenerate={this.handleClickGenerate} />
-          </div>
-      )
+        </div>
+      );
     }
 
     if (newGame) {
@@ -230,56 +176,85 @@ class App extends Component {
         <div className="App">
           <NewGame
             onClickGenerate={this.handleClickGenerate}
-            onClickGenerateCustomGame={this.handleClickGenerateCustomGame} />
+            onClickGenerateCustomGame={this.handleClickGenerateCustomGame}
+          />
         </div>
-      )
+      );
     }
 
     return (
       <div className="App">
         <StartPage
           onClick={this.handleClickPlay}
-          onClickNew={this.handleClickCreateGame} />
-          {error && <p>Error: {error}</p>}
-
-{loggedIn ? (
-  <div>
-    <p>Artist: {artistName}</p>
-    <p>Track: {trackName}</p>
-    <p>Album: {albumName}</p>
-    <p>
-      <button onClick={() => this.onPrevClick()}>Previous</button>
-      <button onClick={() => this.onPlayClick()}>
-        {playing ? "Pause" : "Play"}
-      </button>
-      <button onClick={() => this.onNextClick()}>Next</button>
-    </p>
-  </div>
-) : (
-  <div>
-    <p className="App-intro">
-      Enter your Spotify access token. Get it from{" "}
-      <a href="https://beta.developer.spotify.com/documentation/web-playback-sdk/quick-start/#authenticating-with-spotify">
-        here
-      </a>
-      .
-    </p>
-    <p>
-      <input
-        type="text"
-        value={token}
-        onChange={e => this.setState({ token: e.target.value })}
-      />
-    </p>
-    <p>
-      <button onClick={() => this.handleLogin()}>Go</button>
-    </p>
-  </div>
-)}
+          onClickNew={this.handleClickCreateGame}
+        />
+        <div className="player">
+          <div className="app-container">
+            <div className="left-side-section">
+              <SideMenu />
+              <UserPlaylists />
+              <ArtWork />
+            </div>
+            <div className="main-section">
+              <Header />
+              <div className="main-section-container">
+                <MainHeader
+                  pauseSong={this.pauseSong}
+                  resumeSong={this.resumeSong}
+                />
+                <MainView
+                  pauseSong={this.pauseSong}
+                  resumeSong={this.resumeSong}
+                  audioControl={this.audioControl}
+                />
+              </div>
+            </div>
+            <Footer
+              stopSong={this.stopSong}
+              pauseSong={this.pauseSong}
+              resumeSong={this.resumeSong}
+              audioControl={this.audioControl}
+            />
+          </div>
+        </div>
       </div>
     );
   }
 }
 
+App.propTypes = {
+  token: PropTypes.string,
+  fetchUser: PropTypes.func,
+  setToken: PropTypes.func,
+  pauseSong: PropTypes.func,
+  playSong: PropTypes.func,
+  stopSong: PropTypes.func,
+  resumeSong: PropTypes.func,
+  volume: PropTypes.number
+};
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    token: state.tokenReducer.token,
+    volume: state.soundReducer.volume
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      fetchUser,
+      setToken,
+      playSong,
+      stopSong,
+      pauseSong,
+      resumeSong
+    },
+    dispatch
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
