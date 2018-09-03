@@ -6,6 +6,9 @@ import NewGame from "./NewGame/NewGame";
 import WaitForStart from "./WaitForStart/WaitForStart";
 import GameLeaderPage from "./GameLeaderPage/GameLeaderPage";
 import CustomGame from "./CustomGame/CustomGame";
+import Name from "./Name/Name";
+
+/*SPOTIFY*/
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -25,6 +28,7 @@ import MainView from "./components/MainView";
 import ArtWork from "./components/ArtWork";
 import MainHeader from "./components/MainHeader";
 import SideMenu from "./components/SideMenu";
+/*END OF SPOTIFY*/
 
 class App extends Component {
   constructor(props) {
@@ -41,11 +45,16 @@ class App extends Component {
     this.handleClickStart = this.handleClickStart.bind(this);
     this.state = { start: false };
 
-    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(
-      this
-    );
+    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
+    this.state = { custom: false };
+
+    this.handleClickAddName = this.handleClickAddName.bind(this);
+    this.state = { name: false };
+
   }
 
+
+  /*SPOTIFY*/
   static audio;
 
   componentDidMount() {
@@ -111,6 +120,7 @@ class App extends Component {
       this.audio.play();
     }
   };
+  /*END OF SPOTIFY*/
 
   handleClickPlay() {
     this.setState({ playGame: true });
@@ -132,12 +142,17 @@ class App extends Component {
     this.setState({ custom: true });
   }
 
+  handleClickAddName() {
+    this.setState({ name: true });
+  }
+
   render() {
     const playGame = this.state.playGame;
     const newGame = this.state.newGame;
     const generate = this.state.generate;
     const start = this.state.start;
     const custom = this.state.custom;
+    const name = this.state.name;
 
     if (start) {
       return (
@@ -151,6 +166,14 @@ class App extends Component {
       return (
         <div className="App">
           <WaitForStart />
+        </div>
+      );
+    }
+
+    if (name) {
+      return (
+        <div className="App">
+          <Name onClickPlay={this.handleClickPlay}/>
         </div>
       );
     }
@@ -185,7 +208,7 @@ class App extends Component {
     return (
       <div className="App">
         <StartPage
-          onClick={this.handleClickPlay}
+          onClick={this.handleClickAddName}
           onClickNew={this.handleClickCreateGame}
         />
         <div className="player">

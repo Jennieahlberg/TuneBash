@@ -10,7 +10,7 @@ const name = (props) => {
             <input type="text" name="name" placeholder="Namn"/>
         </div>
         <div class="button">
-            <button id="startGameButton" onClick={props.onClick}>Kör!</button>
+            <button id="startGameButton" onClick={props.onClickPlay}>Kör!</button>
         </div>
     </div>
 }
