@@ -1,5 +1,5 @@
 svg {
-    width: 10%;
+    width: 30%;
     height: auto;
 }
 
@@ -14,24 +14,23 @@ svg {
     justify-content: center;
     margin-top: 1%;
     font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 72px;
+    font-size: 52px;
     font-weight: 700;
 }
 
 .codeInput {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: center;
-    margin-top: -2%;
+    align-items: center;
 }
 
-#codeInput {
-    height: 50px;
-    width: 220px;
-    margin-right: 10px;
-}
+
 
 input[type=text] {
+    padding: 16px;
+    margin: 16px 0;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
@@ -57,7 +56,8 @@ input[type=text] {
     border-radius: 50px;
     border: solid 0px;
     transition: all 0.3s ease;
-    width: 130px;
+    padding: 16px;
+    width: 50%;
 }
 
 .playButton:hover{
