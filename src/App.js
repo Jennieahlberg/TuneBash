@@ -190,11 +190,6 @@ class App extends Component {
         />
         <div className="player">
           <div className="app-container">
-            <div className="left-side-section">
-              <SideMenu />
-              <UserPlaylists />
-              <ArtWork />
-            </div>
             <div className="main-section">
               <Header />
               <div className="main-section-container">
