@@ -4,7 +4,7 @@ import './NewGame.css';
 const newGame = (props) => {
     return <div>
         <div className="headline">
-            <h1>Välj kriterier för spelomgången</h1>
+            <p>Välj kriterier för spelet</p>
         </div>
 
         <div className="form">

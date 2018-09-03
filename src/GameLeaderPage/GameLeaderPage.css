@@ -4,8 +4,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 130px;
-    margin-left: 0px;
 }
 
 .random{
@@ -17,10 +15,10 @@
     margin-top: 32px;
 }
 
-.button{
+#startGameButton{
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 50%;
     padding: 10px;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
@@ -31,7 +29,8 @@
     border: solid 0px;
     transition: all 0.3s ease;
     height: 50px;
-    margin-top: 2%;
+    margin-top: 20px;
+    margin-left: 93.75px;
 }
 
 .button:hover {
@@ -49,4 +48,17 @@
     margin-top: 16px;
 
 }
+
+@media only screen and (min-width: 560px) {
+    .headline {
+        margin-top: 50%; /*Funkar ej!!*/
+    }
+
+    #startGameButton{
+        display: flex;
+        justify-content: center;
+        width: 150px;
+        margin-left: 46%;
+    }
+  }
 
