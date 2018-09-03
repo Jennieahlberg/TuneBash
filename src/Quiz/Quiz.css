@@ -5,10 +5,10 @@
 
 .question {
     font-family: 'Montserrat', sans-serif;
-    font-size: 36px;
-    margin-top: 200px;
-    margin-left: 500px;
-    margin-right: 500px;
+    font-size: 20px;
+    margin-top: 70px;
+    margin-left: 50px;
+    margin-right: 50px;
     border: solid black;
     border-radius: 10px;
     text-align: center;
@@ -18,19 +18,20 @@
 .answers {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    margin-right: 3%;
+    width: 50%;
+    margin-left: 60px;
 }
 
 li {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     color: #551A8B;
     width: 100%;
     list-style-type: none;
     padding: 10px;
-    margin-top: 10%;
+    margin-top: 16px;
     border: solid black;
     border-radius: 10px;
     text-align: center;
