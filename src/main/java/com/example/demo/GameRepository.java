@@ -1,9 +1,14 @@
 package com.example.demo;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Repository
-public interface GameRepository extends Repository {
+import javax.naming.AuthenticationException;
+import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 
+@Component
+public class GameRepository {
 
 }
