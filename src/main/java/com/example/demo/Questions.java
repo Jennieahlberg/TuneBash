@@ -1,9 +1,14 @@
 package com.example.demo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 //by Gustaf Matsson
 //2018-09-03
+@Entity
 public class Questions {
-
+    @Id
+    private int id;
     String songLink;
     String question;
     String correctAnswer;
@@ -24,6 +29,10 @@ public class Questions {
         this.level = level;
         this.category = category;
         this.language = language;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getSongLink() {
