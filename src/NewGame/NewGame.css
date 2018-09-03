@@ -1,0 +1,90 @@
+h1{
+    margin-top: -80px;
+}
+
+.form {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    min-width: 220px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 15px;
+    outline: none;
+    border: 0px dotted #000000;
+    border-radius: 10px;
+    background: #E6E6E6;
+    color: rgb(105, 105, 105);
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    color: #000000;
+    background: #CCCCCC;
+}
+
+#createPinCode {
+    display: flex;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: solid 0px;
+    transition: all 0.3s ease;
+    width: 80%;
+    height: 50px;
+    margin-left: 10%;
+    margin-top: 15%;
+}
+
+#createPinCode:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+option{
+    font-size: 20px;
+}
+
+.generateCustomGame {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+#generateCustomGame {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #551A8B;
+    background: none;
+    border: none;
+    font-weight: bolder;
+    opacity: 0.8;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#generateCustomGame:hover {
+    opacity: 1;
+}
+
+#generateCustomGame:visited{
+    text-decoration: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}

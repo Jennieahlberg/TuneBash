@@ -1,0 +1,99 @@
+svg {
+    width: 10%;
+    height: auto;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.logoName {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+}
+
+.codeInput {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: -2%;
+}
+
+#codeInput {
+    height: 50px;
+    width: 220px;
+    margin-right: 10px;
+}
+
+input[type=text] {
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: solid 0px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+::placeholder {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    text-align: center;
+}
+
+.playButton{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: solid 0px;
+    transition: all 0.3s ease;
+    width: 130px;
+}
+
+.playButton:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.newGame {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+#newGameButton {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #551A8B;
+    background: none;
+    border: none;
+    font-weight: bolder;
+    opacity: 0.8;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+#newGameButton:hover {
+    opacity: 1;
+}
+
+#newGamebutton:visited{
+    text-decoration: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
