@@ -30,7 +30,7 @@ select:hover {
 
 form input[type=text]{
     margin-bottom: -50px;
-    margin-left: -50px;
+    margin-left: -55px;
     min-width: 300px;
     font-size: 16px;
 }
@@ -58,3 +58,9 @@ form input[type=text]{
     opacity: 0.5;
     cursor: pointer;
 }
+
+@media only screen and (min-width: 560px) {
+    .playButton {
+        width: 200px;
+    }
+  }

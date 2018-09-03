@@ -36,7 +36,7 @@ select:hover {
 }
 
 option {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #generateCustomGame {
@@ -68,3 +68,23 @@ option {
 textarea:focus, input:focus {
     outline: none;
 }
+
+@media only screen and (min-width: 560px) {
+    .headline {
+
+        font-size: 48px;
+    }
+
+    .form {
+        margin-left: 43.5%;
+    }
+
+    #generateCustomGame{
+        font-size: 20px;
+    }
+
+    option{
+        font-weight: bolder;
+    }
+
+  }
