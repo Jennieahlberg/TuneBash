@@ -15,7 +15,6 @@ public class SocketController {
     @MessageMapping("/members")
     @SendTo("/")
     public String newPlayer(Player player) throws Exception{
-        // save
 
         return player.getName();
     }
