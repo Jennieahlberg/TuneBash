@@ -5,8 +5,16 @@ import javax.persistence.*;
 @Entity
 @Table(name="player")
 public class Player {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private int id;
+
+    @Column(name="gameid")
+    private int gameId;
+
+    @Column(name="name")
     private String name;
 
     @Column(name="score")
@@ -18,10 +26,27 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, int score, String answer) {
+    public Player(int gameid, String name, int score, String answer) {
+        this.gameId = gameId;
         this.name = name;
         this.score = score;
         this.answer = answer;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getGameId() {
+        return gameId;
+    }
+
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 
     public String getName() {
