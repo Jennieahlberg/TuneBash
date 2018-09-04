@@ -10,6 +10,7 @@ import Name from "./Name/Name";
 
 
 class App extends Component {
+  
   constructor(props) {
     super(props);
     this.handleClickPlay = this.handleClickPlay.bind(this);
@@ -34,6 +35,18 @@ class App extends Component {
     this.state = { quiz: [] };
   }
 
+  
+  createGist = opts => {
+    fetch("https://accounts.spotify.com/api/token", {
+      method: "post",
+      body: JSON.stringify(opts)
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {});
+  };
+
   handleClickPlay() {
     this.setState({ playGame: true });
   }
@@ -57,6 +70,8 @@ class App extends Component {
   handleClickAddName() {
     this.setState({ name: true });
   }
+
+  
 
   render() {
     const playGame = this.state.playGame;
@@ -123,14 +138,15 @@ class App extends Component {
           onClick={this.handleClickAddName}
           onClickNew={this.handleClickCreateGame}
         />
-        <iframe 
-        src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" 
-        width="100" 
-        height="100" 
-        frameborder="0" 
-        allowtransparency="true" 
-        allow="encrypted-media">
-        </iframe>
+        <iframe
+          src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
+          width="100"
+          height="100"
+          title="music"
+          frameborder="0"
+          allowtransparency="true"
+          allow="encrypted-media"
+        />
       </div>
     );
   }
