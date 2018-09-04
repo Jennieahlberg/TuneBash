@@ -1,23 +1,46 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //by Gustaf Matsson
 //2018-09-03
 @Entity
+@Table(name ="questions")
 public class Questions {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
-    String songLink;
-    String question;
-    String correctAnswer;
-    String wrongAnswer1;
-    String wrongAnswer2;
-    String wrongAnswer3;
-    String level;
-    String category;
-    String language;
+
+    @Column(name="songlink")
+    private String songLink;
+
+    @Column(name="question")
+    private String question;
+
+    @Column(name="correctanswer")
+    private String correctAnswer;
+
+    @Column(name="wronganswer1")
+    private String wrongAnswer1;
+
+    @Column(name="wronganswer2")
+    private String wrongAnswer2;
+
+    @Column(name="wronganswer3")
+    private String wrongAnswer3;
+
+    @Column(name="level")
+    private String level;
+
+    @Column(name="category")
+    private String category;
+
+    @Column(name="language")
+    private String language;
+
+
+    public Questions() {
+    }
 
     public Questions(String songLink, String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3, String level, String category, String language) {
         this.songLink = songLink;

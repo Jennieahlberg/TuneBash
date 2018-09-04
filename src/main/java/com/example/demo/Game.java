@@ -2,14 +2,16 @@ package com.example.demo;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
+@Table(name="game")
 public class Game {
     @Id
     private int id;
-    public List<Questions> questions = new ArrayList<>();
-    public List<Player> players = new ArrayList<>();
+
 
     public Game() {}
 
@@ -19,5 +21,9 @@ public class Game {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
