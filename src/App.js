@@ -13,7 +13,8 @@ import ReactDOM from 'react-dom';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleClickPlay = this.handleClickPlay.bind(this);
+
+    this.handleSubmitName = this.handleSubmitName.bind(this);
     this.state = { playGame: false };
 
     this.handleClickCreateGame = this.handleClickCreateGame.bind(this);
@@ -28,12 +29,17 @@ class App extends Component {
     this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
     this.state = { custom: false };
 
-    this.handleSubmitName = this.handleSubmitName.bind(this);
+    this.handleSubmitPinCode = this.handleSubmitPinCode.bind(this);
     this.state = { name: false };
     this.state = { quiz: [] };
+
+    this.state = { data: null };
   }
 
-  handleClickPlay() {
+  handleSubmitName = (event) => {
+    if (event) event.preventDefault();
+    const input = document.getElementById('nameInput').value;
+    console.log(input);
     this.setState({ playGame: true });
   }
 
@@ -53,7 +59,10 @@ class App extends Component {
     this.setState({ custom: true });
   }
 
-  handleSubmitName = () => {
+  handleSubmitPinCode = (event) => {
+    if (event) event.preventDefault();
+    const input = document.getElementById('codeInput').value;
+    console.log(input);
     this.setState({ name: true });
   }
 
@@ -74,7 +83,7 @@ class App extends Component {
   }
 
   sendName = () => {
-    
+
   }
 
   render() {
@@ -104,8 +113,8 @@ class App extends Component {
     if (name) {
       return (
         <div className="App">
-          <Name 
-          onSubmitName={this.handleClickPlay}
+          <Name
+            onSubmitName={this.handleSubmitName}
           />
         </div>
       );
@@ -141,16 +150,16 @@ class App extends Component {
     return (
       <div className="App">
         <StartPage
-          onSubmitName={this.handleSubmitName}
+          onSubmitPinCode={this.handleSubmitPinCode}
           onClickNew={this.handleClickCreateGame}
         />
-        <iframe 
-        src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" 
-        width="100" 
-        height="100" 
-        frameborder="0" 
-        allowtransparency="true" 
-        allow="encrypted-media">
+        <iframe
+          src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
+          width="100"
+          height="100"
+          frameborder="0"
+          allowtransparency="true"
+          allow="encrypted-media">
         </iframe>
       </div>
     );

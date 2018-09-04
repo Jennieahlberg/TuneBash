@@ -22,7 +22,7 @@ const startPage = props => {
         <p className="logoName">TUNEBASH</p>
       </div>
       <div className="codeInput">
-      <form onSubmit={props.onSubmitName}>
+      <form onSubmit={props.onSubmitPinCode}>
         <input id="codeInput" type="text" name="box" placeholder="Skriv in pinkod"/>
         <input type="submit" className="playButton" value="Let's rock!"/>
         </form>
