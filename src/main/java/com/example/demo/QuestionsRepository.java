@@ -5,4 +5,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuestionsRepository  extends JpaRepository<Questions, Integer> {
+    Questions getById(int random);
 }
