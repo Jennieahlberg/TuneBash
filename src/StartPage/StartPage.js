@@ -22,15 +22,10 @@ const startPage = props => {
         <p className="logoName">TUNEBASH</p>
       </div>
       <div className="codeInput">
-        <input
-          id="codeInput"
-          type="text"
-          name="box"
-          placeholder="Skriv in pinkod"
-        />
-        <button className="playButton" onClick={props.onClick}>
-          Let's rock!
-        </button>
+      <form onSubmit={props.onSubmitName}>
+        <input id="codeInput" type="text" name="box" placeholder="Skriv in pinkod"/>
+        <input type="submit" className="playButton" value="Let's rock!"/>
+        </form>
       </div>
       <div className="newGame">
         <button id="newGameButton" onClick={props.onClickNew}>

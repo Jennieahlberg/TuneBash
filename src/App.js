@@ -28,7 +28,7 @@ class App extends Component {
     this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
     this.state = { custom: false };
 
-    this.handleClickAddName = this.handleClickAddName.bind(this);
+    this.handleSubmitName = this.handleSubmitName.bind(this);
     this.state = { name: false };
     this.state = { quiz: [] };
   }
@@ -53,7 +53,7 @@ class App extends Component {
     this.setState({ custom: true });
   }
 
-  handleClickAddName = () => {
+  handleSubmitName = () => {
     this.setState({ name: true });
   }
 
@@ -141,7 +141,7 @@ class App extends Component {
     return (
       <div className="App">
         <StartPage
-          onClick={this.handleClickAddName}
+          onSubmitName={this.handleSubmitName}
           onClickNew={this.handleClickCreateGame}
         />
         <iframe 
