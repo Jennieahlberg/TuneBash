@@ -25,12 +25,12 @@ private PlayerRepository prepo;
 private QuestionsRepository qrepo;
 
     //Controller för att visa deltagare/spel
-//    @MessageMapping (value = "/members", produces = MediaType.APPLICATION_JSON_VALUE)
-//    @SendTo("/http://localhost:3000/")
-//    public String newPlayer(@RequestBody Player player, HttpServletResponse response) throws Exception{
-//        response.setHeader("Access-Control-Allow-Origin", "*");
-//        prepo.save(player);
-//        return player.getName();
+    @MessageMapping ("/members")
+    @SendTo("/http://localhost:3000/")
+    public String newPlayer(@RequestBody Player player, HttpServletResponse response) throws Exception{
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        prepo.save(player);
+        return player.getName();
     }
 
 //    @MessageMapping("/questions")

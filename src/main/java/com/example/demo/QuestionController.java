@@ -2,10 +2,12 @@ package com.example.demo;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,15 +45,19 @@ public class QuestionController {
         List<Questions> questions = new ArrayList<>();
         Random rand = new Random();
         int i = 0;
-        while(i < 15) {
+        while (i < 15) {
             int random = rand.nextInt(170) + 1;
-            if(repository.existsById(random)) {
+            if (repository.existsById(random)) {
                 questions.add(repository.getById(random));
                 i++;
             }
         }
         return questions;
     }
+
+
+
+
 //    @GetMapping("/addfromexcelfile")
 //    public String addFromExcel() throws IOException, InvalidFormatException {
 //        ExcelReader er = new ExcelReader();
@@ -61,7 +67,7 @@ public class QuestionController {
 //        }
 //        return "ok";
 //    }
-}
+    }
 
 //    @GetMapping("/delete/{id}")
 //    public Iterable<Admin> delete(@PathVariable long id) {
