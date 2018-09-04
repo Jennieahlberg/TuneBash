@@ -8,7 +8,7 @@ const name = (props) => {
         </div>
         <div className="name">
             <form onSubmit={props.onSubmitName}>
-                <input id="nameInput" type="text" name="name" placeholder="Namn" autoComplete="off" />
+                <input id="name" type="text" name="name" placeholder="Namn" autoComplete="off" />
                 <input type="submit" id="startGameButton" value="Kör!" />
             </form>
         </div>

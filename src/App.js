@@ -36,10 +36,35 @@ class App extends Component {
     this.state = { data: null };
   }
 
+  componentDidMount = (data) => {
+    console.log('inne i metod componentDidMount', data);
+    fetch('http://localhost:3000/members', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify( {
+        name: data
+      })
+
+    })
+      .then((response) => {
+        if(response.ok){
+          return response.json();
+        } else {
+          console.log(response);
+        }
+      })
+      .then((data) => {this.setState({ data })})
+      .then(() => {console.log('Updated!')})
+  }
+
   handleSubmitName = (event) => {
     if (event) event.preventDefault();
-    const input = document.getElementById('nameInput').value;
-    console.log(input);
+    const input = document.getElementById('name').value;
+    this.componentDidMount(input);
     this.setState({ playGame: true });
   }
 
@@ -62,7 +87,6 @@ class App extends Component {
   handleSubmitPinCode = (event) => {
     if (event) event.preventDefault();
     const input = document.getElementById('codeInput').value;
-    console.log(input);
     this.setState({ name: true });
   }
 
