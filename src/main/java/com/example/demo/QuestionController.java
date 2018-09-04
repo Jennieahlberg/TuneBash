@@ -29,7 +29,7 @@ public class QuestionController {
 
     @GetMapping("/questions")
     public List<Questions> getUsers() {
-        List<Questions> questions = (List<Questions>) repository.findAll();
+        List<Questions> questions =  repository.getAllByLanguage("Engelska");
         return questions;
     }
 
@@ -40,12 +40,12 @@ public class QuestionController {
         return "ok";
     }
 
-    @GetMapping("/get15questions")
-    public List<Questions> get15questions() {
+    @GetMapping("/getquestions/{numberOfQuestions}")
+    public List<Questions> getQuestions(@PathVariable int numberOfQuestions) {
         List<Questions> questions = new ArrayList<>();
         Random rand = new Random();
         int i = 0;
-        while (i < 15) {
+        while (i < numberOfQuestions) {
             int random = rand.nextInt(170) + 1;
             if (repository.existsById(random)) {
                 questions.add(repository.getById(random));
@@ -54,6 +54,7 @@ public class QuestionController {
         }
         return questions;
     }
+
 
 
 
