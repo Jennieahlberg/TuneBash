@@ -13,9 +13,10 @@ public class SocketController {
 
     //Controller för att visa deltagare/spel
     @MessageMapping("/members")
-    @SendTo(/*filtrera så att bara deltagare i respektive spel ser*/ "/")
+    @SendTo("/")
     public String newPlayer(Player player) throws Exception{
-        // Skapa player, spara i DB och returnera namnet
+        // save
+
         return player.getName();
     }
     //Controller för resultat
