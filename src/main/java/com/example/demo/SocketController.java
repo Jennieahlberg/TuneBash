@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.transform.Result;
 import java.util.List;
 import java.util.Random;
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class SocketController {
 
@@ -25,10 +24,9 @@ private PlayerRepository prepo;
 private QuestionsRepository qrepo;
 
     //Controller för att visa deltagare/spel
-    @MessageMapping ("/members")
+    @MessageMapping ("/mems")
     @SendTo("/http://localhost:3000/")
-    public String newPlayer(@RequestBody Player player, HttpServletResponse response) throws Exception{
-        response.setHeader("Access-Control-Allow-Origin", "*");
+    public String newPlayer(Player player) throws Exception{
         prepo.save(player);
         return player.getName();
     }
