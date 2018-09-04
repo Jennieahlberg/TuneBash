@@ -6,12 +6,14 @@ const name = (props) => {
         <div className="headline">
          <p>Skriv in ditt eller ditt lags namn</p>
         </div>
+       <form onSubmit={props.onSubmitName}>
         <div className="name">
-            <input type="text" name="name" placeholder="Namn"/>
+            <input type="text" name="name" placeholder="Namn" autoComplete="off"/>
         </div>
         <div class="button">
-            <button id="startGameButton" onClick={props.onClickPlay}>Kör!</button>
+            <input type="submit" id="startGameButton" value="Kör!"/>
         </div>
+        </form>
     </div>
 }
 

@@ -7,6 +7,7 @@ import WaitForStart from "./WaitForStart/WaitForStart";
 import GameLeaderPage from "./GameLeaderPage/GameLeaderPage";
 import CustomGame from "./CustomGame/CustomGame";
 import Name from "./Name/Name";
+import ReactDOM from 'react-dom';
 
 /*SPOTIFY*/
 import PropTypes from "prop-types";
@@ -51,13 +52,15 @@ class App extends Component {
     this.handleClickAddName = this.handleClickAddName.bind(this);
     this.state = { name: false };
 
+    this.state = { stompClient: null };
+
   }
 
 
   /*SPOTIFY*/
   static audio;
 
-  componentDidMount() {
+  componentDidMount = () => {
     fetch('https://api.mydomain.com')
       .then(response => response.json())
       .then(data => this.setState({ data }));
@@ -125,28 +128,48 @@ class App extends Component {
   };
   /*END OF SPOTIFY*/
 
-  handleClickPlay() {
+  handleClickPlay = () => {
     this.setState({ playGame: true });
   }
 
-  handleClickCreateGame() {
+  handleClickCreateGame = () => {
     this.setState({ newGame: true });
   }
 
-  handleClickGenerate() {
+  handleClickGenerate = () => {
     this.setState({ generate: true });
   }
 
-  handleClickStart() {
+  handleClickStart = () => {
     this.setState({ start: true });
   }
 
-  handleClickGenerateCustomGame() {
+  handleClickGenerateCustomGame = () => {
     this.setState({ custom: true });
   }
 
-  handleClickAddName() {
+  handleClickAddName = () => {
     this.setState({ name: true });
+  }
+
+  refreshAndStartGame = () => {
+
+  }
+
+  refreshAndGetNextQuestion = () => {
+
+  }
+
+  refreshAndShowResult = () => {
+
+  }
+
+  refreshAndEndGame = () => {
+
+  }
+
+  sendName = () => {
+    
   }
 
   render() {
@@ -176,7 +199,9 @@ class App extends Component {
     if (name) {
       return (
         <div className="App">
-          <Name onClickPlay={this.handleClickPlay}/>
+          <Name 
+          onSubmitName={this.handleClickPlay}
+          />
         </div>
       );
     }
