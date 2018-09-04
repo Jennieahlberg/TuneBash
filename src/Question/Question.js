@@ -3,6 +3,7 @@ import React from "react";
 const Question = props => {
     return(
         <div className="Question">
+        
         <div id="Question_question">
           <div className="Product__cat">{product.varugrupp}</div>
           <h4>{product.namn}</h4>
