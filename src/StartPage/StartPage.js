@@ -2,6 +2,7 @@ import React from "react";
 import "./StartPage.css";
 
 
+
 const startPage = props => {
   return (
     <div>
