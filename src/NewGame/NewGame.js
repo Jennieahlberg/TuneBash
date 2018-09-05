@@ -19,14 +19,15 @@ class newGame extends Component {
 
   onClickGenerate = () => {
     this.setState({ generate: true });
-  }
+  };
 
   onClickGenerateCustomGame = () => {
     this.setState({ custom: true });
-  }
+  };
 
-  login = (callback) => {
+  login = callback => {
     var CLIENT_ID = "82c3c3a0508a4fe986a13ae7aaf063f7";
+    var CLIENT_SECRET = "0b25a57d012f4823b6594ccc3f39e2aa";
     var REDIRECT_URI = "http://localhost:3000/callback";
 
     function getLoginURL(scopes) {
@@ -59,15 +60,15 @@ class newGame extends Component {
 
     var w = window.open(
       url,
-      "Spotify",
+      "_self",
       "menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=" +
         width +
         ", height=" +
         height
     );
-  }
+  };
 
-  getUserData = (accessToken) => {
+  getUserData = accessToken => {
     axios({
       method: "get",
       url: "https://api.spotify.com/v1/me",
@@ -75,7 +76,7 @@ class newGame extends Component {
         Authorization: "Bearer " + accessToken
       }
     });
-  }
+  };
 
   getAuth = () => {
     this.login(function(accessToken) {
@@ -84,7 +85,7 @@ class newGame extends Component {
         this.display = true;
       });
     });
-  }
+  };
 
   render() {
     const generate = this.state.generate;
@@ -95,7 +96,11 @@ class newGame extends Component {
           <p>Välj kriterier för spelet</p>
         </div>
         <div>
-          <button className="button is-spotify" onClick={this.getAuth}>
+          <button
+            className="button is-spotify"
+            id="btn-login"
+            onClick={this.getAuth}
+          >
             Login to Spotify
           </button>
         </div>
