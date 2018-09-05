@@ -17,11 +17,11 @@ class StartPage extends Component {
   }
 
   submitDataHandler = () => {
-    const data = {
+    const player = {
       gameId: this.state.gameId,
       name: this.state.name
     };
-    axios.post('http://localhost:8080/members', data) //LÄNK SKA BYTAS UT
+    axios.post('http://localhost:8080/members', player) //LÄNK SKA BYTAS UT
       .then(response => {
         console.log(response);
       });
