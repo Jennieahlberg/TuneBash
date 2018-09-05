@@ -3,6 +3,11 @@ import "./NewGame.css";
 import axios from "axios";
 
 class newGame extends Component {
+  state = {
+    name: "",
+    gameId: ""
+  };
+
   constructor(props) {
     super(props);
     this.getAuth = this.getAuth.bind(this);
@@ -134,7 +139,7 @@ class newGame extends Component {
                 </select>
               </p>
 
-              <button id="createPinCode" onClick={this.onClickGenerate}>
+              <button id="createPinCode" onClickGenerate={this.onClickGenerate}>
                 Skapa pinkod
               </button>
             </form>
@@ -143,7 +148,7 @@ class newGame extends Component {
         <div className="generateCustomGame">
           <button
             id="generateCustomGame"
-            onClick={this.onClickGenerateCustomGame}
+            onClickGenerateCustomGame={this.onClickGenerateCustomGame}
           >
             Eller skapa en omgång med dina egna frågor ➔
           </button>
