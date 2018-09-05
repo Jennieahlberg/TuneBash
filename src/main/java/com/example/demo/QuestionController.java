@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 public class QuestionController {
 
@@ -59,13 +59,13 @@ public class QuestionController {
         return questions;
     }
 
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String newmember(@RequestBody Player player, HttpServletResponse response) {
+    public void newmember(@RequestBody Player player, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        System.out.println(player);
+       
         prepo.save(player);
-        return player.getName();
+        
     }
 }
 
