@@ -32,24 +32,6 @@ class App extends Component {
     this.state = { name: false };
     this.state = { quiz: [] };
 
-<<<<<<< HEAD
-
-=======
-  
-  createGist = opts => {
-    fetch("https://accounts.spotify.com/api/token", {
-      method: "post",
-      body: JSON.stringify(opts)
-    })
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {});
-  };
-
-  handleClickPlay() {
-    this.setState({ playGame: true });
->>>>>>> master
   }
 
   handleClickCreateGame = () => {
