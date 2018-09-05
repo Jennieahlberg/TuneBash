@@ -13,9 +13,19 @@ class newGame extends Component {
     this.getAuth = this.getAuth.bind(this);
     this.onClickGenerate = this.onClickGenerate.bind(this);
     this.onClickGenerateCustomGame = this.onClickGenerateCustomGame.bind(this);
+    this.state = { generate: false };
+    this.state = { custom: false };
   }
 
-  login(callback) {
+  onClickGenerate = () => {
+    this.setState({ generate: true });
+  }
+
+  onClickGenerateCustomGame = () => {
+    this.setState({ custom: true });
+  }
+
+  login = (callback) => {
     var CLIENT_ID = "82c3c3a0508a4fe986a13ae7aaf063f7";
     var REDIRECT_URI = "http://localhost:3000/callback";
 
@@ -57,7 +67,7 @@ class newGame extends Component {
     );
   }
 
-  getUserData(accessToken) {
+  getUserData = (accessToken) => {
     axios({
       method: "get",
       url: "https://api.spotify.com/v1/me",
@@ -67,7 +77,7 @@ class newGame extends Component {
     });
   }
 
-  getAuth() {
+  getAuth = () => {
     this.login(function(accessToken) {
       this.getUserData(accessToken).then(function(response) {
         console.log(response);
@@ -77,14 +87,16 @@ class newGame extends Component {
   }
 
   render() {
+    const generate = this.state.generate;
+    const custom = this.state.custom;
     return (
       <div>
         <div className="headline">
           <p>Välj kriterier för spelet</p>
         </div>
         <div>
-          <button class="button is-spotify" getAuth={this.getAuth}>
-            Login to Spotify <i class="fa fa-spotify" />
+          <button className="button is-spotify" onClick={this.getAuth}>
+            Login to Spotify
           </button>
         </div>
 
@@ -139,7 +151,7 @@ class newGame extends Component {
                 </select>
               </p>
 
-              <button id="createPinCode" onClickGenerate={this.onClickGenerate}>
+              <button id="createPinCode" onClick={this.onClickGenerate}>
                 Skapa pinkod
               </button>
             </form>
@@ -148,7 +160,7 @@ class newGame extends Component {
         <div className="generateCustomGame">
           <button
             id="generateCustomGame"
-            onClickGenerateCustomGame={this.onClickGenerateCustomGame}
+            onClick={this.onClickGenerateCustomGame}
           >
             Eller skapa en omgång med dina egna frågor ➔
           </button>
