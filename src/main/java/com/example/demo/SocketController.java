@@ -23,35 +23,32 @@ private PlayerRepository prepo;
 @Autowired
 private QuestionsRepository qrepo;
 
-    //Controller för att visa deltagare/spel
-    @MessageMapping ("/mems")
-    @SendTo("/http://localhost:3000/")
-    public String newPlayer(Player player) throws Exception{
-        prepo.save(player);
-        return player.getName();
-    }
+//    //Controller för att visa deltagare/spel
+//    @MessageMapping ("/members")
+//    @SendTo("/http://localhost:3000/")
+//    public String newPlayer(Player player) throws Exception{
+//        prepo.save(player);
+//        return player.getName();
+//    }
 
 //    @MessageMapping("/questions")
 //    @SendTo("/)")
 //    public Questions getquestion()throws Exception{
 //        Random random = new Random();
 //        int rand =random.nextInt((100)+1);
-//        return qrepo.findById(rand);
-//
+////        return qrepo.findById(rand);
 //    }
-
-
-    //Controller för resultat
-    @MessageMapping("/")
-    @SendTo("/")// Filtrera så endast spelare i spelet får se
-    public List<Player> results() throws Exception {
-        // Hämta lista med alla spelare med scores i DB
-        //Returnera listan.
-        return null;
-    }
-
-    @MessageMapping("/Endgame")
-    public void dropgame() throws Exception{
-        // avsluta spel och gör en droptable
-    }
+//    //Controller för resultat
+//    @MessageMapping("/")
+//    @SendTo("/")// Filtrera så endast spelare i spelet får se
+//    public List<Player> results() throws Exception {
+//        // Hämta lista med alla spelare med scores i DB
+//        //Returnera listan.
+//        return null;
+//    }
+//
+//    @MessageMapping("/Endgame")
+//    public void dropgame() throws Exception{
+//        // avsluta spel och gör en droptable
+//    }
 }
