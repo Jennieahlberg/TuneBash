@@ -11,7 +11,6 @@ class StartPage extends Component {
 
   constructor(props) {
     super(props);
-
     this.submitDataHandler = this.submitDataHandler.bind(this);
     this.state = { formFilled: false };
   }
@@ -70,6 +69,7 @@ class StartPage extends Component {
         <div className="newGame">
           <button id="newGameButton">
             Generera nytt spel
+
         </button>
         </div>
       </div>

@@ -22,3 +22,11 @@ body {
   position: relative;
   padding-bottom: 100px;
 }
+
+#login {
+  display: none;
+}
+
+#loggedin {
+  display: none;
+}
