@@ -70,6 +70,15 @@ public class QuestionController {
         prepo.save(player);
         return player.getName();
     }
+
+    @PostMapping(value="/checkanswer", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void checkAnswer(@RequestBody Player player,Questions question, HttpServletResponse response){
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        if(player.getAnswer()==question.getCorrectAnswer()){
+          player.setScore(player.getScore()+1);
+        }
+    }
+
 }
 
 //    @GetMapping("/")
