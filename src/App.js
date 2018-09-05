@@ -74,18 +74,7 @@ class App extends Component {
     this.setState({ name: true });
   }
 
-<<<<<<< HEAD
-  componentDidMount(){
-    axios.get('https://jsonplaceholder.typicode.com/posts/1')
-        .then(response => {
-          console.log(response);
-        }); 
-    
-  }
-=======
   
->>>>>>> master
-
   render() {
     const newGame = this.state.newGame;
     const generate = this.state.generate;
