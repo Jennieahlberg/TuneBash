@@ -24,11 +24,11 @@ class WaitForStart extends Component {
                 name: this.state.name
             };
     
-            axios.get('http://localhost:8080/questions') //FUNKAR INTE RIKTIGT
+            /*axios.get('http://localhost:8080/questions') //FUNKAR INTE RIKTIGT
                 .then(response => {
                     console.log(response);
                 })
-            console.log(names);
+            console.log(names);*/
         }
         
         

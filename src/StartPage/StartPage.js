@@ -37,7 +37,6 @@ class StartPage extends Component {
 
   login = callback => {
     var CLIENT_ID = "82c3c3a0508a4fe986a13ae7aaf063f7";
-    var CLIENT_SECRET = "0b25a57d012f4823b6594ccc3f39e2aa";
     var REDIRECT_URI = "http://localhost:3000/callback";
 
     function getLoginURL(scopes) {
@@ -61,14 +60,14 @@ class StartPage extends Component {
       "message",
       function(event) {
         var hash = JSON.parse(event.data);
-        if (hash.type == "access_token") {
+        if (hash.type === "access_token") {
           callback(hash.access_token);
         }
       },
       false
     );
 
-    var w = window.open(
+    window.open(
       url,
       "_self",
       "menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=" +
@@ -76,6 +75,7 @@ class StartPage extends Component {
         ", height=" +
         height
     );
+    
   };
 
   getUserData = accessToken => {
@@ -148,7 +148,6 @@ class StartPage extends Component {
         <div className="newGame">
           <button id="newGameButton" onClick={this.handleClickCreateGame}>
             Generera nytt spel
-
         </button>
         </div>
         <div className="newGame">
@@ -161,8 +160,10 @@ class StartPage extends Component {
         </div>
       </div>
     );
+  }
+
   };
 
-}
+
 
 export default StartPage;
