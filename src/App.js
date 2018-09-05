@@ -105,8 +105,8 @@ class App extends Component {
         <StartPage/>
         <iframe
           src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
-          width="100"
-          height="100"
+          width="400"
+          height="80"
           frameborder="0"
           allowtransparency="true"
           allow="encrypted-media"
