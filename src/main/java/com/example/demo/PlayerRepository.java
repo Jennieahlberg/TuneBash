@@ -9,4 +9,5 @@ import java.util.List;
 public interface PlayerRepository extends JpaRepository<Player,Integer> {
     List<Player> getAllByGameId(int gameid);
     List<Player> getAllByAnswer(String answer);
+
 }
