@@ -15,6 +15,8 @@ class StartPage extends Component {
     this.submitDataHandler = this.submitDataHandler.bind(this);
     this.state = { formFilled: false };
     this.state = { newGame: false };
+    this.getAuth = this.getAuth.bind(this);
+    this.state = { login: false };
   }
 
   submitDataHandler = () => {
@@ -32,9 +34,72 @@ class StartPage extends Component {
     this.setState({ newGame: true });
   }
 
+  login = callback => {
+    var CLIENT_ID = "82c3c3a0508a4fe986a13ae7aaf063f7";
+    var CLIENT_SECRET = "0b25a57d012f4823b6594ccc3f39e2aa";
+    var REDIRECT_URI = "http://localhost:3000/callback";
+
+    function getLoginURL(scopes) {
+      return (
+        "https://accounts.spotify.com/authorize?client_id=" +
+        CLIENT_ID +
+        "&redirect_uri=" +
+        encodeURIComponent(REDIRECT_URI) +
+        "&scope=" +
+        encodeURIComponent(scopes.join(" ")) +
+        "&response_type=token"
+      );
+    }
+
+    var url = getLoginURL(["user-read-email"]);
+
+    var width = 450,
+      height = 730;
+
+    window.addEventListener(
+      "message",
+      function(event) {
+        var hash = JSON.parse(event.data);
+        if (hash.type == "access_token") {
+          callback(hash.access_token);
+        }
+      },
+      false
+    );
+
+    var w = window.open(
+      url,
+      "_self",
+      "menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=" +
+        width +
+        ", height=" +
+        height
+    );
+  };
+
+  getUserData = accessToken => {
+    axios({
+      method: "get",
+      url: "https://api.spotify.com/v1/me",
+      headers: {
+        Authorization: "Bearer " + accessToken
+      }
+    });
+  };
+
+  getAuth = () => {
+    this.login(function(accessToken) {
+      this.getUserData(accessToken).then(function(response) {
+        console.log(response);
+        this.setState ({login: true});
+      });
+    });
+  };
+
   render() {
     const formFilled = this.state.formFilled;
     const newGame = this.state.newGame;
+    const login = this.state.login;
 
     if (formFilled) {
       return (
@@ -84,6 +149,14 @@ class StartPage extends Component {
             Generera nytt spel
 
         </button>
+        </div>
+        <div className="newGame">
+          <button
+            className="spotifyButton"
+            onClick={this.getAuth}
+          >
+            Login to Spotify <i className="fa fa-spotify"></i>
+          </button>
         </div>
       </div>
     );
