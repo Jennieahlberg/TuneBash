@@ -5,14 +5,11 @@ import Quiz from "./Quiz/Quiz";
 import NewGame from "./NewGame/NewGame";
 import GameLeaderPage from "./GameLeaderPage/GameLeaderPage";
 import CustomGame from "./CustomGame/CustomGame";
-
-import axios from 'axios';
+import axios from "axios";
 
 import WaitForStart from "./WaitForStart/WaitForStart";
 
-
 class App extends Component {
-  
   constructor(props) {
     super(props);
 
@@ -25,44 +22,43 @@ class App extends Component {
     this.handleClickStart = this.handleClickStart.bind(this);
     this.state = { start: false };
 
-    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
+    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(
+      this
+    );
     this.state = { custom: false };
 
     this.handleSubmitPinCode = this.handleSubmitPinCode.bind(this);
     this.state = { name: false };
     this.state = { quiz: [] };
-
   }
 
   handleClickCreateGame = () => {
     this.setState({ newGame: true });
-  }
+  };
 
   handleClickGenerate = () => {
     this.setState({ generate: true });
-  }
+  };
 
   handleClickStart = () => {
     this.setState({ start: true });
-  }
+  };
 
   handleClickGenerateCustomGame = () => {
     this.setState({ custom: true });
-  }
+  };
 
-  handleSubmitPinCode = (event) => {
+  handleSubmitPinCode = event => {
     if (event) event.preventDefault();
-    const input = document.getElementById('codeInput').value;
+    const input = document.getElementById("codeInput").value;
     this.setState({ name: true });
-  }
+  };
 
-  
   render() {
     const newGame = this.state.newGame;
     const generate = this.state.generate;
     const start = this.state.start;
     const custom = this.state.custom;
-    
 
     if (start) {
       return (
@@ -71,7 +67,6 @@ class App extends Component {
         </div>
       );
     }
-
 
     if (generate) {
       return (
@@ -102,17 +97,16 @@ class App extends Component {
 
     return (
       <div className="App">
-        <StartPage/>
-        <iframe
+        <StartPage />
+          <iframe
           src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
           width="400"
           height="80"
           frameborder="0"
           allowtransparency="true"
           allow="encrypted-media"
-          title="music">
-        </iframe>
-        
+          title="music"
+        />
       </div>
     );
   }
