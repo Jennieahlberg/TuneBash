@@ -1,23 +1,47 @@
 import React, { Component } from "react";
 import "./NewGame.css";
+import GameLeaderPage from "../GameLeaderPage/GameLeaderPage";
+import CustomGame from "../CustomGame/CustomGame";
+import axios from 'axios';
+
+
 
 class newGame extends Component {
   state = {
-    name: "",
-    gameId: ""
+    level: '',
+    gameId: 0,
+    genre: '',
+    numberOfQuestions: 0,
+    lengthOfSong: 0,
+    language: '',
+    name: ''
   };
 
   constructor(props) {
     super(props);
-    this.onClickGenerate = this.onClickGenerate.bind(this);
+    this.submitDataHandler = this.submitDataHandler.bind(this);
     this.onClickGenerateCustomGame = this.onClickGenerateCustomGame.bind(this);
     this.state = { generate: false };
     this.state = { custom: false };
   }
 
-  onClickGenerate = () => {
+  submitDataHandler = () => {
+    const random = Math.floor(Math.random() * (999999 - 100000) + 100000);
+
+    const newGame = {
+      level: this.state.level,
+      gameId: random,
+      genre: this.state.genre,
+      numberOfQuestions: this.state.numberOfQuestions,
+      lengthOfSong: this.state.lengthOfSong,
+      language: this.state.language,
+      name: this.state.name
+    };
+
+    axios.post('https://jsonplaceholder.typicode.com/posts', newGame) //Ändra metoden!
+    console.log(newGame);
     this.setState({ generate: true });
-  };
+  }
 
   onClickGenerateCustomGame = () => {
     this.setState({ custom: true });
@@ -27,75 +51,85 @@ class newGame extends Component {
     const generate = this.state.generate;
     const custom = this.state.custom;
 
+    if (generate) {
+      return (
+        <div className="App">
+          <GameLeaderPage onClickStart={this.handleClickStart} />
+        </div>
+      );
+    }
+
+    if (custom) {
+      return (
+        <div>
+          <CustomGame onClickGenerate={this.handleClickGenerate} />
+        </div>
+      );
+    }
 
     return (
       <div>
         <div className="headline">
           <p>Välj kriterier för spelet</p>
         </div>
-        
+
         <div className="form">
           <div className="select">
-            <form>
+            <form onSubmit={this.submitDataHandler}>
               <p>
-                <select name="level">
-                  <option value="level">Svårighetsnivå</option>
-                  <option value="mixa">Blanda nivåer</option>
+                <select value={this.state.level} onChange={(event) => this.setState({ level: event.target.value })}>
+                  <option value="" disabled selected>Svårighetsnivå</option>
+                  <option value="mix">Blanda nivåer</option>
                   <option value="pop">Lätt</option>
                   <option value="rock">Medel</option>
                   <option value="country">Svår</option>
                 </select>
               </p>
               <p>
-                <select name="genre">
-                  <option value="genre">Genre</option>
-                  <option value="mixa">Blanda genrer</option>
+                <select value={this.state.genre} onChange={(event) => this.setState({ genre: event.target.value })}>
+                  <option value="" disabled selected>Genre</option>
+                  <option value="mix">Blanda genrer</option>
                   <option value="pop">Pop</option>
                   <option value="rock">Rock</option>
                   <option value="country">Country</option>
                 </select>
               </p>
               <p>
-                <select name="numberOfQuestions">
-                  <option value="antalFrågor">Antal frågor</option>
+                <select value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })}>
+                  <option value="" disabled selected>Antal frågor</option>
                   <option value="5">5 frågor</option>
                   <option value="10">10 frågor</option>
                   <option value="15">15 frågor</option>
                 </select>
               </p>
               <p>
-                <select name="lengthOfSong">
-                  <option value="låtlängd">Låtlängd</option>
+                <select value={this.state.lengthOfSong} onChange={(event) => this.setState({ lengthOfSong: event.target.value })}>
+                  <option value="" disabled selected>Låtlängd</option>
                   <option value="10">10 sek</option>
                   <option value="30">30 sek</option>
                   <option value="1">1 min</option>
-                  <option value="fullLängd">Hela låten</option>
+                  <option value="fullLength">Hela låten</option>
                 </select>
               </p>
 
               <p>
-                <select name="language">
-                  <option value="spårk">Språk</option>
-                  <option value="alla">Blanda alla språk</option>
-                  <option value="30">Endast svenska</option>
-                  <option value="1">Endast engelska</option>
-                  <option value="fullLängd">
-                    Varken svenska eller engelska
-                  </option>
+                <select value={this.state.language} onChange={(event) => this.setState({ language: event.target.value })}>
+                  <option value="" disabled selected>Språk</option>
+                  <option value="mix">Blanda alla språk</option>
+                  <option value="swedish">Endast svenska</option>
+                  <option value="english">Endast engelska</option>
+                  <option value="notSwedishNotEnglish">Varken svenska eller engelska</option>
                 </select>
               </p>
 
-              <button id="createPinCode" onClick={this.onClickGenerate}>
-                Skapa pinkod
-              </button>
+              <p><input placeholder="Spelledarens namn" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} /></p>
+
+              <input type="submit" id="createPinCode" value="Skapa pinkod" />
             </form>
           </div>
         </div>
         <div className="generateCustomGame">
-          <button
-            id="generateCustomGame"
-            onClick={this.onClickGenerateCustomGame}
-          >
+          <button id="generateCustomGame" onClickGenerateCustomGame={this.handleClickGenerateCustomGame}>
             Eller skapa en omgång med dina egna frågor ➔
           </button>
         </div>

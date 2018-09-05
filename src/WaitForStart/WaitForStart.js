@@ -7,7 +7,7 @@ import axios from 'axios';
 
 class WaitForStart extends Component {
     state = {
-        names: []
+        name: '',
     }
 
     constructor(props) {
@@ -21,19 +21,16 @@ class WaitForStart extends Component {
         if(members){
             const names = {
                 gameId: this.state.gameId,
-                name: this.state.names
+                name: this.state.name
             };
     
-            axios.get('http://localhost:8080/questions') //Ska hämta namn, men hämtar frågor och låtlänkar
+            axios.get('http://localhost:8080/questions') //FUNKAR INTE RIKTIGT
                 .then(response => {
-                    this.setState({names: response.data});
-                   // console.log(response);
+                    console.log(response);
                 })
+            console.log(names);
         }
-
-        const names = this.state.names.map( name => {
-            return <div title={name.name}/>
-        });
+        
         
         return <div>
             <div>
@@ -44,9 +41,6 @@ class WaitForStart extends Component {
             <div className="spinner">
                 <ReactSpinner />
             </div>
-            <div>
-                {names}
-                </div>
 
         </div>
 

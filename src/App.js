@@ -3,13 +3,8 @@ import "./App.css";
 import StartPage from "./StartPage/StartPage";
 import Quiz from "./Quiz/Quiz";
 import NewGame from "./NewGame/NewGame";
-import GameLeaderPage from "./GameLeaderPage/GameLeaderPage";
-import CustomGame from "./CustomGame/CustomGame";
 
 import axios from 'axios';
-
-import WaitForStart from "./WaitForStart/WaitForStart";
-
 
 class App extends Component {
   
@@ -19,14 +14,8 @@ class App extends Component {
     this.handleClickCreateGame = this.handleClickCreateGame.bind(this);
     this.state = { newGame: false };
 
-    this.handleClickGenerate = this.handleClickGenerate.bind(this);
-    this.state = { generate: false };
-
     this.handleClickStart = this.handleClickStart.bind(this);
     this.state = { start: false };
-
-    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
-    this.state = { custom: false };
 
     this.handleSubmitPinCode = this.handleSubmitPinCode.bind(this);
     this.state = { name: false };
@@ -44,10 +33,6 @@ class App extends Component {
 
   handleClickStart = () => {
     this.setState({ start: true });
-  }
-
-  handleClickGenerateCustomGame = () => {
-    this.setState({ custom: true });
   }
 
   handleSubmitPinCode = (event) => {
@@ -71,29 +56,14 @@ class App extends Component {
       );
     }
 
-
-    if (generate) {
-      return (
-        <div className="App">
-          <GameLeaderPage onClickStart={this.handleClickStart} />
-        </div>
-      );
-    }
-
-    if (custom) {
-      return (
-        <div>
-          <CustomGame onClickGenerate={this.handleClickGenerate} />
-        </div>
-      );
-    }
+   
 
     if (newGame) {
       return (
         <div className="App">
           <NewGame
             onClickGenerate={this.handleClickGenerate}
-            onClickGenerateCustomGame={this.handleClickGenerateCustomGame}
+            
           />
         </div>
       );

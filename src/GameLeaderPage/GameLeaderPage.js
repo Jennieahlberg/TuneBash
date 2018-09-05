@@ -1,15 +1,18 @@
 import React from 'react';
 import './GameLeaderPage.css';
+import '../NewGame/NewGame.js';
+import newGame from '../NewGame/NewGame.js';
 
 const gameLeaderPage = (props) => {
     return <div>
         <div>
             <h1 className="headline">
                 Spelomgångens pinkod:
+                
                 </h1>
         </div>
         <div className="random">
-            <p>{Math.floor(Math.random() * (999999 - 100000) + 100000)}</p>
+            <p></p>
         </div>
         <div class="button">
             <button id="startGameButton" onClick={props.onClickStart}>Starta spel</button>
