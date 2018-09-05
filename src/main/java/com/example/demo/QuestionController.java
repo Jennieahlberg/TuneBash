@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class QuestionController {
 
@@ -21,6 +22,9 @@ public class QuestionController {
     private PlayerRepository prepo;
     @Autowired
     private QuestionsRepository repository;
+
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
 
     @GetMapping("/")
     public String hello() {
@@ -56,6 +60,22 @@ public class QuestionController {
     }
 
 
+    @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String newmember(@RequestBody Player player, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        System.out.println(player);
+        prepo.save(player);
+        return player.getName();
+    }
+}
+
+//    @GetMapping("/")
+//    public String test() {
+//        simpMessagingTemplate.convertAndSendToUser("/ topic"), new Player("/"));
+//
+//        return "ok";
+//    }
+//}
 
 
 
@@ -68,7 +88,7 @@ public class QuestionController {
 //        }
 //        return "ok";
 //    }
-    }
+
 
 //    @GetMapping("/delete/{id}")
 //    public Iterable<Admin> delete(@PathVariable long id) {
