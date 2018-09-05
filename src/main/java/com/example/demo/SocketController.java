@@ -27,8 +27,7 @@ private QuestionsRepository qrepo;
     //Controller för att visa deltagare/spel
     @MessageMapping ("/members")
     @SendTo("/http://localhost:3000/")
-    public String newPlayer(@RequestBody Player player, HttpServletResponse response) throws Exception{
-        response.setHeader("Access-Control-Allow-Origin", "*");
+    public String newPlayer(Player player) throws Exception{
         prepo.save(player);
         return player.getName();
     }

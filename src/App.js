@@ -3,19 +3,17 @@ import "./App.css";
 import StartPage from "./StartPage/StartPage";
 import Quiz from "./Quiz/Quiz";
 import NewGame from "./NewGame/NewGame";
-import WaitForStart from "./WaitForStart/WaitForStart";
 import GameLeaderPage from "./GameLeaderPage/GameLeaderPage";
 import CustomGame from "./CustomGame/CustomGame";
-import Name from "./Name/Name";
-import ReactDOM from 'react-dom';
+
+import axios from 'axios';
+
+import WaitForStart from "./WaitForStart/WaitForStart";
 
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.handleSubmitName = this.handleSubmitName.bind(this);
-    this.state = { playGame: false };
 
     this.handleClickCreateGame = this.handleClickCreateGame.bind(this);
     this.state = { newGame: false };
@@ -33,39 +31,7 @@ class App extends Component {
     this.state = { name: false };
     this.state = { quiz: [] };
 
-    this.state = { data: null };
-  }
 
-  componentDidMount = (data) => {
-    console.log('inne i metod componentDidMount', data);
-    fetch('http://localhost:3000/members', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-
-      body: JSON.stringify( {
-        name: data
-      })
-
-    })
-      .then((response) => {
-        if(response.ok){
-          return response.json();
-        } else {
-          console.log(response);
-        }
-      })
-      .then((data) => {this.setState({ data })})
-      .then(() => {console.log('Updated!')})
-  }
-
-  handleSubmitName = (event) => {
-    if (event) event.preventDefault();
-    const input = document.getElementById('name').value;
-    this.componentDidMount(input);
-    this.setState({ playGame: true });
   }
 
   handleClickCreateGame = () => {
@@ -90,33 +56,20 @@ class App extends Component {
     this.setState({ name: true });
   }
 
-  refreshAndStartGame = () => {
-
-  }
-
-  refreshAndGetNextQuestion = () => {
-
-  }
-
-  refreshAndShowResult = () => {
-
-  }
-
-  refreshAndEndGame = () => {
-
-  }
-
-  sendName = () => {
-
+  componentDidMount(){
+    axios.get('https://jsonplaceholder.typicode.com/posts/1')
+        .then(response => {
+          console.log(response);
+        }); 
+    
   }
 
   render() {
-    const playGame = this.state.playGame;
     const newGame = this.state.newGame;
     const generate = this.state.generate;
     const start = this.state.start;
     const custom = this.state.custom;
-    const name = this.state.name;
+    
 
     if (start) {
       return (
@@ -126,23 +79,6 @@ class App extends Component {
       );
     }
 
-    if (playGame) {
-      return (
-        <div className="App">
-          <WaitForStart />
-        </div>
-      );
-    }
-
-    if (name) {
-      return (
-        <div className="App">
-          <Name
-            onSubmitName={this.handleSubmitName}
-          />
-        </div>
-      );
-    }
 
     if (generate) {
       return (
@@ -173,10 +109,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <StartPage
-          onSubmitPinCode={this.handleSubmitPinCode}
-          onClickNew={this.handleClickCreateGame}
-        />
+        <StartPage/>
         <iframe
           src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
           width="100"

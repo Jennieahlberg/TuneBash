@@ -46,8 +46,13 @@ disconnect = () => {
     console.log("Disconnected");
 }
 
-sendName = () => {
-    stompClient.send("/app/hello", {}, JSON.stringify({ 'name': $("#name").val() }));
+sendName = (data) => {
+    let name = data;
+    stompClient.send("/app/members",
+    {}, 
+    JSON.stringify({ 
+        name: name 
+    }));
 }
 
 showGreeting = (message) => {
