@@ -12,6 +12,7 @@ import WaitForStart from "./WaitForStart/WaitForStart";
 
 
 class App extends Component {
+  
   constructor(props) {
     super(props);
 
@@ -31,7 +32,24 @@ class App extends Component {
     this.state = { name: false };
     this.state = { quiz: [] };
 
+<<<<<<< HEAD
 
+=======
+  
+  createGist = opts => {
+    fetch("https://accounts.spotify.com/api/token", {
+      method: "post",
+      body: JSON.stringify(opts)
+    })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {});
+  };
+
+  handleClickPlay() {
+    this.setState({ playGame: true });
+>>>>>>> master
   }
 
   handleClickCreateGame = () => {
@@ -56,6 +74,7 @@ class App extends Component {
     this.setState({ name: true });
   }
 
+<<<<<<< HEAD
   componentDidMount(){
     axios.get('https://jsonplaceholder.typicode.com/posts/1')
         .then(response => {
@@ -63,6 +82,9 @@ class App extends Component {
         }); 
     
   }
+=======
+  
+>>>>>>> master
 
   render() {
     const newGame = this.state.newGame;
@@ -116,8 +138,10 @@ class App extends Component {
           height="100"
           frameborder="0"
           allowtransparency="true"
-          allow="encrypted-media">
+          allow="encrypted-media"
+          title="music">
         </iframe>
+        
       </div>
     );
   }
