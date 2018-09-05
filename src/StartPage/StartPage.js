@@ -2,7 +2,9 @@ import React from "react";
 import "./StartPage.css";
 
 
+
 const startPage = props => {
+  
   return (
     <div>
       <div className="logo">
@@ -21,6 +23,11 @@ const startPage = props => {
       <div>
         <p className="logoName">TUNEBASH</p>
       </div>
+      <div>
+        <a href="/login" className="btn btn-primary">
+          Log in with Spotify
+        </a>
+      </div>
       <div className="codeInput">
         <input
           id="codeInput"
@@ -36,7 +43,8 @@ const startPage = props => {
         <button id="newGameButton" onClick={props.onClickNew}>
           Generera nytt spel
         </button>
-      </div>
+        
+      </div>  
     </div>
   );
 };

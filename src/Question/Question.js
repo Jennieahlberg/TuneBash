@@ -5,7 +5,7 @@ const Question = props => {
         <div className="Question">
         
         <div id="Question_question">
-          <div className="Product__cat">{product.varugrupp}</div>
+          <div className="Product__cat">{question.varugrupp}</div>
           <h4>{product.namn}</h4>
           <h4>{product.namn2}</h4>
           <p>{product.artikelnr}</p>
