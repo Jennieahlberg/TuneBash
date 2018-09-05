@@ -22,11 +22,8 @@ class StartPage extends Component {
       gameId: this.state.gameId,
       name: this.state.name
     };
-<<<<<<< HEAD
+    
     axios.post('http://localhost:8080/members', player)
-=======
-    axios.post('http://localhost:8080/members', player); //LÄNK SKA BYTAS UT
->>>>>>> master
     console.log(player);
 
     this.setState({ formFilled: true });
