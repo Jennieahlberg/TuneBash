@@ -16,15 +16,14 @@ class StartPage extends Component {
     this.state = { formFilled: false };
   }
 
-  submitDataHandler = () => {
+  submitDataHandler = (event) => {
+    event.preventDefault();
     const data = {
       gameId: this.state.gameId,
       name: this.state.name
     };
-    axios.post('http://localhost:8080/members', data) //LÄNK SKA BYTAS UT
-      .then(response => {
-        console.log(response);
-      });
+    axios.post('http://localhost:8080/members', data); //LÄNK SKA BYTAS UT
+    console.log(data);
 
     this.setState({ formFilled: true });
   }
