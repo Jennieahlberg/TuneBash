@@ -72,4 +72,15 @@ public class Player {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", gameId=" + gameId +
+                ", name='" + name + '\'' +
+                ", score=" + score +
+                ", answer='" + answer + '\'' +
+                '}';
+    }
 }

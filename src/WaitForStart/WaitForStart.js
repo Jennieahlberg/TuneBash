@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './WaitForStart.css';
 import {ReactSpinner} from 'react-spinning-wheel';
 import 'react-spinning-wheel/dist/style.css';

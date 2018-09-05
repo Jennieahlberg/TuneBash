@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class QuestionController {
 
@@ -22,6 +23,9 @@ public class QuestionController {
     @Autowired
     private QuestionsRepository repository;
 
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
+
     @GetMapping("/")
     public String hello() {
         return "app is running";
@@ -29,7 +33,7 @@ public class QuestionController {
 
     @GetMapping("/questions")
     public List<Questions> getUsers() {
-        List<Questions> questions = (List<Questions>) repository.findAll();
+        List<Questions> questions =  repository.getAllByLanguage("Engelska");
         return questions;
     }
 
@@ -40,12 +44,12 @@ public class QuestionController {
         return "ok";
     }
 
-    @GetMapping("/get15questions")
-    public List<Questions> get15questions() {
+    @GetMapping("/getquestions/{numberOfQuestions}")
+    public List<Questions> getQuestions(@PathVariable int numberOfQuestions) {
         List<Questions> questions = new ArrayList<>();
         Random rand = new Random();
         int i = 0;
-        while (i < 15) {
+        while (i < numberOfQuestions) {
             int random = rand.nextInt(170) + 1;
             if (repository.existsById(random)) {
                 questions.add(repository.getById(random));
@@ -55,6 +59,23 @@ public class QuestionController {
         return questions;
     }
 
+
+    @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String newmember(@RequestBody Player player, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        System.out.println(player);
+        prepo.save(player);
+        return player.getName();
+    }
+}
+
+//    @GetMapping("/")
+//    public String test() {
+//        simpMessagingTemplate.convertAndSendToUser("/ topic"), new Player("/"));
+//
+//        return "ok";
+//    }
+//}
 
 
 
@@ -67,7 +88,7 @@ public class QuestionController {
 //        }
 //        return "ok";
 //    }
-    }
+
 
 //    @GetMapping("/delete/{id}")
 //    public Iterable<Admin> delete(@PathVariable long id) {
