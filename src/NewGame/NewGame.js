@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./NewGame.css";
-import axios from "axios";
 
 class newGame extends Component {
   state = {
@@ -10,7 +9,6 @@ class newGame extends Component {
 
   constructor(props) {
     super(props);
-    this.getAuth = this.getAuth.bind(this);
     this.onClickGenerate = this.onClickGenerate.bind(this);
     this.onClickGenerateCustomGame = this.onClickGenerateCustomGame.bind(this);
     this.state = { generate: false };
@@ -19,87 +17,23 @@ class newGame extends Component {
 
   onClickGenerate = () => {
     this.setState({ generate: true });
-  }
+  };
 
   onClickGenerateCustomGame = () => {
     this.setState({ custom: true });
-  }
-
-  login = (callback) => {
-    var CLIENT_ID = "82c3c3a0508a4fe986a13ae7aaf063f7";
-    var REDIRECT_URI = "http://localhost:3000/callback";
-
-    function getLoginURL(scopes) {
-      return (
-        "https://accounts.spotify.com/authorize?client_id=" +
-        CLIENT_ID +
-        "&redirect_uri=" +
-        encodeURIComponent(REDIRECT_URI) +
-        "&scope=" +
-        encodeURIComponent(scopes.join(" ")) +
-        "&response_type=token"
-      );
-    }
-
-    var url = getLoginURL(["user-read-email"]);
-
-    var width = 450,
-      height = 730;
-
-    window.addEventListener(
-      "message",
-      function(event) {
-        var hash = JSON.parse(event.data);
-        if (hash.type == "access_token") {
-          callback(hash.access_token);
-        }
-      },
-      false
-    );
-
-    var w = window.open(
-      url,
-      "Spotify",
-      "menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=" +
-        width +
-        ", height=" +
-        height
-    );
-  }
-
-  getUserData = (accessToken) => {
-    axios({
-      method: "get",
-      url: "https://api.spotify.com/v1/me",
-      headers: {
-        Authorization: "Bearer " + accessToken
-      }
-    });
-  }
-
-  getAuth = () => {
-    this.login(function(accessToken) {
-      this.getUserData(accessToken).then(function(response) {
-        console.log(response);
-        this.display = true;
-      });
-    });
-  }
+  };
 
   render() {
     const generate = this.state.generate;
     const custom = this.state.custom;
+
+
     return (
       <div>
         <div className="headline">
           <p>Välj kriterier för spelet</p>
         </div>
-        <div>
-          <button className="button is-spotify" onClick={this.getAuth}>
-            Login to Spotify
-          </button>
-        </div>
-
+        
         <div className="form">
           <div className="select">
             <form>
