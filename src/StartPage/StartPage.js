@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./StartPage.css";
 import WaitForStart from '../WaitForStart/WaitForStart';
+import NewGame from '../NewGame/NewGame';
 import axios from 'axios';
 
 class StartPage extends Component {
@@ -14,6 +15,7 @@ class StartPage extends Component {
 
     this.submitDataHandler = this.submitDataHandler.bind(this);
     this.state = { formFilled: false };
+    this.state = { newGame: false };
   }
 
   submitDataHandler = () => {
@@ -29,8 +31,13 @@ class StartPage extends Component {
     this.setState({ formFilled: true });
   }
 
+  handleClickCreateGame = () => {
+    this.setState({ newGame: true });
+  }
+
   render() {
     const formFilled = this.state.formFilled;
+    const newGame = this.state.newGame;
 
     if (formFilled) {
       return (
@@ -38,6 +45,14 @@ class StartPage extends Component {
           <WaitForStart />
         </div>
       );
+    }
+
+    if(newGame){
+      return(
+        <div>
+          <NewGame/>
+          </div>
+      )
     }
 
     return (
@@ -68,7 +83,7 @@ class StartPage extends Component {
         </div>
 
         <div className="newGame">
-          <button id="newGameButton">
+          <button id="newGameButton" onClick={this.handleClickCreateGame}>
             Generera nytt spel
         </button>
         </div>
