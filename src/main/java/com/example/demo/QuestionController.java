@@ -47,8 +47,9 @@ public class QuestionController {
         return "ok";
     }
 
-    @GetMapping("/getquestions/{numberOfQuestions}")
-    public List<Questions> getQuestions(@PathVariable int numberOfQuestions) {
+    @GetMapping(value="/getquestions/{numberOfQuestions}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Questions> getQuestions(@PathVariable int numberOfQuestions, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> questions = new ArrayList<>();
         Random rand = new Random();
         int i = 0;
@@ -70,15 +71,6 @@ public class QuestionController {
         prepo.save(player);
         
     }
-
-    @PostMapping(value="/checkanswer", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void checkAnswer(@RequestBody Player player,Questions question, HttpServletResponse response){
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        if(player.getAnswer()==question.getCorrectAnswer()){
-          player.setScore(player.getScore()+1);
-        }
-    }
-
 }
 
 //    @GetMapping("/")
