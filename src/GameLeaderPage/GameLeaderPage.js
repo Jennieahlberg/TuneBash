@@ -18,6 +18,7 @@ handleClickStart = () => {
 
 render ()  {
     const start = this.state.start;
+    const gameId = this.props.gameId;
 
     if (start) {
         return (
@@ -30,12 +31,12 @@ render ()  {
     return <div>
         <div>
             <h1 className="headline">
-                Spelomgångens pinkod:
+                Spelomgångens pinkod: 
                 
                 </h1>
         </div>
         <div className="random">
-            <p></p>
+            <p>{gameId}</p>
         </div>
         <div class="button">
             <button id="startGameButton" onClick={this.handleClickStart}>Starta spel</button>
