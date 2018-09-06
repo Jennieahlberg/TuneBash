@@ -11,4 +11,5 @@ public interface QuestionsRepository  extends JpaRepository<Questions, Integer> 
     List<Questions> getAllByLevel(String level);
     List<Questions> getAllByCategory(String category);
     List<Questions> getAllByLanguage(String language);
+    List<Questions> getAllByCategoryAndLevel(String category,String level);
 }
