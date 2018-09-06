@@ -33,7 +33,6 @@ class WaitForStart extends Component {
           <h1 className="headline">
             Väntar på att spelledaren ska starta spel
           </h1>
-          <button onClick={this.test}>Test</button>
         </div>
         <div className="spinner">
           <ReactSpinner />

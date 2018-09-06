@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import SpotifyLogin from '../SpotifyLogin/SpotifyLogin';
+import "./MusicPlayer.css";
+
 
 
 class MusicPlayer extends Component {
@@ -26,7 +27,7 @@ class MusicPlayer extends Component {
     if (play) {
       return (
         <div>
-          <iframe
+          <iframe className="musicPlayer"
             src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
             width="400"
             height="80"

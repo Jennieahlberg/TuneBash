@@ -31,12 +31,12 @@ render ()  {
     return <div>
         <div>
             <h1 className="headline">
-                Spelomgångens pinkod: {gameId}
+                Spelomgångens pinkod: 
                 
                 </h1>
         </div>
         <div className="random">
-            <p></p>
+            <p>{gameId}</p>
         </div>
         <div class="button">
             <button id="startGameButton" onClick={this.handleClickStart}>Starta spel</button>
