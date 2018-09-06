@@ -29,7 +29,7 @@ class MusicPlayer extends Component {
         <div>
           <iframe className="musicPlayer"
             src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
-            width="400"
+            width="80"
             height="80"
             frameborder="0"
             allowtransparency="true"
