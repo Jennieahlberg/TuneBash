@@ -9,15 +9,6 @@ class App extends Component {
     return (
       <div className="App">
         <StartPage />
-          <iframe
-          src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3"
-          width="400"
-          height="80"
-          frameborder="0"
-          allowtransparency="true"
-          allow="encrypted-media"
-          title="music"
-        />
       </div>
     );
   }
