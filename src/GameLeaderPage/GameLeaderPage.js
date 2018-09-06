@@ -18,6 +18,7 @@ handleClickStart = () => {
 
 render ()  {
     const start = this.state.start;
+    const gameId = this.props.gameId;
 
     if (start) {
         return (
@@ -30,7 +31,7 @@ render ()  {
     return <div>
         <div>
             <h1 className="headline">
-                Spelomgångens pinkod:
+                Spelomgångens pinkod: {gameId}
                 
                 </h1>
         </div>

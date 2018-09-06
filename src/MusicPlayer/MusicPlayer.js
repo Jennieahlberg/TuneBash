@@ -1,19 +1,27 @@
 import React, { Component } from "react";
+import SpotifyLogin from '../SpotifyLogin/SpotifyLogin';
+
 
 class MusicPlayer extends Component {
   constructor(props) {
     super(props);
     this.playMusic = this.playMusic.bind(this);
     this.state = { play: false };
+    this.state = { play: false };
+    this.url = "https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3";
+    this.audio = new Audio(this.url);
+    this.state = {player: false};
+
   }
 
   playMusic = () => {
     this.setState({ play: true });
-    console.log(this.state);
+    console.log(this.state);   
   };
 
   render() {
     const play = this.state.play;
+    const url = this.url;
 
     if (play) {
       return (
@@ -30,6 +38,7 @@ class MusicPlayer extends Component {
         </div>
       );
     }
+    
     return (
       <div>
         <button onClick={this.playMusic}>Play</button>
