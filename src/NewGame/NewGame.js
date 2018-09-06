@@ -5,61 +5,17 @@ import CustomGame from "../CustomGame/CustomGame";
 import axios from 'axios';
 
 
-
 class newGame extends Component {
   state = {
-    orderForm: {
-      level: {
-        value: '',
-        validation: {
-          required: true
-        },
-        valid: false
-      },
-      gameId: {
-        value: 0,
-        validation: {
-          required: true
-        },
-        valid: false
-      },
-      genre: {
-        value: '',
-        validation: {
-          required: true
-        },
-        valid: false
-      },
-      numberOfQuestions: {
-        value: 0,
-        validation: {
-          required: true
-        },
-        valid: false
-      },
-      lengthOfSong: {
-        value: 0,
-        validation: {
-          required: true
-        },
-        valid: false
-      },
-      language: {
-        value: '',
-        validation: {
-          required: true
-        },
-        valid: false
-      },
-      name: {
-        value: '',
-        validation: {
-          required: true
-        },
-        valid: false
-      }
-    }
+    level: '',
+    gameId: 0,
+    genre: '',
+    numberOfQuestions: 0,
+    lengthOfSong: 0,
+    language: '',
+    name: ''
   }
+
 
   constructor(props) {
     super(props);
@@ -69,15 +25,6 @@ class newGame extends Component {
     this.state = { custom: false };
   }
 
-  checkValidity(value, rules) {
-    let isValid = false;
-
-    if(rules.required){
-      isValid = value.trim() !== '';
-    }
-
-    return isValid;
-  }
 
   submitDataHandler = () => {
     const random = Math.floor(Math.random() * (999999 - 100000) + 100000);
@@ -191,5 +138,6 @@ class newGame extends Component {
     );
   }
 }
+    
 
 export default newGame;
