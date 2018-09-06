@@ -5,11 +5,11 @@ const quiz = () => {
     this.state = { quiz: [] };
     
     return (<div>
-                {this.props.products
+                {this.props.questions
                     .filter(e => e.isvisible === "true")
                     .filter(e => e.namn.toLowerCase()
                     .indexOf(this.props.search.toLowerCase()) !== -1)
-                    .map(this.renderProducts)}
+                    .map(this.renderQuestions)}
     </div>);
 }
 

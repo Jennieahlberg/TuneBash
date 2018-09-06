@@ -5,11 +5,12 @@ import MusicPlayer from "./MusicPlayer/MusicPlayer";
 
 class App extends Component {
 
+
   render() {
     return (
       <div className="App">
         <StartPage />
-        <MusicPlayer/>
+        <MusicPlayer/>        
       </div>
     );
   }
