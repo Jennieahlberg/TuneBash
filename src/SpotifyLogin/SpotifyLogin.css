@@ -1,0 +1,26 @@
+.newGame {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.spotifyButton{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: solid 0px;
+    transition: all 0.3s ease;
+    padding: 16px;
+    width: 40%;
+    background-color: #181818;
+    color: white;
+}
+
+.spotifyButton:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
