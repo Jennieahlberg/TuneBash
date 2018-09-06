@@ -9,7 +9,6 @@ import axios from 'axios';
 class newGame extends Component {
   state = {
     level: '',
-    gameId: 0,
     genre: '',
     numberOfQuestions: 0,
     lengthOfSong: 0,
@@ -23,6 +22,7 @@ class newGame extends Component {
     this.onClickGenerateCustomGame = this.onClickGenerateCustomGame.bind(this);
     this.state = { generate: false };
     this.state = { custom: false };
+    this.state = { gameId: 0 };
   }
 
   submitDataHandler = () => {
@@ -38,8 +38,11 @@ class newGame extends Component {
       name: this.state.name
     };
 
-    axios.post('http://localhost:8080/getquestions', newGame) //Ändra metoden!
+    axios.post('http://localhost:8080/getquestions', newGame)
     console.log(newGame);
+    console.log(random);
+
+    this.setState({gameId: random});
     this.setState({ generate: true });
   }
 
@@ -54,7 +57,7 @@ class newGame extends Component {
     if (generate) {
       return (
         <div className="App">
-          <GameLeaderPage onClickStart={this.handleClickStart} />
+          <GameLeaderPage onClickStart={this.handleClickStart} gameId={this.state.gameId}/>
         </div>
       );
     }

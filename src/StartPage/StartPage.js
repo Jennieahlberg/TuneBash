@@ -41,7 +41,8 @@ class StartPage extends Component {
     if (formFilled) {
       return (
         <div className="App">
-          <WaitForStart />
+          <WaitForStart
+          name={this.state.name} />
         </div>
       );
     }
