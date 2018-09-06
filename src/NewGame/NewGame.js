@@ -9,7 +9,7 @@ import axios from 'axios';
 class newGame extends Component {
   state = {
     level: '',
-    genre: '',
+    category: '',
     numberOfQuestions: 0,
     lengthOfSong: 0,
     language: '',
@@ -31,7 +31,7 @@ class newGame extends Component {
     const newGame = {
       level: this.state.level,
       gameId: random,
-      genre: this.state.genre,
+      category: this.state.category,
       numberOfQuestions: this.state.numberOfQuestions,
       lengthOfSong: this.state.lengthOfSong,
       language: this.state.language,
@@ -89,12 +89,12 @@ class newGame extends Component {
                 </select>
               </p>
               <p>
-                <select value={this.state.genre} onChange={(event) => this.setState({ genre: event.target.value })}>
+                <select value={this.state.category} onChange={(event) => this.setState({ category: event.target.value })}>
                   <option value="" disabled selected>Genre</option>
                   <option value="mix">Blanda genrer</option>
-                  <option value="pop">Pop</option>
-                  <option value="rock">Rock</option>
-                  <option value="country">Country</option>
+                  <option value="Pop">Pop</option>
+                  <option value="Rock">Rock</option>
+                  <option value="Country">Country</option>
                 </select>
               </p>
               <p>

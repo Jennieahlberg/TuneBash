@@ -34,7 +34,7 @@ public class QuestionController {
 
     @GetMapping("/questions")
     public List<Questions> getUsers() {
-        List<Questions> questions =  repository.getAllByLanguage("Engelska");
+        List<Questions> questions = repository.getAllByLanguage("Engelska");
         return questions;
     }
 
@@ -44,33 +44,34 @@ public class QuestionController {
         prepo.save(new Player(1, name, score, answer));
         return "ok";
     }
+
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(value="/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        List<Questions> firstfilter= repository.getAllByCategoryAndAndLevelAndAndLanguage(quiz.getLevel(),quiz.getCategory(),quiz.getLanguage());
+        System.out.println(quiz.getCategory() + quiz.getLevel());
+        List<Questions> firstfilter = repository.getAllByCategoryAndLevel(quiz.getCategory(), quiz.getLevel());
         List<Questions> questions = new ArrayList<>();
         Collections.shuffle(firstfilter);
+        System.out.println(firstfilter);
 
-        for(int i =0; i<quiz.getNumberOfQuestions();i++){
-           questions.add(firstfilter.remove(i));
+        for (int i = 0; i <= quiz.getNumberOfQuestions(); i++) {
+            questions.add(firstfilter.get(i));
         }
-                for (Questions q:questions
-                     ) {
-                    System.out.println(q);
-                }
+        for (Questions q : questions
+        ) {
+            System.out.println(q);
+        }
         return questions;
-        }
-
+    }
 
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void newmember(@RequestBody Player player, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-       
         prepo.save(player);
-        
+
     }
 }
 
@@ -81,7 +82,6 @@ public class QuestionController {
 //        return "ok";
 //    }
 //}
-
 
 
 //    @GetMapping("/addfromexcelfile")
