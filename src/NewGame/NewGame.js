@@ -8,14 +8,58 @@ import axios from 'axios';
 
 class newGame extends Component {
   state = {
-    level: '',
-    gameId: 0,
-    genre: '',
-    numberOfQuestions: 0,
-    lengthOfSong: 0,
-    language: '',
-    name: ''
-  };
+    orderForm: {
+      level: {
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
+      },
+      gameId: {
+        value: 0,
+        validation: {
+          required: true
+        },
+        valid: false
+      },
+      genre: {
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
+      },
+      numberOfQuestions: {
+        value: 0,
+        validation: {
+          required: true
+        },
+        valid: false
+      },
+      lengthOfSong: {
+        value: 0,
+        validation: {
+          required: true
+        },
+        valid: false
+      },
+      language: {
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
+      },
+      name: {
+        value: '',
+        validation: {
+          required: true
+        },
+        valid: false
+      }
+    }
+  }
 
   constructor(props) {
     super(props);
@@ -23,6 +67,16 @@ class newGame extends Component {
     this.onClickGenerateCustomGame = this.onClickGenerateCustomGame.bind(this);
     this.state = { generate: false };
     this.state = { custom: false };
+  }
+
+  checkValidity(value, rules) {
+    let isValid = false;
+
+    if(rules.required){
+      isValid = value.trim() !== '';
+    }
+
+    return isValid;
   }
 
   submitDataHandler = () => {
