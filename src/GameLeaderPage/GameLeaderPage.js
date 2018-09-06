@@ -1,18 +1,44 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './GameLeaderPage.css';
+import NewGame from '../NewGame/NewGame.js';
+import Quiz from "../Quiz/Quiz";
 
-const gameLeaderPage = (props) => {
+class GameLeaderPage extends Component{
+
+    constructor(props) {
+        super(props);
+        this.handleClickStart = this.handleClickStart.bind(this);
+        this.state = ({ start: false });
+      }
+
+
+handleClickStart = () => {
+    this.setState({ start: true });
+  };
+
+render ()  {
+    const start = this.state.start;
+
+    if (start) {
+        return (
+          <div>
+            <Quiz />
+          </div>
+        );
+      }
+
     return <div>
         <div>
             <h1 className="headline">
                 Spelomgångens pinkod:
+                
                 </h1>
         </div>
         <div className="random">
-            <p>{Math.floor(Math.random() * (999999 - 100000) + 100000)}</p>
+            <p></p>
         </div>
         <div class="button">
-            <button id="startGameButton" onClick={props.onClickStart}>Starta spel</button>
+            <button id="startGameButton" onClick={this.handleClickStart}>Starta spel</button>
         </div>
         <div className="instructions">
             <p>
@@ -21,5 +47,6 @@ const gameLeaderPage = (props) => {
         </div>
     </div>
 }
+}
 
-export default gameLeaderPage; 
+export default GameLeaderPage; 
