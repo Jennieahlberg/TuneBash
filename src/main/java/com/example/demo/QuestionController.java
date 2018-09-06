@@ -48,11 +48,16 @@ public class QuestionController {
     }
 
     @GetMapping(value="/getquestions/{numberOfQuestions}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Questions> getQuestions(@PathVariable int numberOfQuestions, HttpServletResponse response) {
+    public List<Questions> getQuestions(@PathVariable  String level, String category, int numberOfQuestions, String language,  HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> questions = new ArrayList<>();
         Random rand = new Random();
         int i = 0;
+        if(level!=null){
+            repository.getAllByLevel(level){
+                if(category!=null)
+            }
+        }
         while (i < numberOfQuestions) {
             int random = rand.nextInt(170) + 1;
             if (repository.existsById(random)) {
