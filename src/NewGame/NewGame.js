@@ -38,7 +38,7 @@ class newGame extends Component {
       name: this.state.name
     };
 
-    axios.post('https://jsonplaceholder.typicode.com/posts', newGame) //Ändra metoden!
+    axios.post('http://localhost:8080/getquestions', newGame) //Ändra metoden!
     console.log(newGame);
     this.setState({ generate: true });
   }
@@ -80,9 +80,9 @@ class newGame extends Component {
                 <select value={this.state.level} onChange={(event) => this.setState({ level: event.target.value })}>
                   <option value="" disabled selected>Svårighetsnivå</option>
                   <option value="mix">Blanda nivåer</option>
-                  <option value="pop">Lätt</option>
-                  <option value="rock">Medel</option>
-                  <option value="country">Svår</option>
+                  <option value="Lätt">Lätt</option>
+                  <option value="Medel">Medel</option>
+                  <option value="Svår">Svår</option>
                 </select>
               </p>
               <p>
@@ -115,10 +115,10 @@ class newGame extends Component {
               <p>
                 <select value={this.state.language} onChange={(event) => this.setState({ language: event.target.value })}>
                   <option value="" disabled selected>Språk</option>
-                  <option value="mix">Blanda alla språk</option>
-                  <option value="swedish">Endast svenska</option>
-                  <option value="english">Endast engelska</option>
-                  <option value="notSwedishNotEnglish">Varken svenska eller engelska</option>
+                  <option value="">Blanda alla språk</option>
+                  <option value="Svenska">Endast svenska</option>
+                  <option value="Engelska">Endast engelska</option>
+                  <option value="varkenSvenskaEllerEngelska">Varken svenska eller engelska</option>
                 </select>
               </p>
 
