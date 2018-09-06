@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 @RestController
@@ -46,27 +44,25 @@ public class QuestionController {
         prepo.save(new Player(1, name, score, answer));
         return "ok";
     }
-
-    @GetMapping(value="/getquestions/{numberOfQuestions}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Questions> getQuestions(@PathVariable  String level, String category, int numberOfQuestions, String language,  HttpServletResponse response) {
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value="/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
+        List<Questions> firstfilter= repository.getAllByCategoryAndAndLevelAndAndLanguage(quiz.getLevel(),quiz.getCategory(),quiz.getLanguage());
         List<Questions> questions = new ArrayList<>();
-        Random rand = new Random();
-        int i = 0;
-        if(level!=null){
-            repository.getAllByLevel(level){
-                if(category!=null)
-            }
+        Collections.shuffle(firstfilter);
+
+        for(int i =0; i<quiz.getNumberOfQuestions();i++){
+           questions.add(firstfilter.remove(i));
         }
-        while (i < numberOfQuestions) {
-            int random = rand.nextInt(170) + 1;
-            if (repository.existsById(random)) {
-                questions.add(repository.getById(random));
-                i++;
-            }
-        }
+                for (Questions q:questions
+                     ) {
+                    System.out.println(q);
+                }
         return questions;
-    }
+        }
+
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
