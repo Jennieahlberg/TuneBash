@@ -61,7 +61,7 @@ public class QuestionController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:3001")
     @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void newmember(@RequestBody Player player, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
