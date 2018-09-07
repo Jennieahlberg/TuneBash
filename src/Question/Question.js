@@ -6,8 +6,6 @@ class Question extends Component {
   constructor() {
     super();
     this.state = {
-      answer: "japps",
-      question: "sugen på blåbär?",
       currentCount: 0
     };
   }
@@ -44,7 +42,7 @@ class Question extends Component {
           strokeWidth="2"
           strokeColor="#333333"
         />
-        <div className="Question_question">
+        <div className="Question_details">
           <form>
             <p> {question.question}</p>
 

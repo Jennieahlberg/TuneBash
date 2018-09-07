@@ -11,7 +11,7 @@ class Quiz extends Component {
     
     renderQuestions(question) {
         return (
-            <div className="col-md-6" key={question.id}>
+            <div className="col-md-6" >
                 <Question
                     question={question}
                 ></Question>
