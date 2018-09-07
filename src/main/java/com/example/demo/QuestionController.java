@@ -74,14 +74,6 @@ public class QuestionController {
         return questions;
     }
 
-
-    @GetMapping("/add/{name}/{score}/{answer}")
-    public String add(@PathVariable String
-                              name, @PathVariable int score, @PathVariable String answer) {
-        prepo.save(new Player(1, name, score, answer));
-        return "ok";
-    }
-
     @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void newmember(@RequestBody Player player, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");

@@ -6,7 +6,6 @@ class Quiz extends Component {
   constructor(props) {
     super(props);
     this.state = {counter: 0};
-    this.renderQuestions = this.renderQuestions.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
   }
 
@@ -14,19 +13,11 @@ class Quiz extends Component {
       this.setState({ counter: this.state.counter + 1 });
   }
 
-  renderQuestions(question) {
-    return (
-      <div className="col-md-6" key={question.id}>
-        <Question question={question} nextQuestion={this.nextQuestion} />
-      </div>
-    );
-  }
-
   render() {
+      const quizz = this.props.questions;
     return (
-      <div className="questiones">
-        {this.props.questions[this.state.counter]
-        .find(this.renderQuestions)}
+      <div className="questions">
+        <Question question={quizz[this.state.counter]} nextQuestion={this.nextQuestion} />
       </div>
     );
   }
