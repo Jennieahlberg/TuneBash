@@ -14,7 +14,7 @@ const customGame = (props) => {
             <div className="select">
                 <form>
                     <p>
-                        <select name="numberOfQuestions">
+                        <select required name="numberOfQuestions">
                             <option value="numberOfQusetions">Antal frågor</option>
                             <option value="5">5 frågor</option>
                             <option value="10">10 frågor</option>
@@ -23,7 +23,7 @@ const customGame = (props) => {
                         </select>
                     </p>
 
-                    <p><select name="lengthOfSong">
+                    <p><select required name="lengthOfSong">
                         <option value="låtlängd">Låtlängd</option>
                         <option value="10">10 sek</option>
                         <option value="30">30 sek</option>
@@ -33,12 +33,12 @@ const customGame = (props) => {
                     </p>
                     
 
-                    <p><input type="text" placeholder="Låtlänk från Spotify" /></p>
-                    <p><input type="text" placeholder="Fråga" /></p>
-                    <p><input type="text" placeholder="Rätt svar" /></p>
-                    <p><input type="text" placeholder="Fel svar 1" /></p>
-                    <p><input type="text" placeholder="Fel svar 2" /></p>
-                    <p><input type="text" placeholder="Fel svar 3" /></p>
+                    <p><input required type="text" placeholder="Låtlänk från Spotify" /></p>
+                    <p><input required type="text" placeholder="Fråga" /></p>
+                    <p><input required type="text" placeholder="Rätt svar" /></p>
+                    <p><input required type="text" placeholder="Fel svar 1" /></p>
+                    <p><input required type="text" placeholder="Fel svar 2" /></p>
+                    <p><input required type="text" placeholder="Fel svar 3" /></p>
 
                     <div>
                         <button id="createPinCode" onClick={props.onClickGenerate}>Skapa pinkod</button>

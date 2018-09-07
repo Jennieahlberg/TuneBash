@@ -98,7 +98,7 @@ class newGame extends Component {
                 </select>
               </p>
               <p>
-                <select value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })}>
+                <select required value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })}>
                   <option value="" disabled selected>Antal frågor</option>
                   <option value="5">5 frågor</option>
                   <option value="10">10 frågor</option>
