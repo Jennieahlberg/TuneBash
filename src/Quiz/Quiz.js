@@ -1,16 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Quiz.css';
+import Question from '../Question/Question';
 
-const quiz = () => {
-    this.state = { quiz: [] };
+class Quiz extends Component {
+
+    constructor(props) {
+        super(props)
+        this.renderQuestions = this.renderQuestions.bind(this);
+    }
     
+    renderQuestions(question) {
+        return (
+            <div className="col-md-6" key={question.id}>
+                <Question
+                    question={question}
+                ></Question>
+            </div>
+        );
+    }
+    
+    render() {
     return (<div>
-                {this.props.products
-                    .filter(e => e.isvisible === "true")
-                    .filter(e => e.namn.toLowerCase()
-                    .indexOf(this.props.search.toLowerCase()) !== -1)
-                    .map(this.renderProducts)}
+                {this.props.questions
+                .map(this.renderQuestions)}
     </div>);
+    }
 }
 
-export default quiz; 
+export default Quiz; 

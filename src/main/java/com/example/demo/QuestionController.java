@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 @RestController
@@ -36,7 +34,7 @@ public class QuestionController {
 
     @GetMapping("/questions")
     public List<Questions> getUsers() {
-        List<Questions> questions =  repository.getAllByLanguage("Engelska");
+        List<Questions> questions = repository.getAllByLanguage("Engelska");
         return questions;
     }
 
@@ -47,38 +45,29 @@ public class QuestionController {
         return "ok";
     }
 
-    @GetMapping("/getquestions/{numberOfQuestions}")
-    public List<Questions> getQuestions(@PathVariable int numberOfQuestions) {
+    @CrossOrigin(origins = "http://localhost:3001")
+    @PostMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage(quiz.getCategory(), quiz.getLevel(),quiz.getLanguage());
         List<Questions> questions = new ArrayList<>();
-        Random rand = new Random();
-        int i = 0;
-        while (i < numberOfQuestions) {
-            int random = rand.nextInt(170) + 1;
-            if (repository.existsById(random)) {
-                questions.add(repository.getById(random));
-                i++;
-            }
+        Collections.shuffle(firstfilter);
+
+        for (int i = 0; i <quiz.getNumberOfQuestions(); i++) {
+            questions.add(firstfilter.get(i));
         }
+
         return questions;
     }
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void newmember(@RequestBody Player player, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-       
         prepo.save(player);
-        
-    }
 
-    @PostMapping(value="/checkanswer", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void checkAnswer(@RequestBody Player player,Questions question, HttpServletResponse response){
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        if(player.getAnswer()==question.getCorrectAnswer()){
-          player.setScore(player.getScore()+1);
-        }
     }
-
 }
 
 //    @GetMapping("/")
@@ -88,7 +77,6 @@ public class QuestionController {
 //        return "ok";
 //    }
 //}
-
 
 
 //    @GetMapping("/addfromexcelfile")

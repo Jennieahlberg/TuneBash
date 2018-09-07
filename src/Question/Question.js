@@ -1,33 +1,70 @@
-import React from "react";
+import React, { Component } from "react";
+import "./Question.css";
+import Line from "../Progressbar/Line";
 
-const Question = props => {
-    return(
-        <div className="Question">
-        
-        <div id="Question_question">
-          <div className="Product__cat">{question.varugrupp}</div>
-          <h4>{product.namn}</h4>
-          <h4>{product.namn2}</h4>
-          <p>{product.artikelnr}</p>
-          <p>
-            {product.ursprung}, {product.ursprungsland}
-          </p>
-          <div className="Product__price-cart">
-            <p>{product.prisinklmoms} SEK</p>
-            <button onClick={this.props.handleClick.bind(this, product)}>
-              <span className="fa fa-cart-plus" /> Köp
+class Question extends Component {
+  constructor() {
+    super();
+    this.state = {
+      answer: "japps",
+      question: "sugen på blåbär?",
+      currentCount: 0
+    };
+  }
+
+  componentDidMount() {
+    const intervalId = setInterval(this.timer, 50);
+    // store intervalId in the state so it can be accessed later:
+    this.setState({ intervalId: intervalId });
+  }
+
+  componentWillUnmount() {
+    // use intervalId from the state to clear the interval
+    clearInterval(this.state.intervalId);
+  }
+
+  timer() {
+    // setState method is used to update the state
+    var newCount = this.state.currentCount + 1;
+    if (newCount <= 100) {
+      this.setState({ currentCount: newCount });
+    } else {
+      clearInterval(this.state.intervalId);
+    }
+  }
+
+  submitAnswer() {}
+
+  render() {
+    const question = this.props.question;
+    return (
+      <div className="Question">
+        <Line
+          percent={this.state.currentCount}
+          strokeWidth="2"
+          strokeColor="#333333"
+        />
+        <div className="Question_question">
+          <form>
+            <p> {question.question}</p>
+
+            <button className=" answerButton" onClick={this.submitAnswer}>
+              {question.correctAnswer}
             </button>
-          </div>
-          <div className="BootItem__description">{product.name}</div>
-          <div
-            className="Product__stock"
-            style={{ color: product.lagersaldo >= 5 ? "#417505" : "#CE0814" }}
-          >
-            {product.lagersaldo} i lager.
-          </div>
+            <button className=" answerButton" onClick={this.submitAnswer}>
+              {question.wrongAnswer1}
+            </button>
+            <button className=" answerButton" onClick={this.submitAnswer}>
+              {question.wrongAnswer2}
+            </button>
+            <button className=" answerButton" onClick={this.submitAnswer}>
+              {question.wrongAnswer3}
+            </button>
+          </form>
         </div>
       </div>
     );
+  }
 }
 
 export default Question;
