@@ -39,6 +39,7 @@ public class QuestionController {
         List<Questions> questions = repository.getAllByLanguage("Engelska");
         return questions;
     }
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {

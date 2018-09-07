@@ -8,7 +8,7 @@ class WaitForStart extends Component {
   constructor() {
     super();
     this.state = { members: true };
-    this.test = this.test.bind(this);
+ 
   }
 
   render() {

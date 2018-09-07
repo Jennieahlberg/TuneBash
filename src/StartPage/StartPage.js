@@ -4,7 +4,7 @@ import WaitForStart from '../WaitForStart/WaitForStart';
 import NewGame from '../NewGame/NewGame';
 import axios from 'axios';
 import SpotifyLogin from '../SpotifyLogin/SpotifyLogin';
-import SimpleReactValidator from 'simple-react-validator';
+import PopUp from '../PopUp/PopUp';
 
 class StartPage extends Component {
   state = {
@@ -17,7 +17,6 @@ class StartPage extends Component {
     this.submitDataHandler = this.submitDataHandler.bind(this);
     this.state = { formFilled: false };
     this.state = { newGame: false };
-    this.validator = new SimpleReactValidator();
   }
 
   submitDataHandler = () => {
@@ -44,7 +43,7 @@ class StartPage extends Component {
       return (
         <div className="App">
           <WaitForStart
-          name={this.state.name} />
+            name={this.state.name} />
         </div>
       );
     }
@@ -78,8 +77,8 @@ class StartPage extends Component {
 
         <div className="codeInput">
           <form onSubmit={this.submitDataHandler}>
-            <input type="number" required value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
-            <input type="text" required value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn"  />
+            <input type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska innehålla sex siffror" value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
+            <input type="text" required value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn" />
             <input type="submit" className="playButton" value="Let's rock!" />
           </form>
         </div>
@@ -90,8 +89,15 @@ class StartPage extends Component {
         </button>
 
         </div>
-        <SpotifyLogin />
+
+        <div>
+          <SpotifyLogin />
+        </div>
+
+        <PopUp/>
+
       </div >
+
     );
   }
 }
