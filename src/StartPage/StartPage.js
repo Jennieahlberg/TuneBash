@@ -4,10 +4,7 @@ import WaitForStart from '../WaitForStart/WaitForStart';
 import NewGame from '../NewGame/NewGame';
 import axios from 'axios';
 import SpotifyLogin from '../SpotifyLogin/SpotifyLogin';
-<<<<<<< HEAD
 import PopUp from '../PopUp/PopUp';
-=======
->>>>>>> master
 
 class StartPage extends Component {
   state = {
@@ -81,7 +78,7 @@ class StartPage extends Component {
         <div className="codeInput">
           <form onSubmit={this.submitDataHandler}>
             <input type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska innehålla sex siffror" value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
-            <input type="text" required pattern="[a-zA-Z0-9\s]{25}" title="Max 25 tecken" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn" />
+            <input type="text" required value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn" />
             <input type="submit" className="playButton" value="Let's rock!" />
           </form>
         </div>

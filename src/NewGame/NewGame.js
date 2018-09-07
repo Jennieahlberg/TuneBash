@@ -126,7 +126,7 @@ class newGame extends Component {
                 </select>
               </p>
 
-              <p><input required pattern="[a-zA-Z0-9\s]{25}" title="Max 25 tecken" placeholder="Spelledarens namn" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} /></p>
+              <p><input required placeholder="Spelledarens namn" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} /></p>
 
               <input type="submit" id="createPinCode" value="Skapa pinkod" />
             </form>

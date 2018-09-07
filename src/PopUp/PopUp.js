@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import Axios from 'axios';
-import ReactDOM from 'react-dom';
 import "./PopUp.css";
 
 class Popup extends React.Component {
@@ -28,20 +26,46 @@ class Popup extends React.Component {
     this.setState({ showModal: false });
   }
 
-
-
   render () {
     return (
       <div id="popup">
-        <button className="checkout" value="Checkout" onClick={this.handleOpenModal}>
+        <button className="popupButton" onClick={this.handleOpenModal}>FAQ
         </button>
 
-        <ReactModal id="ruta"
+        <ReactModal id="popup"
            dialogClassName="test"
            isOpen={this.state.showModal}
            contentLabel="onRequestClose Example"
-           onRequestClose={this.handleCloseModal}> 
-          Varför logga in på Spotify?
+           onRequestClose={this.handleCloseModal}
+           style={{
+            overlay: {
+              backgroundColor: 'linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%)'
+              
+            },
+            content: {
+              color: 'black',
+              backgroundColor: 'papayawhip',        
+            }
+            
+          }}> 
+         <p> 
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+           </p>
+         <div className="closeDiv">
+         <a href="" className="closeButton" onClick={this.handleCloseModal}>Stäng</a>
+         </div>
         </ReactModal>
       </div>
     );
