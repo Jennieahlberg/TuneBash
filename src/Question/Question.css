@@ -1,0 +1,19 @@
+.answerButton:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+#1{
+    color: lightpink;
+}
+
+#2{
+    color: lightblue;
+}
+
+#3{
+    color: lightgreen;
+}
+
+#4{
+    color: lightgoldenrodyellow;
+}
