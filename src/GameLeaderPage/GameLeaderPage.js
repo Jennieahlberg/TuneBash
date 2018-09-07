@@ -12,7 +12,7 @@ class GameLeaderPage extends Component {
     this.state = { questions: [] };
 
     axios
-      .get("http://localhost:8080/questions")
+      .get("http://localhost:8080/getquestions")
       .then(response => {
         const newQuiz = response.data;
 

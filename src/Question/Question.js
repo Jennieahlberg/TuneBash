@@ -10,12 +10,7 @@ class Question extends Component {
     const question = this.props.question;
     return (
       <div className="Question">
-      <iframe
-          src="https://p.scdn.co/mp3-preview/83090a4db6899eaca689ae35f69126dbe65d94c9?cid=null"
-          type="audio/mpeg"
-          allow="autoplay"
-          id="iframeAudio"
-        />
+      <iframe src="https://open.spotify.com/embed/track/7qvxFz3JodM0A7xEM7k3YD" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         <div className="Question_question">
           <form>
             <p> {question.question}</p>

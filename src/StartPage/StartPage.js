@@ -4,7 +4,6 @@ import WaitForStart from '../WaitForStart/WaitForStart';
 import NewGame from '../NewGame/NewGame';
 import axios from 'axios';
 import SpotifyLogin from '../SpotifyLogin/SpotifyLogin';
-import SimpleReactValidator from 'simple-react-validator';
 
 class StartPage extends Component {
   state = {
@@ -17,7 +16,6 @@ class StartPage extends Component {
     this.submitDataHandler = this.submitDataHandler.bind(this);
     this.state = { formFilled: false };
     this.state = { newGame: false };
-    this.validator = new SimpleReactValidator();
   }
 
   submitDataHandler = () => {

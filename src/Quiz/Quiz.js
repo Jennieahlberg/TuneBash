@@ -19,7 +19,6 @@ class Quiz extends Component {
   render() {
     return (
       <div className="questiones">
-      <h1>Här ska det vara frågor</h1>
         {this.props.questions.map(this.renderQuestions)}
       </div>
     );
