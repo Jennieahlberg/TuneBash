@@ -23,6 +23,8 @@ public class QuestionController {
     private PlayerRepository prepo;
     @Autowired
     private QuestionsRepository repository;
+    @Autowired
+    private CustomQuestionRepository cqrepo;
 
     @Autowired
     private SimpMessagingTemplate simpMessagingTemplate;
@@ -48,21 +50,38 @@ public class QuestionController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
+    public List<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage(quiz.getCategory(), quiz.getLevel(),quiz.getLanguage());
         List<Questions> questions = new ArrayList<>();
         Collections.shuffle(firstfilter);
-
         for (int i = 0; i <quiz.getNumberOfQuestions(); i++) {
             questions.add(firstfilter.get(i));
         }
+        return questions;
+    }
 
+    @PostMapping(value = "/addcustomquestion", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void customquestion(@RequestBody CustomQuestion question, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        cqrepo.save(question);
+    }
+
+    @GetMapping(value = "/getcustomquiz", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CustomQuestion> customquiz(@PathVariable int pin,HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        List<CustomQuestion> questions = cqrepo.getAllByPin(pin);
         return questions;
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/add/{name}/{score}/{answer}")
+    public String add(@PathVariable String
+                              name, @PathVariable int score, @PathVariable String answer) {
+        prepo.save(new Player(1, name, score, answer));
+        return "ok";
+    }
+
     @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void newmember(@RequestBody Player player, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -70,15 +89,6 @@ public class QuestionController {
 
     }
 }
-
-//    @GetMapping("/")
-//    public String test() {
-//        simpMessagingTemplate.convertAndSendToUser("/ topic"), new Player("/"));
-//
-//        return "ok";
-//    }
-//}
-
 
 //    @GetMapping("/addfromexcelfile")
 //    public String addFromExcel() throws IOException, InvalidFormatException {
@@ -103,9 +113,4 @@ public class QuestionController {
 //        return repository.findAll();
 //    }
 //
-//    @GetMapping("/find/{username}")
-//    public Iterable<Admin> findByUsername(@PathVariable String username) {
-//        return repository.findByUsername(username);
-//    }
 
-//}
