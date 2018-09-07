@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
-
 @RestController
 public class QuestionController {
 
@@ -41,15 +40,8 @@ public class QuestionController {
         return questions;
     }
 
-    @GetMapping("/add/{name}/{score}/{answer}")
-    public String add(@PathVariable String
-                              name, @PathVariable int score, @PathVariable String answer) {
-        prepo.save(new Player(1, name, score, answer));
-        return "ok";
-    }
-
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage(quiz.getCategory(), quiz.getLevel(),quiz.getLanguage());
