@@ -78,7 +78,7 @@ class StartPage extends Component {
         <div className="codeInput">
           <form onSubmit={this.submitDataHandler}>
             <input type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska innehålla sex siffror" value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
-            <input type="text" required value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn" />
+            <input type="text" required title="Måste fyllas i" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn" />
             <input type="submit" className="playButton" value="Let's rock!" />
           </form>
         </div>
