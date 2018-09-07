@@ -6,8 +6,12 @@ import javax.persistence.*;
 @Table(name = "custom_questions")
 public class CustomQuestion {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
+    @Column(name = "pin")
+    private int pin;
 
     @Column(name = "songlink")
     private String songLink;
@@ -28,13 +32,11 @@ public class CustomQuestion {
     private String wrongAnswer3;
 
 
-
-
     public CustomQuestion() {
     }
 
-    public CustomQuestion(int id, String songLink, String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
-        this.id = id;
+    public CustomQuestion(int pin, String songLink, String question, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
+        this.pin = pin;
         this.songLink = songLink;
         this.question = question;
         this.correctAnswer = correctAnswer;
@@ -48,8 +50,12 @@ public class CustomQuestion {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getPin() {
+        return pin;
+    }
+
+    public void setPin(int pin) {
+        this.pin = pin;
     }
 
     public String getSongLink() {
