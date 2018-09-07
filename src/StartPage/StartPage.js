@@ -57,7 +57,7 @@ class StartPage extends Component {
     }
 
     return (
-      <div>
+      <div className="startPageDiv">
         <div className="logo">
           <svg
             xmlns="http://www.w3.org/2000/svg"
