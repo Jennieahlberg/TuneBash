@@ -3,35 +3,6 @@ import "./Question.css";
 import Line from "../Progressbar/Line";
 
 class Question extends Component {
-  constructor() {
-    super();
-    this.state = {
-      answer: "japps",
-      question: "sugen på blåbär?",
-      currentCount: 0
-    };
-  }
-
-  componentDidMount() {
-    const intervalId = setInterval(this.timer, 50);
-    // store intervalId in the state so it can be accessed later:
-    this.setState({ intervalId: intervalId });
-  }
-
-  componentWillUnmount() {
-    // use intervalId from the state to clear the interval
-    clearInterval(this.state.intervalId);
-  }
-
-  timer() {
-    // setState method is used to update the state
-    var newCount = this.state.currentCount + 1;
-    if (newCount <= 100) {
-      this.setState({ currentCount: newCount });
-    } else {
-      clearInterval(this.state.intervalId);
-    }
-  }
 
   submitAnswer() {}
 
@@ -39,10 +10,11 @@ class Question extends Component {
     const question = this.props.question;
     return (
       <div className="Question">
-        <Line
-          percent={this.state.currentCount}
-          strokeWidth="2"
-          strokeColor="#333333"
+      <iframe
+          src="https://p.scdn.co/mp3-preview/83090a4db6899eaca689ae35f69126dbe65d94c9?cid=null"
+          type="audio/mpeg"
+          allow="autoplay"
+          id="iframeAudio"
         />
         <div className="Question_question">
           <form>

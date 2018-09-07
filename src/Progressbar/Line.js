@@ -3,6 +3,27 @@ import enhancer from './enhancer';
 import { propTypes, defaultProps } from './types';
 
 class Line extends Component {
+
+  componentDidMount() {
+    const intervalId = setInterval(this.timer, 50);
+    // store intervalId in the state so it can be accessed later:
+    this.setState({ intervalId: intervalId });
+  }
+
+  componentWillUnmount() {
+    // use intervalId from the state to clear the interval
+    clearInterval(this.state.intervalId);
+  }
+
+  timer() {
+    // setState method is used to update the state
+    var newCount = this.state.currentCount + 1;
+    if (newCount <= 100) {
+      this.setState({ currentCount: newCount });
+    } else {
+      clearInterval(this.state.intervalId);
+    }
+  }
   render() {
     const {
       className,
