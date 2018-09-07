@@ -7,10 +7,10 @@ class App extends Component {
 
 
   render() {
+    const audio = new Audio;
     return (
       <div className="App">
-        <StartPage />
-        <MusicPlayer/>        
+        <StartPage />    
       </div>
     );
   }

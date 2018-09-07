@@ -4,7 +4,10 @@ import WaitForStart from '../WaitForStart/WaitForStart';
 import NewGame from '../NewGame/NewGame';
 import axios from 'axios';
 import SpotifyLogin from '../SpotifyLogin/SpotifyLogin';
+<<<<<<< HEAD
 import PopUp from '../PopUp/PopUp';
+=======
+>>>>>>> master
 
 class StartPage extends Component {
   state = {
