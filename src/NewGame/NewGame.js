@@ -19,7 +19,7 @@ class newGame extends Component {
   constructor(props) {
     super(props);
     this.submitDataHandler = this.submitDataHandler.bind(this);
-    this.onClickGenerateCustomGame = this.onClickGenerateCustomGame.bind(this);
+    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
     this.state = { generate: false };
     this.state = { custom: false };
     this.state = { gameId: 0 };
@@ -47,7 +47,7 @@ class newGame extends Component {
     this.setState({ generate: true });
   }
 
-  onClickGenerateCustomGame = () => {
+  handleClickGenerateCustomGame = () => {
     this.setState({ custom: true });
   };
 
@@ -133,7 +133,7 @@ class newGame extends Component {
           </div>
         </div>
         <div className="generateCustomGame">
-          <button id="generateCustomGame" onClickGenerateCustomGame={this.handleClickGenerateCustomGame}>
+          <button id="generateCustomGame" onClick={this.handleClickGenerateCustomGame}>
             Eller skapa en omgång med dina egna frågor ➔
           </button>
         </div>

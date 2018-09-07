@@ -78,30 +78,9 @@ class StartPage extends Component {
 
         <div className="codeInput">
           <form onSubmit={this.submitDataHandler}>
-<<<<<<< HEAD
-            <input
-              type="text"
-              name="gameId"
-              value={this.state.gameId}
-              onChange={(event) => this.setState({ gameId: event.target.value })}
-              placeholder="Pinkod" />
-
-            <input
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={(event) => this.setState({ name: event.target.value })}
-              placeholder="Namn" />
-
-            <input
-              type="submit"
-              className="playButton"
-              value="Let's rock!" />
-=======
             <input type="number" required value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
             <input type="text" required value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn"  />
             <input type="submit" className="playButton" value="Let's rock!" />
->>>>>>> master
           </form>
         </div>
 
