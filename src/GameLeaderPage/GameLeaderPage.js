@@ -12,7 +12,7 @@ class GameLeaderPage extends Component {
     this.state = { questions: [] };
 
     axios
-      .get("http://localhost:3001")
+      .get("http://localhost:8080/questions")
       .then(response => {
         const newQuiz = response.data;
 
@@ -20,9 +20,10 @@ class GameLeaderPage extends Component {
         // the original State object.
         const newState = Object.assign({}, this.state, { questions: newQuiz });
 
-        this.state.initialQuiz = newState.questions;
+        this.state.initialQuestions = newState.questions;
         // store the new state object in the component's state
         this.setState(newState);
+        console.log(newQuiz);
       })
       .catch(error => console.log(error));
   }
@@ -37,11 +38,9 @@ class GameLeaderPage extends Component {
 
     if (start) {
       return (
-        <div>
           <Quiz
            questions={this.state.questions}
            />
-        </div>
       );
     }
 

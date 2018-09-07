@@ -32,8 +32,9 @@ public class QuestionController {
         return "app is running";
     }
 
-    @GetMapping("/questions")
-    public List<Questions> getUsers() {
+    @GetMapping(value="/questions", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Questions> getUsers(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> questions = repository.getAllByLanguage("Engelska");
         return questions;
     }
@@ -45,7 +46,7 @@ public class QuestionController {
         return "ok";
     }
 
-    @CrossOrigin(origins = "http://localhost:3001")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
