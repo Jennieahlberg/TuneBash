@@ -45,7 +45,7 @@ public class QuestionController {
         return "ok";
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:3001")
     @PostMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
@@ -61,7 +61,7 @@ public class QuestionController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3001")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void newmember(@RequestBody Player player, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
