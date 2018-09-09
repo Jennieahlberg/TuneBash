@@ -5,20 +5,25 @@ import NewGame from '../NewGame/NewGame';
 import axios from 'axios';
 import SpotifyLogin from '../SpotifyLogin/SpotifyLogin';
 
+
 class StartPage extends Component {
   state = {
     name: '',
     gameId: ''
   }
+  
 
   constructor(props) {
     super(props);
     this.submitDataHandler = this.submitDataHandler.bind(this);
     this.state = { formFilled: false };
     this.state = { newGame: false };
+  
   }
-
-  submitDataHandler = () => {
+  
+  
+  submitDataHandler = (e) => {
+    
     const player = {
       gameId: this.state.gameId,
       name: this.state.name
@@ -26,7 +31,7 @@ class StartPage extends Component {
     
     axios.post('http://localhost:8080/members', player)
     console.log(player);
-
+    
     this.setState({ formFilled: true });
   }
 
@@ -34,9 +39,11 @@ class StartPage extends Component {
     this.setState({ newGame: true });
   }
 
+
   render() {
     const formFilled = this.state.formFilled;
     const newGame = this.state.newGame;
+    
 
     if (formFilled) {
       return (

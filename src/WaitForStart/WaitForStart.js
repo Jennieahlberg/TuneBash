@@ -3,16 +3,58 @@ import "./WaitForStart.css";
 import { ReactSpinner } from "react-spinning-wheel";
 import "react-spinning-wheel/dist/style.css";
 import axios from "axios";
+import { VERIFY_USER, LOGOUT } from "../Events";
+import io from 'socket.io-client';
 
+const socketUrl = "http://localhost:3231"
 class WaitForStart extends Component {
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
     this.state = { members: true };
-    this.test = this.test.bind(this);
+    this.state = { usersArray: [] };
+    this.state = { socket: io(socketUrl) };
   }
+
+  componentWillMount() {
+    this.initSocket();
+    this.onSocket();
+    
+  }
+
+  initSocket = () => {
+    this.state.socket.on('connect', () => {
+      console.log("Connected");
+    })
+    this.state.socket.emit('add user', this.props.name);
+  }
+
+  onSocket = () => {
+    this.state.socket.on('user joined', (data) => {
+      console.log(data);
+      this.setState({ usersArray: data.users });
+    });
+
+  }
+
+
+
+  // setUser = (user) => {
+  //   console.log(user);
+  //   const { socket } = this.state
+  //   this.setState({ user })
+  // }
+
+  // logout = () => {
+  //   const { socket, user } = this.state
+  //   socket.emit(LOGOUT)
+  //   this.setState({ user: null })
+  // }
 
   render() {
     const members = this.state.members;
+   // let { socket, user } = this.state
+    console.log("userArray: " + this.state.usersArray);
 
     if (members) {
       const names = {
@@ -26,6 +68,10 @@ class WaitForStart extends Component {
                 })
             console.log(names);*/
     }
+    // let nameContainer = this.state.usersArray;
+    // let names = nameContainer.map(function(name){
+    //   return <li>{name}</li>;
+    // })
 
     return (
       <div>
@@ -36,6 +82,9 @@ class WaitForStart extends Component {
         </div>
         <div className="spinner">
           <ReactSpinner />
+        </div>
+        <div className="names">
+          {this.state.usersArray}
         </div>
       </div>
     );
