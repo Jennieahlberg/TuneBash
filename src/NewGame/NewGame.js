@@ -5,7 +5,6 @@ import CustomGame from "../CustomGame/CustomGame";
 import axios from 'axios';
 
 
-
 class newGame extends Component {
   state = {
     level: '',
@@ -14,16 +13,18 @@ class newGame extends Component {
     lengthOfSong: 0,
     language: '',
     name: ''
-  };
+  }
+
 
   constructor(props) {
     super(props);
     this.submitDataHandler = this.submitDataHandler.bind(this);
-    this.onClickGenerateCustomGame = this.onClickGenerateCustomGame.bind(this);
+    this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
     this.state = { generate: false };
     this.state = { custom: false };
     this.state = { gameId: 0 };
   }
+
 
   submitDataHandler = () => {
     const random = Math.floor(Math.random() * (999999 - 100000) + 100000);
@@ -38,7 +39,7 @@ class newGame extends Component {
       name: this.state.name
     };
 
-    axios.post('http://localhost:8080/getquestions', newGame)
+    axios.post('http://localhost:8080/getquestions', newGame);
     console.log(newGame);
     console.log(random);
 
@@ -46,7 +47,7 @@ class newGame extends Component {
     this.setState({ generate: true });
   }
 
-  onClickGenerateCustomGame = () => {
+  handleClickGenerateCustomGame = () => {
     this.setState({ custom: true });
   };
 
@@ -98,7 +99,7 @@ class newGame extends Component {
                 </select>
               </p>
               <p>
-                <select value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })}>
+                <select required value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })}>
                   <option value="" disabled selected>Antal frågor</option>
                   <option value="5">5 frågor</option>
                   <option value="10">10 frågor</option>
@@ -125,14 +126,14 @@ class newGame extends Component {
                 </select>
               </p>
 
-              <p><input placeholder="Spelledarens namn" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} /></p>
+              <p><input required placeholder="Spelledarens namn" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} /></p>
 
               <input type="submit" id="createPinCode" value="Skapa pinkod" />
             </form>
           </div>
         </div>
         <div className="generateCustomGame">
-          <button id="generateCustomGame" onClickGenerateCustomGame={this.handleClickGenerateCustomGame}>
+          <button id="generateCustomGame" onClick={this.handleClickGenerateCustomGame}>
             Eller skapa en omgång med dina egna frågor ➔
           </button>
         </div>
@@ -140,5 +141,6 @@ class newGame extends Component {
     );
   }
 }
+    
 
 export default newGame;

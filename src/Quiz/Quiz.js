@@ -1,30 +1,26 @@
-import React, {Component} from 'react';
-import './Quiz.css';
-import Question from '../Question/Question';
+import React, { Component } from "react";
+import "./Quiz.css";
+import Question from "../Question/Question";
 
 class Quiz extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {counter: 0};
+    this.nextQuestion = this.nextQuestion.bind(this);
+  }
 
-    constructor(props) {
-        super(props)
-        this.renderQuestions = this.renderQuestions.bind(this);
-    }
-    
-    renderQuestions(question) {
-        return (
-            <div className="col-md-6" key={question.id}>
-                <Question
-                    question={question}
-                ></Question>
-            </div>
-        );
-    }
-    
-    render() {
-    return (<div>
-                {this.props.questions
-                .map(this.renderQuestions)}
-    </div>);
-    }
+  nextQuestion = () => {
+      this.setState({ counter: this.state.counter + 1 });
+  }
+
+  render() {
+      const quizz = this.props.questions;
+    return (
+      <div className="questions">
+        <Question question={quizz[this.state.counter]} nextQuestion={this.nextQuestion} />
+      </div>
+    );
+  }
 }
 
-export default Quiz; 
+export default Quiz;

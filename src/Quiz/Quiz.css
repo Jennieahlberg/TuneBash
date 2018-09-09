@@ -52,13 +52,11 @@ a {
         margin-top: 150px;
         font-size: 36px;
     }
-
-    .answers{
+    .answers {
         width: 250px;
         margin-left: 42%;
     }
-
-    li{
+    li {
         font-size: 25px;
     }
 }
