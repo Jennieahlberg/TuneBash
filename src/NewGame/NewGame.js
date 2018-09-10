@@ -54,6 +54,7 @@ class newGame extends Component {
         />
         </div>
       );
+      console.log(this.level);
     }
 
     if (custom) {
