@@ -16,15 +16,13 @@ class GameLeaderPage extends Component {
       usersArray: [],
       socket: io(socketUrl) 
      };
-    const level = this.props.level;
-    const category = this.props.category;
-    const numberOfQuestions = this.props.numberOfQuestions;
+    
     const lengthOfSong = this.props.lengthOfSong;
-    const language = this.state.language;
+    
 
     axios
       .get(
-        "http://localhost:8080/questions")
+        "http://localhost:8080/questions/" + this.props.level + "/" + this.props.category + "/" + this.props.language)
       .then(response => {
         const newQuiz = response.data;
 
@@ -68,6 +66,8 @@ class GameLeaderPage extends Component {
   render() {
     const start = this.state.start;
     const gameId = this.props.gameId;
+    console.log(this.props.level);
+    console.log(this.props.category);
 
     if (start) {
       return (
