@@ -97,7 +97,7 @@ class Question extends Component {
         </div>
         <div className="next">
           <button onClick={this.props.nextQuestion}>Nästa fråga</button>
-          <button onClick={this.props.cancel} result={this.state.usersArray}>Avsluta spel</button>
+          <button onClick={this.props.endGame} result={this.state.usersArray}>Avsluta spel</button>
         </div>
       </div>
     );
