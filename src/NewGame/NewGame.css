@@ -1,21 +1,26 @@
 .headline {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
     font-weight: 700;
+    margin-top: 35px;
 }
 
 .form {
-    margin-left: 77.5px;
+    display: block;
+    margin: 0, auto;
+    text-align: center;
+}
+
+.select {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 select {
+    width: 220px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 22px;
-    font-weight: bold;
-    min-width: 220px;
-    width: 100%;
     cursor: pointer;
     padding: 10px 15px;
     border: 0px dotted #000000;
@@ -30,21 +35,45 @@ select:hover {
     background: #CCCCCC;
 }
 
-#createPinCode:hover {
+option {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.divName {
+    display: inline-block;
+}
+
+input[type=text] {
+    padding: 16px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: solid 0px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+.createPinCode {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: solid 0px;
+    transition: all 0.3s ease;
+    padding: 16px;
+}
+
+.createPinCode:hover {
     opacity: 0.5;
     cursor: pointer;
 }
 
-option {
-    font-size: 16px;
-}
-
 #generateCustomGame {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: -10px;
-    margin-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: #551A8B;
@@ -71,20 +100,14 @@ textarea:focus, input:focus {
 
 @media only screen and (min-width: 560px) {
     .headline {
-
         font-size: 48px;
+        margin-top: -500px;
     }
-
-    .form {
-        margin-left: 43.5%;
-    }
-
-    #generateCustomGame{
+    .form {}
+    #generateCustomGame {
         font-size: 20px;
     }
-
-    option{
+    option {
         font-weight: bolder;
     }
-
-  }
+}

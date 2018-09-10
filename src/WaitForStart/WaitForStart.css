@@ -1,13 +1,16 @@
-h1{
+.headlineWait{
     font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-top: 500px;
+    margin-top: 100px;
 }
 
 .spinner{
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 @media only screen and (min-width: 560px) {
