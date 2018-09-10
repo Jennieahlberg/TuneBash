@@ -40,9 +40,10 @@ public class QuestionController {
         return questions;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(value = "/getquestions/{level}/{category}/{}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Questions> getQuestions( HttpServletResponse response) {
+
+    //@CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(value = "/getquestions/{level}/{numberOfQuestions}/{lengthOfSong}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage();
         List<Questions> questions = new ArrayList<>();
