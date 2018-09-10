@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import "./GameLeaderPage.css";
 import NewGame from "../NewGame/NewGame.js";
 import Quiz from "../Quiz/Quiz";
+import axios from 'axios';
+import io from 'socket.io-client';
+
+const socketUrl = "http://localhost:3231"
 import axios from "axios";
 
 class GameLeaderPage extends Component {
@@ -10,6 +14,7 @@ class GameLeaderPage extends Component {
     this.handleClickStart = this.handleClickStart.bind(this);
     this.state = { start: false };
     this.state = { questions: [] };
+    this.state = { socket: io(socketUrl) };
     const level = this.props.level;
     const category = this.props.category;
     const numberOfQuestions = this.props.numberOfQuestions;
@@ -35,10 +40,22 @@ class GameLeaderPage extends Component {
       })
       .catch(error => console.log(error));
   }
+  componentWillMount() {
+    this.onSocket();
+  }
+
 
   handleClickStart = () => {
     this.setState({ start: true });
   };
+
+  onSocket = () => {
+    this.state.socket.on('user joined', (data) => {
+      console.log(data);
+      this.setState({ usersArray: data.users });
+    });
+
+  }
 
   render() {
     const start = this.state.start;
@@ -54,7 +71,7 @@ class GameLeaderPage extends Component {
           <h1 className="headline">Spelomgångens pinkod:</h1>
         </div>
         <div className="random">
-          <p>{gameId}</p>
+          {gameId}
         </div>
         <div class="button">
           <button id="startGameButton" onClick={this.handleClickStart}>
@@ -67,9 +84,20 @@ class GameLeaderPage extends Component {
             du på Starta spel.
           </p>
         </div>
+        <div className="names">
+          {this.state.usersArray}
+        </div>
       </div>
     );
   }
 }
 
 export default GameLeaderPage;
+
+
+
+
+
+
+
+
