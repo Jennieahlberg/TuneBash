@@ -28,23 +28,9 @@ class newGame extends Component {
 
   submitDataHandler = () => {
     const random = Math.floor(Math.random() * (999999 - 100000) + 100000);
-
-    const newGame = {
-      level: this.state.level,
-      gameId: random,
-      category: this.state.category,
-      numberOfQuestions: this.state.numberOfQuestions,
-      lengthOfSong: this.state.lengthOfSong,
-      language: this.state.language,
-      name: this.state.name
-    };
-
-    axios.post('http://localhost:8080/getquestions', newGame);
-    console.log(newGame);
-    console.log(random);
-
     this.setState({gameId: random});
     this.setState({ generate: true });
+    console.log(this.state.level);
   }
 
   handleClickGenerateCustomGame = () => {
