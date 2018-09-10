@@ -41,18 +41,18 @@ public class QuestionController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
+    @GetMapping(value = "/getquestions/{level}/{category}/{}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Questions> getQuestions( HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage(quiz.getCategory(), quiz.getLevel(),quiz.getLanguage());
+        List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage();
         List<Questions> questions = new ArrayList<>();
         Collections.shuffle(firstfilter);
-        for (int i = 0; i <quiz.getNumberOfQuestions(); i++) {
+     //   for (int i = 0; i <quiz.getNumberOfQuestions(); i++) {
             questions.add(firstfilter.get(i));
         }
-        return questions;
+        //return questions;
     }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/addcustomquestion", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void customquestion(@RequestBody CustomQuestion question, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
