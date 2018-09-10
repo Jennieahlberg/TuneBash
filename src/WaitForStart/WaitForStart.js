@@ -33,8 +33,7 @@ class WaitForStart extends Component {
     this.state.socket.on('user joined', (data) => {
       console.log(data);
       this.setState({ usersArray: data.users });
-    });
-
+    }); 
   }
 
 

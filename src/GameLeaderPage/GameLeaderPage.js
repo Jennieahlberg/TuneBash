@@ -2,17 +2,27 @@ import React, { Component } from "react";
 import "./GameLeaderPage.css";
 import NewGame from "../NewGame/NewGame.js";
 import Quiz from "../Quiz/Quiz";
-import axios from 'axios';
+import axios from "axios";
+import io from "socket.io-client";
 
+const socketUrl = "http://localhost:3231";
 class GameLeaderPage extends Component {
   constructor(props) {
     super(props);
     this.handleClickStart = this.handleClickStart.bind(this);
     this.state = { start: false };
     this.state = { questions: [] };
+    this.state = { usersArray: [] };
+    this.state = { socket: io(socketUrl) };
+    const level = this.props.level;
+    const category = this.props.category;
+    const numberOfQuestions = this.props.numberOfQuestions;
+    const lengthOfSong = this.props.lengthOfSong;
+    const language = this.state.language;
 
     axios
-      .get("http://localhost:8080/questions")
+      .get(
+        "http://localhost:8080/questions")
       .then(response => {
         const newQuiz = response.data;
 
@@ -29,8 +39,28 @@ class GameLeaderPage extends Component {
       .catch(error => console.log(error));
   }
 
+  componentWillMount() {
+    this.onSocket();
+  }
+
+  onSocket = () => {
+    this.state.socket.on("user joined", data => {
+      console.log(data);
+      this.setState({ usersArray: data.users });
+    });
+  };
+
   handleClickStart = () => {
     this.setState({ start: true });
+    const newUsersArray = [];
+    const userArray = []
+    console.log(this.state.usersArray);
+    for (let user of this.state.usersArray){
+      newUsersArray.push([user, 0]);
+    }
+    console.log(newUsersArray);
+    this.setState({ usersArray: newUsersArray });
+    console.log(this.state.usersArray);
   };
 
   render() {
@@ -39,9 +69,10 @@ class GameLeaderPage extends Component {
 
     if (start) {
       return (
-          <Quiz
-           questions={this.state.questions}
-           />
+        <Quiz
+          questions={this.state.questions}
+          usersArray={this.state.usersArray}
+        />
       );
     }
 
@@ -64,6 +95,7 @@ class GameLeaderPage extends Component {
             du på Starta spel.
           </p>
         </div>
+        <div className="names">{this.state.usersArray}</div>
       </div>
     );
   }
