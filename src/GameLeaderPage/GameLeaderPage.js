@@ -10,10 +10,12 @@ class GameLeaderPage extends Component {
   constructor(props) {
     super(props);
     this.handleClickStart = this.handleClickStart.bind(this);
-    this.state = { start: false };
-    this.state = { questions: [] };
-    this.state = { usersArray: [] };
-    this.state = { socket: io(socketUrl) };
+    this.state = { 
+      start: false,
+      questions: [],
+      usersArray: [],
+      socket: io(socketUrl) 
+     };
     const level = this.props.level;
     const category = this.props.category;
     const numberOfQuestions = this.props.numberOfQuestions;
@@ -53,7 +55,6 @@ class GameLeaderPage extends Component {
   handleClickStart = () => {
     this.setState({ start: true });
     const newUsersArray = [];
-    const userArray = []
     console.log(this.state.usersArray);
     for (let user of this.state.usersArray){
       newUsersArray.push([user, 0]);
@@ -79,16 +80,18 @@ class GameLeaderPage extends Component {
     return (
       <div>
         <div>
-          <h1 className="headline">Spelomgångens pinkod:</h1>
+          <p className="headline">Spelomgångens pinkod:</p>
         </div>
-        <div className="random">{gameId}</div>
-        <div class="button">
+        <div>
+          <p className="random">{gameId}</p>
+        </div>
+        <div class="buttonStartGame">
           <button id="startGameButton" onClick={this.handleClickStart}>
             Starta spel
           </button>
         </div>
-        <div className="instructions">
-          <p>
+        <div>
+          <p className="instructions">
             När alla som ska spela har slagit in pinkoden på sin enhet, klickar
             du på Starta spel.
           </p>
