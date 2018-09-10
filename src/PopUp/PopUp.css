@@ -30,7 +30,7 @@ p {
 }
 
 .closeButton{
-    display: flex;
+    display: block;
     justify-content: center;
     background-color: papayawhip;
     overflow: hidden;
@@ -65,5 +65,16 @@ a {
     ReactModal {
         max-width: 500px;
         height: auto;
+    }
+
+    .closeDiv{
+        display: block;
+        text-align: center;
+        width: 100%;
+        
+    }
+
+    .closeButton{
+       
     }
 }

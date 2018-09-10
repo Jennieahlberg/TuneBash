@@ -12,7 +12,7 @@ class YourCustomGame extends Component {
     return (
       <div>
         <div>
-          <p>
+          <p className="message">
             Du har nu skapat ett skräddarsytt spel
           </p>
         </div>

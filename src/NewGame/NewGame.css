@@ -1,8 +1,14 @@
-.headline {
+body{
+    overflow: hidden;
+}
+
+.headlineNewGame {
     font-family: 'Montserrat', sans-serif;
+    text-align: center;
     font-size: 30px;
     font-weight: 700;
     margin-top: 35px;
+    margin-bottom: 1em;
 }
 
 .form {
@@ -99,15 +105,28 @@ textarea:focus, input:focus {
 }
 
 @media only screen and (min-width: 560px) {
-    .headline {
-        font-size: 48px;
-        margin-top: -500px;
+    .headlineNewGame {
+        font-size: 36px;
+        margin-top: 3em;
     }
-    .form {}
+
+    .createPinCode{
+        font-size: 12px;
+    }
+
+    .generateCustomGameDiv{
+        display: block;
+        text-align: center;
+    }
+  
     #generateCustomGame {
         font-size: 20px;
+        text-align: center;
     }
+
     option {
         font-weight: bolder;
     }
+
+    
 }

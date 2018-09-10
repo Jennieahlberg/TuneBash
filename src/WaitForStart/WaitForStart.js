@@ -77,7 +77,7 @@ class WaitForStart extends Component {
       <div>
         <div>
           <p className="headlineWait">
-            Väntar på att spelledaren ska starta spel
+            Väntar på att spelledaren ska starta spelet
           </p>
         </div>
         <div className="spinner">

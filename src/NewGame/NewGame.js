@@ -74,7 +74,7 @@ class newGame extends Component {
     return (
       <div className="wrapper">
         <div>
-          <p className="headline">Välj kriterier för spelet</p>
+          <p className="headlineNewGame">Välj kriterier för spelet</p>
         </div>
 
         <div className="form">
@@ -130,12 +130,12 @@ class newGame extends Component {
             </div>
 
             <div className="createPinCode">
-              <input type="submit" value="Skapa pinkod" />
+              <input type="submit" className="createPinCodeNewGame" value="Skapa pinkod" />
             </div>
 
           </form>
         </div>
-        <div className="generateCustomGame">
+        <div className="generateCustomGameDiv">
           <button id="generateCustomGame" onClick={this.handleClickGenerateCustomGame}>
             Eller skapa en omgång med dina egna frågor ➔
       </button>

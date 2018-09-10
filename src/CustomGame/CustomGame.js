@@ -56,7 +56,7 @@ class CustomGame extends Component {
         return (
             <div>
                 <div>
-                    <p className="headline">
+                    <p className="headlineCustomGame">
                         Skapa ett quiz med dina egna frågor
                 </p>
                 </div>

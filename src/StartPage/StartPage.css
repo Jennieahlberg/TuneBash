@@ -1,3 +1,7 @@
+body{
+    overflow: hidden;
+}
+
 .wholeLogo {
     display: flex;
     justify-content: center;
@@ -117,7 +121,7 @@ textarea:focus, input:focus {
         text-align: center;
     }
     #newGameButton {
-        font-size: 20px;
+        font-size: 1.5em;
         margin-top: -2em;
         margin-bottom: -2em;
     }
@@ -126,6 +130,10 @@ textarea:focus, input:focus {
     }
 
     .pinCodeInput{
-        margin-right: 65px;
+        margin-right: 1em;
+    }
+
+    input[type=submit]{
+        font-size: 1.5em;
     }
 }

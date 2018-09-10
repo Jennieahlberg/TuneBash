@@ -1,5 +1,8 @@
-.headline {
+.headlineCustomGame {
     font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 1em;
     width: 100%;
     text-align: center;
     padding: 10px;
@@ -54,5 +57,10 @@ form input[type=text] {
 @media only screen and (min-width: 560px) {
     .playButton {
         width: 200px;
+    }
+
+    .headlineCustomGame{
+        margin-top: 4em;
+        font-size: 2.5em;
     }
 }
