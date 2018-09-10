@@ -32,9 +32,32 @@ class Question extends Component {
       user[user.length] = event.target.value;
     }
   }
+    shuffleAnswers = (array) => {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
+  answers = [this.props.question.correctAnswer,
+        this.props.question.wrongAnswer1,
+        this.props.question.wrongAnswer2,
+        this.props.question.wrongAnswer3];
+
 
   render() {
     const question = this.props.question;
+    const answers = this.answers;
+    this.shuffleAnswers(answers);
     return (
       <div className="Question">
         <iframe
@@ -50,16 +73,16 @@ class Question extends Component {
             <p> {question.question}</p>
 
             <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
-              {question.correctAnswer}
+              {answers[0]}
             </button>
             <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
-              {question.wrongAnswer1}
+              {answers[1]}
             </button>
             <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
-              {question.wrongAnswer2}
+              {answers[2]}
             </button>
             <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
-              {question.wrongAnswer3}
+              {answers[3]}
             </button>
           </form>
         </div>
