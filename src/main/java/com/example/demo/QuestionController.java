@@ -38,8 +38,8 @@ public class QuestionController {
     }
 
 
-    //@CrossOrigin(origins = "http://localhost:3000/getquestions?level=level&numberOfQuestions=numberOfQuestions&category=category&language=laguage")
-    @GetMapping(value = "/getquestions", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/getquestions/{level}/{numberOfQuestions}/{category}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Questions> getquestions(@PathVariable String level, @PathVariable int numberOfQuestions, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage(category, level, language);
