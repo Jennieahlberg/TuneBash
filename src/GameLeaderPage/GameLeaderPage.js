@@ -62,6 +62,7 @@ class GameLeaderPage extends Component {
     console.log(newUsersArray);
     this.setState({ usersArray: newUsersArray });
     console.log(this.state.usersArray);
+    this.state.socket.emit('startgame', true, this.state.questions, this.state.usersArray);
   };
 
   render() {

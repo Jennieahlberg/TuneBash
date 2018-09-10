@@ -26,7 +26,6 @@ class Quiz extends Component {
   render() {
     const quizz = this.props.questions;
     console.log(quizz);
-    console.log(quizz[0]);
     console.log(this.props.questions);
 
     return (

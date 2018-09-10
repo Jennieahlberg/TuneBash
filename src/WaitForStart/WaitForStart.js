@@ -5,21 +5,26 @@ import "react-spinning-wheel/dist/style.css";
 import axios from "axios";
 import { VERIFY_USER, LOGOUT } from "../Events";
 import io from 'socket.io-client';
+import Quiz from "../Quiz/Quiz";
 
 const socketUrl = "http://localhost:3231"
 class WaitForStart extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { members: true };
-    this.state = { usersArray: [] };
-    this.state = { socket: io(socketUrl) };
+    this.state = { 
+      members: true,
+      usersArray: [],
+      socket: io(socketUrl),
+      start: false,
+      questions: []
+      };
   }
 
   componentWillMount() {
     this.initSocket();
     this.onSocket();
-    
+    this.startgame();
   }
 
   initSocket = () => {
@@ -36,7 +41,12 @@ class WaitForStart extends Component {
     }); 
   }
 
-
+  startgame() {
+    this.state.socket.on('gameStarts', (data, questiones, users) => {
+      this.setState({start: data, questions: questiones, usersArray: users });
+    })
+    console.log("startgame " + this.state.start);
+  }
 
   // setUser = (user) => {
   //   console.log(user);
@@ -54,6 +64,7 @@ class WaitForStart extends Component {
     const members = this.state.members;
    // let { socket, user } = this.state
     console.log("userArray: " + this.state.usersArray);
+    
 
     if (members) {
       const names = {
@@ -72,12 +83,22 @@ class WaitForStart extends Component {
     //   return <li>{name}</li>;
     // })
 
+    if (this.state.start) {
+      return (
+        <Quiz
+          questions={this.state.questions}
+          usersArray={this.state.usersArray}
+        />
+      );
+    }
+    
+
     return (
       <div>
         <div>
-          <p className="headlineWait">
-            Väntar på att spelledaren ska starta spelet
-          </p>
+          <h1 className="headline">
+            Väntar på att spelledaren ska starta spel
+          </h1>
         </div>
         <div className="spinner">
           <ReactSpinner />
