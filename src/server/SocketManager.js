@@ -1,52 +1,53 @@
-const io = require('./index.js').io;
+const io = require("./index.js").io;
 
-let connectUser = { }
-const {createUser} = require('../Factories')
+let connectUser = {};
+const { createUser } = require("../Factories");
 let numUsers = 0;
-let users = []
-module.exports = function(socket){
-    console.log("SocketId: " + socket.id)
-    
-    // socket.on(VERIFY_USER, (username, callback)=> {
-    //     callback({user:createUser({name:username})})
-    // });
+let users = [];
+module.exports = function(socket) {
+  console.log("SocketId: " + socket.id);
 
-    socket.on('add user', (username) => {
-    
-        // we store the username in the socket session for this client
-        socket.username = username;
-        users.push(socket.username);
-        numUsers = users.length;
-        // echo globally (all clients) that a person has connected
-        
-        socket.broadcast.emit('user joined', {
-            users: users,
-            numUsers: numUsers
-          });
-        socket.emit('login', {
-          numUsers: numUsers
-        });
-        
-      });
+  // socket.on(VERIFY_USER, (username, callback)=> {
+  //     callback({user:createUser({name:username})})
+  // });
 
-      setInterval( ()=> {
-          socket.broadcast.emit('user joined', {
-            users: users,
-            numUsers: numUsers
-          });
-      }, 5000);
+  socket.on("add user", username => {
+    // we store the username in the socket session for this client
+    socket.username = username;
+    users.push(socket.username);
+    numUsers = users.length;
+    // echo globally (all clients) that a person has connected
 
-      socket.on('disconnect', ()=>{
-        users = users.filter(item => item !== socket.username);
-        --numUsers;
-        socket.broadcast.emit('user joined', {
-            users: users,
-            numUsers: numUsers
-          });
-      })
-}
+    socket.broadcast.emit("user joined", {
+      users: users,
+      numUsers: numUsers
+    });
+    socket.emit("login", {
+      numUsers: numUsers
+    });
+  });
 
+  setInterval(() => {
+    socket.broadcast.emit("user joined", {
+      users: users,
+      numUsers: numUsers
+    });
+  }, 5000);
 
+  socket.on("disconnect", () => {
+    users = users.filter(item => item !== socket.username);
+    --numUsers;
+    socket.broadcast.emit("user joined", {
+      users: users,
+      numUsers: numUsers
+    });
+  });
+
+  socket.on("startgame", (startgame, questions, usersArray) => {
+    socket.broadcast.emit("gameStarts", startgame, questions, usersArray);
+    console.log("hej!");
+  });
+};
 
 // function addUser(userList, user){
 //     let newList = Object.assign({}, userList)
