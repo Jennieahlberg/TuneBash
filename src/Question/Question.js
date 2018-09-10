@@ -1,57 +1,48 @@
 import React, { Component } from "react";
 import "./Question.css";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
-const socketUrl = "http://localhost:3231"
+const socketUrl = "http://localhost:3231";
 class Question extends Component {
   constructor(props) {
     super(props);
-    this.state = { usersArray: [] };
+    this.state = { usersArray: this.props.usersArray };
     this.state = { socket: io(socketUrl) };
     this.state = { value: "" };
   }
 
-  componentWillMount() {
-    this.initSocket();
-    this.onSocket(); 
-  }
-
-  onSocket = () => {
-    this.state.socket.on('user joined', (data) => {
-      console.log(data);
-      this.setState({ usersArray: data.users });
-    });
-  }
-
   submitAnswer(event) {
-    for (let user of this.usersArray){
-      if (event.target.value = this.question.correctAnswer) {
-      user[1]++;
+    for (let user of this.usersArray) {
+      if ((event.target.value = this.question.correctAnswer)) {
+        user[1]++;
       }
       user[user.length] = event.target.value;
     }
   }
-    shuffleAnswers = (array) => {
-        let currentIndex = array.length, temporaryValue, randomIndex;
 
-        while (0 !== currentIndex) {
+  shuffleAnswers = array => {
+    let currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
 
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
 
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
 
-  answers = [this.props.question.correctAnswer,
-        this.props.question.wrongAnswer1,
-        this.props.question.wrongAnswer2,
-        this.props.question.wrongAnswer3];
+    return array;
+  };
 
+  answers = [
+    this.props.question.correctAnswer,
+    this.props.question.wrongAnswer1,
+    this.props.question.wrongAnswer2,
+    this.props.question.wrongAnswer3
+  ];
 
   render() {
     const question = this.props.question;
@@ -71,22 +62,38 @@ class Question extends Component {
           <form>
             <p> {question.question}</p>
 
-            <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
+            <button
+              className="answerButton"
+              value={this.state.value}
+              onClick={this.submitAnswer}
+            >
               {answers[0]}
             </button>
-            <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
+            <button
+              className="answerButton"
+              value={this.state.value}
+              onClick={this.submitAnswer}
+            >
               {answers[1]}
             </button>
-            <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
+            <button
+              className="answerButton"
+              value={this.state.value}
+              onClick={this.submitAnswer}
+            >
               {answers[2]}
             </button>
-            <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
+            <button
+              className="answerButton"
+              value={this.state.value}
+              onClick={this.submitAnswer}
+            >
               {answers[3]}
             </button>
           </form>
         </div>
         <div className="next">
-        <button onClick={this.props.nextQuestion}>Nästa fråga</button>
+          <button onClick={this.props.nextQuestion}>Nästa fråga</button>
         </div>
       </div>
     );
