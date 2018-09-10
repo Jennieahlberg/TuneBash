@@ -75,9 +75,9 @@ class WaitForStart extends Component {
     return (
       <div>
         <div>
-          <h1 className="headline">
-            Väntar på att spelledaren ska starta spel
-          </h1>
+          <p className="headlineWait">
+            Väntar på att spelledaren ska starta spelet
+          </p>
         </div>
         <div className="spinner">
           <ReactSpinner />

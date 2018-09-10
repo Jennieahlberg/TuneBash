@@ -64,7 +64,7 @@ class Popup extends React.Component {
            För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
            </p>
          <div className="closeDiv">
-         <a href="" className="closeButton" onClick={this.handleCloseModal}>Stäng</a>
+         <button className="closeButton" onClick={this.handleCloseModal}>Stäng</button>
          </div>
         </ReactModal>
       </div>

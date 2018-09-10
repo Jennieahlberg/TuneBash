@@ -1,44 +1,57 @@
-svg {
-    width: 30%;
-    height: auto;
+body{
+    overflow: hidden;
+}
+
+.wholeLogo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2em;
 }
 
 .logo {
     display: flex;
     justify-content: center;
-    margin-top: 10%;
+    margin: auto;
+}
+
+svg {
+    width: 35%;
+    height: auto;
 }
 
 .logoName {
-    display: flex;
-    justify-content: center;
-    margin-top: 1%;
     font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 52px;
+    font-size: 3em;
     font-weight: 700;
+    margin-bottom: 0.5em;
+    margin-top: -0.5em;
+    text-align: center;
 }
 
 .codeInput {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
+.formDiv {
+    margin: 0, auto;
+    text-align: center;
+}
 
+.textDiv {
+    text-align: center;
+}
+
+.submitDiv {
+    text-align: center;
+}
 
 input[type=text] {
-    padding: 16px;
-    margin: 16px 0;
+    padding: 1em;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
     border: solid 0px;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    font-weight: bolder;
 }
 
 ::placeholder {
@@ -47,7 +60,7 @@ input[type=text] {
     text-align: center;
 }
 
-.playButton{
+input[type=submit] {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
     font-weight: bold;
@@ -56,20 +69,14 @@ input[type=text] {
     border-radius: 50px;
     border: solid 0px;
     transition: all 0.3s ease;
-    padding: 16px;
-    width: 50%;
+    padding: 1em;
+    width: 150px;
+    margin-top: 2em;
 }
 
-.playButton:hover{
+input[type=submit]:hover {
     opacity: 0.5;
     cursor: pointer;
-}
-
-.newGame {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 5%;
 }
 
 #newGameButton {
@@ -83,26 +90,50 @@ input[type=text] {
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 20px;
 }
 
 #newGameButton:hover {
     opacity: 1;
 }
 
-#newGamebutton:visited{
+#newGamebutton:visited {
     text-decoration: none;
 }
 
-textarea:focus, input:focus{
+textarea:focus, input:focus {
     outline: none;
 }
 
 @media only screen and (min-width: 560px) {
-    .playButton {
-        width: 200px;
+    svg {
+        width: 300px;
+        height: auto;
+        margin-bottom: 1.8em;
+        margin-top: 9em;
     }
-    #newGameButton{
-        font-size: 20px;
+    .logoName {
+        font-size: 6em;
     }
-  }
+    
+    .formDiv {
+        display: inline-block;
+        margin: 0, auto;
+        text-align: center;
+    }
+    #newGameButton {
+        font-size: 1.5em;
+        margin-top: -2em;
+        margin-bottom: -2em;
+    }
+    .faq {
+        margin-top: -4em;
+    }
+
+    .pinCodeInput{
+        margin-right: 1em;
+    }
+
+    input[type=submit]{
+        font-size: 1.5em;
+    }
+}
