@@ -6,9 +6,11 @@ const socketUrl = "http://localhost:3231";
 class Question extends Component {
   constructor(props) {
     super(props);
-    this.state = { usersArray: this.props.usersArray };
-    this.state = { socket: io(socketUrl) };
-    this.state = { value: "" };
+    this.state = { 
+      usersArray: this.props.usersArray, 
+      socket: io(socketUrl), 
+      value: ""  
+    };
   }
 
   submitAnswer(event) {
@@ -40,7 +42,7 @@ class Question extends Component {
     const question = this.props.question;
     console.log(question);
     console.log(this.props.question);
-    
+
     const answers = [
       question.correctAnswer,
       question.wrongAnswer1,
@@ -48,7 +50,7 @@ class Question extends Component {
       question.wrongAnswer3
     ];
 
-    this.shuffleAnswers(this.answers);
+    this.shuffleAnswers(answers);
     return (
       <div className="Question">
         <iframe
