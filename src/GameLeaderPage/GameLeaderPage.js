@@ -2,14 +2,11 @@ import React, { Component } from "react";
 import "./GameLeaderPage.css";
 import NewGame from "../NewGame/NewGame.js";
 import Quiz from "../Quiz/Quiz";
-<<<<<<< HEAD
 import axios from 'axios';
 import io from 'socket.io-client';
 
 const socketUrl = "http://localhost:3231"
-=======
 import axios from "axios";
->>>>>>> master
 
 class GameLeaderPage extends Component {
   constructor(props) {
@@ -17,15 +14,12 @@ class GameLeaderPage extends Component {
     this.handleClickStart = this.handleClickStart.bind(this);
     this.state = { start: false };
     this.state = { questions: [] };
-<<<<<<< HEAD
     this.state = { socket: io(socketUrl) };
-=======
     const level = this.props.level;
     const category = this.props.category;
     const numberOfQuestions = this.props.numberOfQuestions;
     const lengthOfSong = this.props.lengthOfSong;
     const language = this.state.language;
->>>>>>> master
 
     axios
       .get(
@@ -68,15 +62,7 @@ class GameLeaderPage extends Component {
     const gameId = this.props.gameId;
 
     if (start) {
-<<<<<<< HEAD
-      return (
-        <Quiz
-          questions={this.state.questions}
-        />
-      );
-=======
       return <Quiz questions={this.state.questions} />;
->>>>>>> master
     }
 
     return (
