@@ -39,7 +39,7 @@ class newGame extends Component {
       name: this.state.name
     };
 
-    axios.post('http://localhost:8080/getquestions', newGame)
+    axios.post('http://localhost:8080/getquestions', newGame);
     console.log(newGame);
     console.log(random);
 

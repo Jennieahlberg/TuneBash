@@ -5,21 +5,19 @@ import Question from "../Question/Question";
 class Quiz extends Component {
   constructor(props) {
     super(props);
-    this.renderQuestions = this.renderQuestions.bind(this);
+    this.state = {counter: 0};
+    this.nextQuestion = this.nextQuestion.bind(this);
   }
 
-  renderQuestions(question) {
-    return (
-      <div className="col-md-6" key={question.id}>
-        <Question question={question} />
-      </div>
-    );
+  nextQuestion = () => {
+      this.setState({ counter: this.state.counter + 1 });
   }
 
   render() {
+      const quizz = this.props.questions;
     return (
-      <div className="questiones">
-        {this.props.questions.map(this.renderQuestions)}
+      <div className="questions">
+        <Question question={quizz[this.state.counter]} nextQuestion={this.nextQuestion} />
       </div>
     );
   }
