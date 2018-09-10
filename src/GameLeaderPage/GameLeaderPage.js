@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./GameLeaderPage.css";
 import NewGame from "../NewGame/NewGame.js";
 import Quiz from "../Quiz/Quiz";
-import axios from 'axios';
-import io from 'socket.io-client';
+import axios from "axios";
+import io from "socket.io-client";
 
-const socketUrl = "http://localhost:3231"
+const socketUrl = "http://localhost:3231";
 class GameLeaderPage extends Component {
   constructor(props) {
     super(props);
@@ -21,9 +21,7 @@ class GameLeaderPage extends Component {
     const language = this.state.language;
 
     axios
-      .get(
-        "http://localhost:8080/questions"
-      )
+      .get("http://localhost:8080/questions")
       .then(response => {
         const newQuiz = response.data;
 
@@ -42,35 +40,39 @@ class GameLeaderPage extends Component {
 
   componentWillMount() {
     this.onSocket();
-    
   }
 
   onSocket = () => {
-    this.state.socket.on('user joined', (data) => {
+    this.state.socket.on("user joined", data => {
       console.log(data);
       this.setState({ usersArray: data.users });
-    }); 
-  }
+    });
+  };
 
   handleClickStart = () => {
     this.setState({ start: true });
     const newUsersArray = [];
-    const userArray = [];
+    const userArray = []
+    console.log(this.state.usersArray);
     for (let user of this.state.usersArray){
-      newUsersArray.push(userArray.push(user));
-    }  
-    this.setState({ usersArray: newUsersArray});
+      newUsersArray.push([user, 0]);
+    }
+    console.log(newUsersArray);
+    this.setState({ usersArray: newUsersArray });
     console.log(this.state.usersArray);
   };
-
- 
 
   render() {
     const start = this.state.start;
     const gameId = this.props.gameId;
 
     if (start) {
-      return <Quiz questions={this.state.questions} />;
+      return (
+        <Quiz
+          questions={this.state.questions}
+          usersArray={this.state.usersArray}
+        />
+      );
     }
 
     return (
@@ -78,9 +80,7 @@ class GameLeaderPage extends Component {
         <div>
           <h1 className="headline">Spelomgångens pinkod:</h1>
         </div>
-        <div className="random">
-          {gameId}
-        </div>
+        <div className="random">{gameId}</div>
         <div class="button">
           <button id="startGameButton" onClick={this.handleClickStart}>
             Starta spel
@@ -92,20 +92,10 @@ class GameLeaderPage extends Component {
             du på Starta spel.
           </p>
         </div>
-        <div className="names">
-          {this.state.usersArray}
-        </div>
+        <div className="names">{this.state.usersArray}</div>
       </div>
     );
   }
 }
 
 export default GameLeaderPage;
-
-
-
-
-
-
-
-
