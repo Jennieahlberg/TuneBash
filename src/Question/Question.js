@@ -33,21 +33,22 @@ class Question extends Component {
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-
     return array;
   };
 
-  answers = [
-    this.props.question.correctAnswer,
-    this.props.question.wrongAnswer1,
-    this.props.question.wrongAnswer2,
-    this.props.question.wrongAnswer3
-  ];
-
   render() {
     const question = this.props.question;
-    const answers = this.answers;
-    this.shuffleAnswers(answers);
+    console.log(question);
+    console.log(this.props.question);
+    
+    const answers = [
+      question.correctAnswer,
+      question.wrongAnswer1,
+      question.wrongAnswer2,
+      question.wrongAnswer3
+    ];
+
+    this.shuffleAnswers(this.answers);
     return (
       <div className="Question">
         <iframe
@@ -94,6 +95,7 @@ class Question extends Component {
         </div>
         <div className="next">
           <button onClick={this.props.nextQuestion}>Nästa fråga</button>
+          <button onClick={this.props.cancel} result={this.state.usersArray}>Avsluta spel</button>
         </div>
       </div>
     );
