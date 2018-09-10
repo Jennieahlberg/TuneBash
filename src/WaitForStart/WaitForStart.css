@@ -1,20 +1,17 @@
-h1{
+.headlineWait {
     font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-top: 500px;
-}
-
-.spinner{
     margin-top: 100px;
 }
 
-@media only screen and (min-width: 560px) {
-    .headline {
-        margin-top:250px;
-    }
-  }
+.spinner {
+    margin-top: 50px;
+}
 
 .names {
     font-family: 'Montserrat', sans-serif;
@@ -24,4 +21,10 @@ h1{
     width: 100%;
     justify-content: center;
     margin-top: 100px;
+}
+
+@media only screen and (min-width: 560px) {
+    .headlineWait {
+        margin-top: 250px;
+    }
 }

@@ -79,16 +79,18 @@ class GameLeaderPage extends Component {
     return (
       <div>
         <div>
-          <h1 className="headline">Spelomgångens pinkod:</h1>
+          <p className="headline">Spelomgångens pinkod:</p>
         </div>
-        <div className="random">{gameId}</div>
-        <div class="button">
+        <div>
+          <p className="random">{gameId}</p>
+        </div>
+        <div class="buttonStartGame">
           <button id="startGameButton" onClick={this.handleClickStart}>
             Starta spel
           </button>
         </div>
-        <div className="instructions">
-          <p>
+        <div>
+          <p className="instructions">
             När alla som ska spela har slagit in pinkoden på sin enhet, klickar
             du på Starta spel.
           </p>
