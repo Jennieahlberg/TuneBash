@@ -1,13 +1,62 @@
 import React, { Component } from "react";
 import "./Question.css";
-import Line from "../Progressbar/Line";
+import io from 'socket.io-client';
 
+const socketUrl = "http://localhost:3231"
 class Question extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { usersArray: [] };
+    this.state = { socket: io(socketUrl) };
+    this.state = { value: "" };
+  }
 
-  submitAnswer() {}
+  componentWillMount() {
+    this.initSocket();
+    this.onSocket(); 
+  }
+
+  onSocket = () => {
+    this.state.socket.on('user joined', (data) => {
+      console.log(data);
+      this.setState({ usersArray: data.users });
+    });
+  }
+
+  submitAnswer(event) {
+    for (let user of this.usersArray){
+      if (event.target.value = this.question.correctAnswer) {
+      user[1]++;
+      }
+      user[user.length] = event.target.value;
+    }
+  }
+    shuffleAnswers = (array) => {
+        let currentIndex = array.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
+
+  answers = [this.props.question.correctAnswer,
+        this.props.question.wrongAnswer1,
+        this.props.question.wrongAnswer2,
+        this.props.question.wrongAnswer3];
+
 
   render() {
     const question = this.props.question;
+    const answers = this.answers;
+    this.shuffleAnswers(answers);
     return (
       <div className="Question">
         <iframe
@@ -22,17 +71,17 @@ class Question extends Component {
           <form>
             <p> {question.question}</p>
 
-            <button className="answerButton" onClick={this.submitAnswer}>
-              {question.correctAnswer}
+            <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
+              {answers[0]}
             </button>
-            <button className="answerButton" onClick={this.submitAnswer}>
-              {question.wrongAnswer1}
+            <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
+              {answers[1]}
             </button>
-            <button className="answerButton" onClick={this.submitAnswer}>
-              {question.wrongAnswer2}
+            <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
+              {answers[2]}
             </button>
-            <button className="answerButton" onClick={this.submitAnswer}>
-              {question.wrongAnswer3}
+            <button className="answerButton" value={this.state.value} onClick={this.submitAnswer}>
+              {answers[3]}
             </button>
           </form>
         </div>
