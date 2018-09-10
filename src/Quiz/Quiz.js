@@ -16,7 +16,7 @@ class Quiz extends Component {
   render() {
       const quizz = this.props.questions;
     return (
-      <div className="questions">
+      <div className="questions" key={quizz[this.state.counter].id}>
         <Question question={quizz[this.state.counter]} nextQuestion={this.nextQuestion} />
       </div>
     );
