@@ -6,7 +6,6 @@ const socketUrl = "http://localhost:3231"
 class Question extends Component {
   constructor(props) {
     super(props);
-    this.state = { members: true };
     this.state = { usersArray: [] };
     this.state = { socket: io(socketUrl) };
     this.state = { value: "" };
