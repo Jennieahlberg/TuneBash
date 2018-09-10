@@ -10,10 +10,12 @@ class GameLeaderPage extends Component {
   constructor(props) {
     super(props);
     this.handleClickStart = this.handleClickStart.bind(this);
-    this.state = { start: false };
-    this.state = { questions: [] };
-    this.state = { usersArray: [] };
-    this.state = { socket: io(socketUrl) };
+    this.state = { 
+      start: false,
+      questions: [],
+      usersArray: [],
+      socket: io(socketUrl) 
+     };
     const level = this.props.level;
     const category = this.props.category;
     const numberOfQuestions = this.props.numberOfQuestions;
@@ -53,7 +55,6 @@ class GameLeaderPage extends Component {
   handleClickStart = () => {
     this.setState({ start: true });
     const newUsersArray = [];
-    const userArray = []
     console.log(this.state.usersArray);
     for (let user of this.state.usersArray){
       newUsersArray.push([user, 0]);
