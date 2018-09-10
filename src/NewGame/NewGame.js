@@ -58,7 +58,13 @@ class newGame extends Component {
     if (generate) {
       return (
         <div className="App">
-          <GameLeaderPage onClickStart={this.handleClickStart} gameId={this.state.gameId}/>
+          <GameLeaderPage onClickStart={this.handleClickStart} gameId={this.state.gameId} 
+          level={this.state.level} category={this.state.category} 
+          numberOfQuestions={this.state.numberOfQuestions}
+          lengthOfSong={this.state.lengthOfSong}
+          language={this.state.language}
+          name={this.state.name}
+        />
         </div>
       );
     }

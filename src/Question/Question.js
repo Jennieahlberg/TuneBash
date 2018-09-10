@@ -11,7 +11,7 @@ class Question extends Component {
     return (
       <div className="Question">
         <iframe
-          src={"https://open.spotify.com/embed/track/7qvxFz3JodM0A7xEM7k3YD"}
+          src={question.songLink}
           width="300"
           height="80"
           frameborder="0"

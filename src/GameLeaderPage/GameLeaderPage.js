@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./GameLeaderPage.css";
 import NewGame from "../NewGame/NewGame.js";
 import Quiz from "../Quiz/Quiz";
-import axios from 'axios';
+import axios from "axios";
 
 class GameLeaderPage extends Component {
   constructor(props) {
@@ -10,9 +10,16 @@ class GameLeaderPage extends Component {
     this.handleClickStart = this.handleClickStart.bind(this);
     this.state = { start: false };
     this.state = { questions: [] };
+    const level = this.props.level;
+    const category = this.props.category;
+    const numberOfQuestions = this.props.numberOfQuestions;
+    const lengthOfSong = this.props.lengthOfSong;
+    const language = this.state.language;
 
     axios
-      .get("http://localhost:8080/questions")
+      .get(
+        "http://localhost:8080/getquestions/{" + level + "}/{" + numberOfQuestions + "}/{" + lengthOfSong + "}/{" + language + "}"
+      )
       .then(response => {
         const newQuiz = response.data;
 
@@ -38,11 +45,7 @@ class GameLeaderPage extends Component {
     const gameId = this.props.gameId;
 
     if (start) {
-      return (
-          <Quiz
-           questions={this.state.questions}
-           />
-      );
+      return <Quiz questions={this.state.questions} />;
     }
 
     return (
