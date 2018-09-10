@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Quiz.css";
 import Question from "../Question/Question";
+import GameResults from "../GameResults/GameResults";
 
 class Quiz extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class Quiz extends Component {
     this.state = { 
       counter: 0,
       usersArray: this.props.usersArray,
-      gameover: false
+      gameEnded: false
     };
 
     this.nextQuestion = this.nextQuestion.bind(this);
@@ -19,8 +20,8 @@ class Quiz extends Component {
     this.setState({ counter: this.state.counter + 1 });
   };
 
-  cancelGame = () => {
-    this.setState({ cancelGame: true });
+  endGame = () => {
+    this.setState({ gameEnded: true });
   };
 
   render() {
@@ -29,6 +30,11 @@ class Quiz extends Component {
     console.log(quizz[0]);
     console.log(this.props.questions);
 
+    if(this.gameEnded){
+        return(
+        <GameResults results={this.props.results}/>)
+
+    }
     return (
       <div className="questions">
         <Question
