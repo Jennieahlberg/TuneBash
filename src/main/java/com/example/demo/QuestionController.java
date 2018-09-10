@@ -25,15 +25,12 @@ public class QuestionController {
     @Autowired
     private CustomQuestionRepository cqrepo;
 
-    @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;
-
     @GetMapping("/")
     public String hello() {
         return "app is running";
     }
 
-    @GetMapping(value="/questions", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/questions", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Questions> getUsers(HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> questions = repository.getAllByLanguage("Engelska");
@@ -41,18 +38,19 @@ public class QuestionController {
     }
 
 
-    //@CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(value = "/getquestions/{level}/{numberOfQuestions}/{lengthOfSong}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Questions> getQuestions(@RequestBody GenerateQuiz quiz, HttpServletResponse response) {
+    //@CrossOrigin(origins = "http://localhost:3000/getquestions?level=level&numberOfQuestions=numberOfQuestions&category=category&language=laguage")
+    @GetMapping(value = "/getquestions/{level}/{numberOfQuestions}/{category}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Questions> getquestions(@PathVariable String level, @PathVariable int numberOfQuestions, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
-        List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage();
+        List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage(category, level, language);
         List<Questions> questions = new ArrayList<>();
         Collections.shuffle(firstfilter);
-     //   for (int i = 0; i <quiz.getNumberOfQuestions(); i++) {
+        for (int i = 0; i < numberOfQuestions; i++) {
             questions.add(firstfilter.get(i));
         }
-        //return questions;
+        return questions;
     }
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/addcustomquestion", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void customquestion(@RequestBody CustomQuestion question, HttpServletResponse response) {
@@ -61,7 +59,7 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/getcustomquiz", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CustomQuestion> customquiz(@PathVariable int pin,HttpServletResponse response) {
+    public List<CustomQuestion> customquiz(@PathVariable int pin, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<CustomQuestion> questions = cqrepo.getAllByPin(pin);
         return questions;

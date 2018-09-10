@@ -18,7 +18,9 @@ class GameLeaderPage extends Component {
 
     axios
       .get(
-        "http://localhost:8080/getquestions/{" + level + "}/{" + numberOfQuestions + "}/{" + lengthOfSong + "}/{" + language + "}"
+        "http://localhost:8080/getquestions?",{
+        param:{
+         level:level, numberOfQuestions: numberOfQuestions, category:category,language:language}}
       )
       .then(response => {
         const newQuiz = response.data;
