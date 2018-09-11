@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import "./Quiz.css";
-import Question from "../Question/Question";
+import Answer from "../Answer/Answer";
 import GameResults from "../GameResults/GameResults";
 import io from "socket.io-client";
 
-
 const socketUrl = "http://localhost:3231";
-class Quiz extends Component {
+class QuizAnswer extends Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -49,23 +47,16 @@ class Quiz extends Component {
     console.log(quizz);
     console.log(this.props.questions);
     console.log(this.state.usersArray);
-    
-
-    if(this.state.counter >= quizz.length){
-        return(
-        <GameResults results={this.props.results}/>)
-    }
 
     return (
       <div className="questions">
-        <Question
+        <Answer
           question={quizz[this.state.counter]}
           usersArray={this.props.usersArray}
-          counter={this.state.counter}
         />
       </div>
     );
   }
 }
 
-export default Quiz;
+export default QuizAnswer;

@@ -5,6 +5,7 @@ import Quiz from "../Quiz/Quiz";
 import axios from "axios";
 import io from "socket.io-client";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
+import AnswersInText from "../AnswersInText/AnswersInText";
 
 const socketUrl = "http://localhost:3231";
 class GameLeaderPage extends Component {
@@ -93,17 +94,18 @@ class GameLeaderPage extends Component {
     console.log(this.state.questions);
     console.log(quizz[0]);
     console.log(this.state.counter);
+    console.log(this.state.usersArray);
 
     if (start) {
       return (
         <div>
           <MusicPlayer question={quizz[this.state.counter]} />
-          <p>{this.state.counter+1}/{quizz.length}</p>
+          <p>Fråga {this.state.counter+1} av {quizz.length}</p>
           <Quiz
             questions={this.state.questions}
             usersArray={this.state.usersArray}
-            nextQuestion={this.nextQuestion}
           />
+          <AnswersInText question={quizz[this.state.counter]}/>
           <div className="next">
             <button onClick={this.nextQuestion}>Nästa fråga</button>
             <button onClick={this.props.endGame} result={this.state.usersArray}>
