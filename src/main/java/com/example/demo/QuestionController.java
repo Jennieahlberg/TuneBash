@@ -38,8 +38,8 @@ public class QuestionController {
     }
 
 
-    @GetMapping(value = "/getquestions/{numberOfQuestions}/{level}/{category}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Questions> getquestions(@PathVariable Integer numberOfQuestions, @PathVariable String level, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
+    @GetMapping(value = "/getquestions/5/{level}/{category}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Questions> getquestions(@PathVariable String level, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> firstfilter = new ArrayList<>();
         if (level.equals("mix")) {

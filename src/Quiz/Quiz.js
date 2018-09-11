@@ -12,7 +12,6 @@ class Quiz extends Component {
     this.state = { 
       counter: 0,
       usersArray: this.props.usersArray,
-      gameEnded: false,
       socket: io(socketUrl), 
     };
 
@@ -40,27 +39,13 @@ class Quiz extends Component {
     console.log("startgame " + this.state.start);
   }
 
-  endGame = () => {
-    this.setState({ gameEnded: true });
-  };
-
   render() {
     const quizz = this.props.questions;
-    console.log(quizz);
-    console.log(this.props.questions);
-    console.log(this.state.usersArray);
-    
-
-    if(this.state.counter >= quizz.length){
-        return(
-        <GameResults results={this.props.results}/>)
-    }
-
+  
     return (
       <div className="questions">
         <Question
           question={quizz[this.state.counter]}
-          usersArray={this.props.usersArray}
           counter={this.state.counter}
         />
       </div>
