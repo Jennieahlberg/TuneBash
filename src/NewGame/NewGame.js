@@ -100,16 +100,6 @@ class newGame extends Component {
               </select>
             </p>
             <p>
-              <select value={this.state.lengthOfSong} onChange={(event) => this.setState({ lengthOfSong: event.target.value })}>
-                <option value="" disabled selected>Låtlängd</option>
-                <option value="10">10 sek</option>
-                <option value="30">30 sek</option>
-                <option value="1">1 min</option>
-                <option value="fullLength">Hela låten</option>
-              </select>
-            </p>
-
-            <p>
               <select value={this.state.language} onChange={(event) => this.setState({ language: event.target.value })}>
                 <option value="" disabled selected>Språk</option>
                 <option value="">Blanda alla språk</option>

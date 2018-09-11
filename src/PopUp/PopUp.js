@@ -48,20 +48,18 @@ class Popup extends React.Component {
             }
             
           }}> 
+          <p className="headlinePopup">Vanliga frågor</p>
          <p> 
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
-           För att kunna spela hela låtar så måste du logga in på Spotify, annars spelas låtarna endast i 30 sekunder.
+          <strong>Varför ska jag logga in på Spotify?</strong>
+          <p className="answersPopup">Om du loggar in, och har Spotify Premium-konto, så kommer du att kunna spela hela längden på låtarna, annars så kommer du att få en förkortad version på låtarna som spelas i 30 sekunder.</p>
+          <strong>Hur loggar jag ut från Spotify?</strong>
+          <p className="answersPopup">Gå in på ditt konto på Spotifys hemsida och klicka på "Logga ut överallt".</p>
+          <strong>Hur skapar jag ett nytt spel?</strong>
+          <p className="answersPopup">Klicka på "Generera nytt spel" och välj därefter kriterier, sen är det bara att bjuda in kompisarna med hjälp av pinkoden.</p>
+          <strong>Vilken webbläsare är bäst att använda?</strong>
+          <p className="answersPopup">TuneBash fungerar bäst med webbläsaren Google Chrome.</p>
+          <strong>Har du ovanliga frågor?</strong>
+          <p className="answersPopup">Kontakta oss på blablabla.</p>
            </p>
          <div className="closeDiv">
          <button className="closeButton" onClick={this.handleCloseModal}>Stäng</button>
