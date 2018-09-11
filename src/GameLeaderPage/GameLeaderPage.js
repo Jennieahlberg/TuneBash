@@ -68,7 +68,7 @@ class GameLeaderPage extends Component {
   };
 
   render() {
-    const quizz = this.state.questions;
+    const quizz = this.state.questions[0];
     const start = this.state.start;
     const gameId = this.props.gameId;
     console.log(this.props.level);
@@ -77,6 +77,14 @@ class GameLeaderPage extends Component {
     if (start) {
       return (
         <div>
+          <iframe
+          src={quizz.songLink}
+          width="300"
+          height="80"
+          frameborder="0"
+          allowtransparency="true"
+          allow="encrypted-media"
+        />
         <Quiz
           questions={this.state.questions}
           usersArray={this.state.usersArray}
