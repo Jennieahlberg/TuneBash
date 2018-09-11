@@ -1,6 +1,17 @@
-p {
-    font-size: 14px;
-    font-family: 'Montserrat Alternates', sans-serif;
+.headlinePopup{
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+}
+
+.answersPopup{
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+strong{
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .popupButton {
@@ -35,7 +46,6 @@ p {
     font-family: 'Montserrat Alternates', sans-serif;
     font-weight: bold;
     background-color: papayawhip;
-    overflow: hidden;
     position: fixed;
     bottom: 0;
     width: 67%;
