@@ -7,7 +7,6 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      usersArray: this.props.usersArray, 
       socket: io(socketUrl), 
       value: "",
       shuffle: true
@@ -18,7 +17,6 @@ class Question extends Component {
     const question = this.props.question;
     console.log(question);
     console.log(this.props.question);
-    console.log(this.state.usersArray);
 
     
     return (

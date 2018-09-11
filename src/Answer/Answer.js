@@ -13,13 +13,20 @@ class Answer extends Component {
     };
   }
 
+  componentWillMount() {
+    this.newScore();
+  }
+
   submitAnswer(event) {
-    for (let user of this.state.usersArray) {
-      if ((event.target.value = this.question.correctAnswer)) {
-        user[1]++;
-      }
-      user[user.length] = event.target.value;
-    }
+    const question = this.props.question;
+    console.log(question);
+    this.state.socket.emit("addScore", event.target.value, question.correctAnswer, this.state.usersArray)
+  }
+
+  newScore() {
+    this.state.socket.on("newScore", (newUsersArray) => {
+      this.setState({usersArray: newUsersArray});
+    })
   }
 
   shuffleAnswers = array => {
@@ -42,6 +49,8 @@ class Answer extends Component {
   render() {
     const question = this.props.question;
     console.log(question);
+    console.log(this.state.usersArray);
+    console.log(this.props.usersArray);
     
     const answers = [
       question.correctAnswer,
@@ -57,32 +66,31 @@ class Answer extends Component {
     return (
       <div>
         <form>
-
           <button
             className="answerButton"
-            value={this.state.value}
-            onClick={this.submitAnswer}
+            value={answers[0]}
+            onClick={(event) => this.submitAnswer(event)}
           >
             {answers[0]}
           </button>
           <button
             className="answerButton"
-            value={this.state.value}
-            onClick={this.submitAnswer}
+            value={answers[1]}
+            onClick={(event) => this.submitAnswer(event)}
           >
             {answers[1]}
           </button>
           <button
             className="answerButton"
-            value={this.state.value}
-            onClick={this.submitAnswer}
+            value={answers[2]}
+            onClick={(event) => this.submitAnswer(event)}
           >
             {answers[2]}
           </button>
           <button
             className="answerButton"
-            value={this.state.value}
-            onClick={this.submitAnswer}
+            value={answers[3]}
+            onClick={(event) => this.submitAnswer(event)}
           >
             {answers[3]}
           </button>
