@@ -13,6 +13,8 @@ class Question extends Component {
     };
   }
 
+ 
+
   submitAnswer(event) {
     for (let user of this.usersArray) {
       if ((event.target.value = this.question.correctAnswer)) {
@@ -37,6 +39,7 @@ class Question extends Component {
     }
     return array;
   };
+
 
   render() {
     const question = this.props.question;
