@@ -56,6 +56,8 @@ class Popup extends React.Component {
           <p className="answersPopup">Gå in på ditt konto på Spotifys hemsida och klicka på "Logga ut överallt".</p>
           <strong>Hur skapar jag ett nytt spel?</strong>
           <p className="answersPopup">Klicka på "Generera nytt spel" och välj därefter kriterier, sen är det bara att bjuda in kompisarna med hjälp av pinkoden.</p>
+          <strong>Vilken webbläsare är bäst att använda?</strong>
+          <p className="answersPopup">TuneBash fungerar bäst med webbläsaren Google Chrome.</p>
           <strong>Har du ovanliga frågor?</strong>
           <p className="answersPopup">Kontakta oss på blablabla.</p>
            </p>
