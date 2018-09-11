@@ -76,7 +76,7 @@ class newGame extends Component {
             <p>
               <select value={this.state.level} onChange={(event) => this.setState({ level: event.target.value })}>
                 <option value="" disabled selected>Svårighetsnivå</option>
-                <option value="mix">Blanda nivåer</option>
+                <option value="">Blanda nivåer</option>
                 <option value="easy">Lätt</option>
                 <option value="medium">Medel</option>
                 <option value="hard">Svår</option>
@@ -85,7 +85,7 @@ class newGame extends Component {
             <p>
               <select value={this.state.category} onChange={(event) => this.setState({ category: event.target.value })}>
                 <option value="" disabled selected>Genre</option>
-                <option value="mix">Blanda genrer</option>
+                <option value="">Blanda genrer</option>
                 <option value="Pop">Pop</option>
                 <option value="Rock">Rock</option>
                 <option value="Country">Country</option>
