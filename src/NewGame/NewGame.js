@@ -113,7 +113,7 @@ class newGame extends Component {
               <input type="text" className="divName" required placeholder="Spelledarens namn" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} />
             </div>
 
-            <div className="createPinCode">
+            <div className="createNewPinCode">
               <input type="submit" className="createPinCodeNewGame" value="Skapa pinkod" />
             </div>
 

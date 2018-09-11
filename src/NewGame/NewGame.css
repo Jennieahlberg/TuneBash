@@ -58,9 +58,9 @@ input[type=text] {
     font-weight: bolder;
 }
 
-.createPinCode {
+.createNewPinCode {
     font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
+    font-size: 1em;
     font-weight: bold;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
