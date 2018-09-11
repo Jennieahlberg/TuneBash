@@ -4,26 +4,36 @@ import NewGame from "../NewGame/NewGame.js";
 import Quiz from "../Quiz/Quiz";
 import axios from "axios";
 import io from "socket.io-client";
+import MusicPlayer from "../MusicPlayer/MusicPlayer";
+import AnswersInText from "../AnswersInText/AnswersInText";
 
 const socketUrl = "http://localhost:3231";
 class GameLeaderPage extends Component {
   constructor(props) {
     super(props);
     this.handleClickStart = this.handleClickStart.bind(this);
-    this.state = { 
+    this.state = {
       start: false,
       questions: [],
       usersArray: [],
       socket: io(socketUrl),
-      counter: 0,
-     };
-    
+      counter: 0
+    };
+    this.nextQuestion = this.nextQuestion.bind(this);
+
     const lengthOfSong = this.props.lengthOfSong;
-    
 
     axios
-        .get(
-        "http://localhost:8080/getquestions/" + this.props.level + "/" + this.props.category + "/" + this.props.language)
+
+      .get(
+        "http://localhost:8080/getquestions/" +
+          this.props.level +
+          "/" +
+          this.props.category +
+          "/" +
+          this.props.language
+      )
+
 
       .then(response => {
         const newQuiz = response.data;
@@ -54,10 +64,9 @@ class GameLeaderPage extends Component {
 
   handleClickStart = () => {
     this.setState({ start: true });
-    this.setState({counter: this.props.counter});
     const newUsersArray = [];
     console.log(this.state.usersArray);
-    for (let user of this.state.usersArray){
+    for (let user of this.state.usersArray) {
       newUsersArray.push([user, 0]);
     }
     console.log(newUsersArray);
@@ -65,31 +74,46 @@ class GameLeaderPage extends Component {
     console.log(this.state.usersArray);
     console.log(this.state.counter);
     console.log(this.state.questions[this.state.counter]);
-    this.state.socket.emit('startgame', true, this.state.questions, this.state.usersArray);
+    this.state.socket.emit(
+      "startgame",
+      true,
+      this.state.questions,
+      this.state.usersArray
+    );
   };
 
+  nextQuestion() {
+    this.setState({ counter: this.state.counter + 1 });
+    this.state.socket.emit("next", this.state.counter + 1);
+  }
+
   render() {
-    const quizz = this.state.questions[0];
+    const quizz = this.state.questions;
     const start = this.state.start;
     const gameId = this.props.gameId;
     console.log(this.props.level);
     console.log(this.props.category);
+    console.log(this.state.questions);
+    console.log(quizz[0]);
+    console.log(this.state.counter);
+    console.log(this.state.usersArray);
 
     if (start) {
       return (
         <div>
-          <iframe
-          src={quizz.songLink}
-          width="300"
-          height="80"
-          frameborder="0"
-          allowtransparency="true"
-          allow="encrypted-media"
-        />
-        <Quiz
-          questions={this.state.questions}
-          usersArray={this.state.usersArray}
-        />
+          <MusicPlayer question={quizz[this.state.counter]} />
+          <p>Fråga {this.state.counter+1} av {quizz.length}</p>
+          <Quiz
+            questions={this.state.questions}
+            usersArray={this.state.usersArray}
+          />
+          <AnswersInText question={quizz[this.state.counter]}/>
+          <div className="next">
+            <button onClick={this.nextQuestion}>Nästa fråga</button>
+            <button onClick={this.props.endGame} result={this.state.usersArray}>
+              Avsluta spel
+            </button>
+          </div>
         </div>
       );
     }

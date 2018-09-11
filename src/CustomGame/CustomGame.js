@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CustomGame.css';
 import axios from 'axios';
 import YourCustomGame from '../YourCustomGame/YourCustomGame';
+import HomeButton from "../HomeButton/HomeButton";
 
 class CustomGame extends Component {
     state = {
@@ -74,29 +75,21 @@ class CustomGame extends Component {
                                 </select>
                             </p>
 
-                            <p><select value={this.state.lengthOfSong} onChange={(event) => this.setState({ lengthOfSong: event.target.value })} required name="lengthOfSong">
-                                <option value="låtlängd">Låtlängd</option>
-                                <option value="10">10 sek</option>
-                                <option value="30">30 sek</option>
-                                <option value="1">1 min</option>
-                                <option value="fullLängd">Hela låten</option>
-                            </select>
-                            </p>
-
-
-                            <p><input value={this.state.songLink} onChange={(event) => this.setState({ songLink: event.target.value })} required type="text" placeholder="Låtlänk från Spotify" /></p>
-                            <p><input value={this.state.question} onChange={(event) => this.setState({ question: event.target.value })} required type="text" placeholder="Fråga" /></p>
-                            <p><input value={this.state.correctAnswer} onChange={(event) => this.setState({ correctAnswer: event.target.value })} required type="text" placeholder="Rätt svar" /></p>
-                            <p><input value={this.state.wrongAnswer1} onChange={(event) => this.setState({ wrongAnswer1: event.target.value })} required type="text" placeholder="Fel svar 1" /></p>
-                            <p><input value={this.state.wrongAnswer2} onChange={(event) => this.setState({ wrongAnswer2: event.target.value })} required type="text" placeholder="Fel svar 2" /></p>
-                            <p><input value={this.state.wrongAnswer3} onChange={(event) => this.setState({ wrongAnswer3: event.target.value })} required type="text" placeholder="Fel svar 3" /></p>
+                            <p><input className="customRow" value={this.state.songLink} onChange={(event) => this.setState({ songLink: event.target.value })} required type="text" placeholder="Låtlänk från Spotify" /></p>
+                            <p><input className="customRow" value={this.state.question} onChange={(event) => this.setState({ question: event.target.value })} required type="text" placeholder="Fråga" /></p>
+                            <p><input className="customRow" value={this.state.correctAnswer} onChange={(event) => this.setState({ correctAnswer: event.target.value })} required type="text" placeholder="Rätt svar" /></p>
+                            <p><input className="customRow" value={this.state.wrongAnswer1} onChange={(event) => this.setState({ wrongAnswer1: event.target.value })} required type="text" placeholder="Fel svar 1" /></p>
+                            <p><input className="customRow" value={this.state.wrongAnswer2} onChange={(event) => this.setState({ wrongAnswer2: event.target.value })} required type="text" placeholder="Fel svar 2" /></p>
+                            <p><input className="customRow" value={this.state.wrongAnswer3} onChange={(event) => this.setState({ wrongAnswer3: event.target.value })} required type="text" placeholder="Fel svar 3" /></p>
 
                             <div>
-                                <input type="submit" value="Skapa pinkod" id="createPinCode" />
+                                <input type="submit" value="Skapa pinkod" id="createPinCodeCustom" />
                             </div>
                         </form>
                     </div>
                 </div>
+
+                <HomeButton/>
 
             </div>
         );
