@@ -13,8 +13,6 @@ class Question extends Component {
     };
   }
 
- 
-
   submitAnswer(event) {
     for (let user of this.usersArray) {
       if ((event.target.value = this.question.correctAnswer)) {
@@ -56,14 +54,7 @@ class Question extends Component {
     this.shuffleAnswers(answers);
     return (
       <div className="Question">
-        <iframe
-          src={question.songLink}
-          width="300"
-          height="80"
-          frameborder="0"
-          allowtransparency="true"
-          allow="encrypted-media"
-        />
+        
         <div className="Question_question">
           <form>
             <p> {question.question}</p>
