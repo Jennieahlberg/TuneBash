@@ -59,7 +59,7 @@ class Popup extends React.Component {
           <strong>Vilken webbläsare är bäst att använda?</strong>
           <p className="answersPopup">TuneBash fungerar bäst med webbläsaren Google Chrome.</p>
           <strong>Har du ovanliga frågor?</strong>
-          <p className="answersPopup">Kontakta oss på blablabla.</p>
+          <p className="answersPopup" id="bottomFAQ">Kontakta oss på blablabla.</p>
            </p>
          <div className="closeDiv">
          <button className="closeButton" onClick={this.handleCloseModal}>Stäng</button>
