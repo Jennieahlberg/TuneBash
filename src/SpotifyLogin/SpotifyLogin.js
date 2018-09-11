@@ -75,7 +75,7 @@ class SpotifyLogin extends Component {
   render() {
     const login = this.state.login;
     return (
-      <div className="newGame">
+      <div className="spotifyDiv">
         <button className="spotifyButton" onClick={this.getAuth}>
           Login to Spotify <i className="fa fa-spotify" />
         </button>

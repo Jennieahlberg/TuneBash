@@ -1,16 +1,17 @@
 .headlinePopup{
     text-align: center;
     font-family: 'Montserrat', sans-serif;
-    font-size: 32px;
-}
-
-.answersPopup{
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    line-height: 3em;
 }
 
 strong{
-    font-size: 18px;
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.answersPopup{
+    font-size: 1em;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -18,9 +19,8 @@ strong{
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-top: 5%;
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-size: 1em;
     color: #551A8B;
     background: none;
     border: none;
@@ -29,7 +29,7 @@ strong{
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 20px;
+    margin-bottom: 1em;
 }
 
 .popupButton:hover {
@@ -49,7 +49,7 @@ strong{
     position: fixed;
     bottom: 0;
     width: 67%;
-    margin-bottom: 50px;
+    margin-bottom: 3em;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 16px;
@@ -63,16 +63,23 @@ strong{
     text-decoration: none;
 }
 
+#bottomFAQ{
+    margin-bottom: 5em;
+}
+
+
 @media only screen and (min-width: 560px) {
     .closeDiv{
         display: block;
-        text-align: center;
-        width: 100%;
+        align-items: center;
+       
+        background-color: transparent;
     }
 
     .closeButton{
        text-align: center;
-       widows: 100%;
+       width: 100%;
+       background-color: transparent;
     }
 
     p{
