@@ -60,21 +60,17 @@ class SpotifyLogin extends Component {
         Authorization: "Bearer " + accessToken
       }
     });
-    this.setState({loggedIn: true});
-    console.log('Du är inloggad getUserData');
   };
 
   getAuth = () => {
     this.login(function(accessToken) {
       this.getUserData(accessToken).then(function(response) {
-      
+        this.setState({loggedIn: true}); 
       });
-    
     });
-    this.setState({loggedIn: true});
-    console.log('Du är inloggad getAuth');
   };
 
+  
 
   render() {
     const loggedIn = this.state.loggedIn;
