@@ -9,14 +9,13 @@ class Question extends Component {
     this.state = { 
       usersArray: this.props.usersArray, 
       socket: io(socketUrl), 
-      value: ""  
+      value: "",
+      shuffle: true
     };
   }
 
- 
-
   submitAnswer(event) {
-    for (let user of this.usersArray) {
+    for (let user of this.state.usersArray) {
       if ((event.target.value = this.question.correctAnswer)) {
         user[1]++;
       }
@@ -37,6 +36,7 @@ class Question extends Component {
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
+    this.setState({shuffle: false});
     return array;
   };
 
@@ -53,7 +53,10 @@ class Question extends Component {
       question.wrongAnswer3
     ];
 
+    if(this.state.shuffle){
     this.shuffleAnswers(answers);
+    }
+
     return (
       <div className="Question">
         <div className="Question_question">
@@ -89,10 +92,6 @@ class Question extends Component {
               {answers[3]}
             </button>
           </form>
-        </div>
-        <div className="next">
-          <button onClick={this.props.nextQuestion}>Nästa fråga</button>
-          <button onClick={this.props.endGame} result={this.state.usersArray}>Avsluta spel</button>
         </div>
       </div>
     );
