@@ -98,6 +98,7 @@ class GameLeaderPage extends Component {
       return (
         <div>
           <MusicPlayer question={quizz[this.state.counter]} />
+          <p>{this.state.counter+1}/{quizz.length}</p>
           <Quiz
             questions={this.state.questions}
             usersArray={this.state.usersArray}
