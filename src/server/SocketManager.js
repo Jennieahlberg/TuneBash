@@ -4,6 +4,7 @@ let connectUser = {};
 const { createUser } = require("../Factories");
 let numUsers = 0;
 let users = [];
+let namn = "";
 module.exports = function(socket) {
   console.log("SocketId: " + socket.id);
 
@@ -14,7 +15,8 @@ module.exports = function(socket) {
   socket.on("add user", username => {
     // we store the username in the socket session for this client
     socket.username = username;
-    users.push(socket.username);
+    namn = socket.username;
+    users.push([socket.username, socket.id]);
     numUsers = users.length;
     // echo globally (all clients) that a person has connected
 
@@ -25,6 +27,7 @@ module.exports = function(socket) {
     socket.emit("login", {
       numUsers: numUsers
     });
+    console.log(users);
   });
 
   setInterval(() => {
@@ -48,24 +51,34 @@ module.exports = function(socket) {
     console.log("hej!");
   });
 
-  socket.on("next", (nextquestion) => {
+  socket.on("next", nextquestion => {
     socket.broadcast.emit("next", nextquestion);
     console.log("next");
     console.log(nextquestion);
-  })
+  });
 
   socket.on("addScore", (value, correctAnswer, usersArray) => {
-    for(let user of usersArray ){
-      if (user[0] === socket.username){
-        if (value === correctAnswer) {
-          user[1]++;
+    for (let user of usersArray) {
+        for (let person of users) {
+          if (user[0] === person[0]) {
+            if (value === correctAnswer) {
+              if (user) {
+                user[2]++;
+              }
+            }
+            if (user) {
+              user.push(value);
+            }
+            console.log(user[0]);
+            console.log(person[0]);
+          }
         }
-        user.push(value);
-      }
     }
     console.log("tjenix");
+    console.log(usersArray);
+    console.log(namn);
     socket.broadcast.emit("newScore", usersArray);
-  })
+  });
 };
 
 // function addUser(userList, user){
