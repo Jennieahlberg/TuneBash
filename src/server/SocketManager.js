@@ -53,6 +53,19 @@ module.exports = function(socket) {
     console.log("next");
     console.log(nextquestion);
   })
+
+  socket.on("addScore", (value, correctAnswer, usersArray) => {
+    for(let user of usersArray ){
+      if (user[0] === socket.username){
+        if (value === correctAnswer) {
+          user[1]++;
+        }
+        user.push(value);
+      }
+    }
+    console.log("tjenix");
+    socket.broadcast.emit("newScore", usersArray);
+  })
 };
 
 // function addUser(userList, user){

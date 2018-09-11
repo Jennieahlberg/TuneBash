@@ -6,6 +6,7 @@ import axios from "axios";
 import io from "socket.io-client";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 import AnswersInText from "../AnswersInText/AnswersInText";
+import GameResults from "../GameResults/GameResults";
 
 const socketUrl = "http://localhost:3231";
 class GameLeaderPage extends Component {
@@ -17,7 +18,8 @@ class GameLeaderPage extends Component {
       questions: [],
       usersArray: [],
       socket: io(socketUrl),
-      counter: 0
+      counter: 0,
+      gameEnded: false,
     };
     this.nextQuestion = this.nextQuestion.bind(this);
 
@@ -85,6 +87,11 @@ class GameLeaderPage extends Component {
     this.state.socket.emit("next", this.state.counter + 1);
   }
 
+  
+  endGame = () => {
+    this.setState({ gameEnded: true });
+  };
+
   render() {
     const quizz = this.state.questions;
     const start = this.state.start;
@@ -96,6 +103,11 @@ class GameLeaderPage extends Component {
     console.log(this.state.counter);
     console.log(this.state.usersArray);
 
+    if(start && (this.state.counter >= quizz.length)){
+      return(
+      <GameResults results={this.state.usersArray}/>)
+  }
+
     if (start) {
       return (
         <div>
@@ -103,7 +115,6 @@ class GameLeaderPage extends Component {
           <p>Fråga {this.state.counter+1} av {quizz.length}</p>
           <Quiz
             questions={this.state.questions}
-            usersArray={this.state.usersArray}
           />
           <AnswersInText question={quizz[this.state.counter]}/>
           <div className="next">

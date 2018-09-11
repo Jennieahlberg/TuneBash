@@ -7,6 +7,7 @@ import { VERIFY_USER, LOGOUT } from "../Events";
 import io from "socket.io-client";
 import Quiz from "../Quiz/Quiz";
 import QuizAnswers from "../QuizAnswers/QuizAnswers";
+import GameResults from "../GameResults/GameResults";
 
 const socketUrl = "http://localhost:3231";
 class WaitForStart extends Component {
@@ -17,7 +18,8 @@ class WaitForStart extends Component {
       usersArray: [],
       socket: io(socketUrl),
       start: false,
-      questions: []
+      questions: [],
+      counter: 0
     };
   }
 
@@ -25,6 +27,7 @@ class WaitForStart extends Component {
     this.initSocket();
     this.onSocket();
     this.startgame();
+    this.next();
   }
 
   initSocket = () => {
@@ -48,47 +51,34 @@ class WaitForStart extends Component {
     console.log("startgame " + this.state.start);
   }
 
-  // setUser = (user) => {
-  //   console.log(user);
-  //   const { socket } = this.state
-  //   this.setState({ user })
-  // }
-
-  // logout = () => {
-  //   const { socket, user } = this.state
-  //   socket.emit(LOGOUT)
-  //   this.setState({ user: null })
-  // }
+  next() {
+    this.state.socket.on('next', (nextquestion) => {
+      this.setState({counter: nextquestion });
+    })
+    console.log("startgame " + this.state.start);
+  }
 
   render() {
     const members = this.state.members;
-    // let { socket, user } = this.state
     console.log("userArray: " + this.state.usersArray);
+    console.log(this.state.questions.length);
+    console.log(this.state.counter);
+
+    if (this.state.start && (this.state.counter >= this.state.questions.length)) {
+      return <GameResults results={this.state.usersArray} />;
+    }
 
     if (members) {
       const names = {
         gameId: this.props.gameId,
         name: this.props.name
       };
-
-      /*axios.get('http://localhost:8080/questions') //FUNKAR INTE RIKTIGT
-                .then(response => {
-                    console.log(response);
-                })
-            console.log(names);*/
     }
-    // let nameContainer = this.state.usersArray;
-    // let names = nameContainer.map(function(name){
-    //   return <li>{name}</li>;
-    // })
 
     if (this.state.start) {
       return (
         <div>
-          <Quiz
-            questions={this.state.questions}
-            usersArray={this.state.usersArray}
-          />
+          <Quiz questions={this.state.questions} />
           <QuizAnswers
             questions={this.state.questions}
             usersArray={this.state.usersArray}
