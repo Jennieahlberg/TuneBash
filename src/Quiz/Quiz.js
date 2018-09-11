@@ -16,7 +16,6 @@ class Quiz extends Component {
       socket: io(socketUrl), 
     };
 
-    this.nextQuestion = this.nextQuestion.bind(this);
     console.log(this.state.usersArray);
   }
 
@@ -31,11 +30,6 @@ class Quiz extends Component {
       console.log(data);
       this.setState({ usersArray: data.users });
     });
-  };
-
-  nextQuestion() {
-    this.setState({ counter: this.state.counter + 1 });
-    this.state.socket.emit('next', this.state.counter + 1);
   };
 
   
@@ -64,7 +58,6 @@ class Quiz extends Component {
       <div className="questions">
         <Question
           question={quizz[this.state.counter]}
-          nextQuestion={this.nextQuestion}
           usersArray={this.props.usersArray}
           counter={this.state.counter}
         />
