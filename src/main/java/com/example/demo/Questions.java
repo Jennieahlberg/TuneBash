@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import java.util.HashMap;
 
 //by Gustaf Matsson
 //2018-09-03

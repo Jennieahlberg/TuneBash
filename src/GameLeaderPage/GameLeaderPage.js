@@ -24,14 +24,16 @@ class GameLeaderPage extends Component {
     const lengthOfSong = this.props.lengthOfSong;
 
     axios
+
       .get(
-        "http://localhost:8080/questions/" +
+        "http://localhost:8080/getquestions/" +
           this.props.level +
           "/" +
           this.props.category +
           "/" +
           this.props.language
       )
+
 
       .then(response => {
         const newQuiz = response.data;
