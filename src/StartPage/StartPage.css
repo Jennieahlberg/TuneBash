@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 2em;
+    margin-top: 1.5em;
 }
 
 .logo {
@@ -48,6 +48,7 @@ input[type=text] {
     -moz-border-radius: 50px;
     border-radius: 50px;
     border: solid 0px;
+    margin-top: 1em;
 }
 
 ::placeholder {
@@ -73,6 +74,12 @@ input[type=submit] {
 input[type=submit]:hover {
     opacity: 0.5;
     cursor: pointer;
+}
+
+.newGameStartPage{
+    display: block;
+    text-align: center;
+    margin-top: 1em;
 }
 
 #newGameButton {
@@ -116,10 +123,10 @@ textarea:focus, input:focus {
         margin: 0, auto;
         text-align: center;
     }
+    
     #newGameButton {
         font-size: 1.5em;
-        margin-top: -2em;
-        margin-bottom: -2em;
+        margin-top: 2em;
     }
 
     .pinCodeInput{

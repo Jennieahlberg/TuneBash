@@ -95,7 +95,7 @@ class StartPage extends Component {
           </form>
         </div>
 
-        <div className="newGame">
+        <div className="newGameStartPage">
           <button id="newGameButton" onClick={this.handleClickCreateGame}>
             Generera nytt spel
       </button>

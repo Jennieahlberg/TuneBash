@@ -1,8 +1,9 @@
-.newGame {
+.spotifyDiv {
     display: flex;
     width: 100%;
     justify-content: center;
-    margin-top: 4em;
+    margin-top: 2em;
+    margin-bottom: 2em;
    
 }
 
@@ -24,4 +25,12 @@
 .spotifyButton:hover{
     opacity: 0.5;
     cursor: pointer;
+}
+
+@media only screen and (min-width: 560px) {
+
+    .spotifyDiv{
+        margin-top: 4em;
+    }
+
 }
