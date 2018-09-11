@@ -14,15 +14,17 @@ class GameLeaderPage extends Component {
       start: false,
       questions: [],
       usersArray: [],
-      socket: io(socketUrl) 
+      socket: io(socketUrl),
+      counter: 0,
      };
     
     const lengthOfSong = this.props.lengthOfSong;
     
 
     axios
-      .get(
+        .get(
         "http://localhost:8080/questions/" + this.props.level + "/" + this.props.category + "/" + this.props.language)
+
       .then(response => {
         const newQuiz = response.data;
 
@@ -52,6 +54,7 @@ class GameLeaderPage extends Component {
 
   handleClickStart = () => {
     this.setState({ start: true });
+    this.setState({counter: this.props.counter});
     const newUsersArray = [];
     console.log(this.state.usersArray);
     for (let user of this.state.usersArray){
@@ -60,10 +63,13 @@ class GameLeaderPage extends Component {
     console.log(newUsersArray);
     this.setState({ usersArray: newUsersArray });
     console.log(this.state.usersArray);
+    console.log(this.state.counter);
+    console.log(this.state.questions[this.state.counter]);
     this.state.socket.emit('startgame', true, this.state.questions, this.state.usersArray);
   };
 
   render() {
+    const quizz = this.state.questions[0];
     const start = this.state.start;
     const gameId = this.props.gameId;
     console.log(this.props.level);
@@ -71,10 +77,20 @@ class GameLeaderPage extends Component {
 
     if (start) {
       return (
+        <div>
+          <iframe
+          src={quizz.songLink}
+          width="300"
+          height="80"
+          frameborder="0"
+          allowtransparency="true"
+          allow="encrypted-media"
+        />
         <Quiz
           questions={this.state.questions}
           usersArray={this.state.usersArray}
         />
+        </div>
       );
     }
 

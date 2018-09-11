@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Quiz.css";
 import Question from "../Question/Question";
+import GameLeaderPage from "../GameLeaderPage/GameLeaderPage";
 import GameResults from "../GameResults/GameResults";
 import io from "socket.io-client";
 
@@ -65,6 +66,7 @@ class Quiz extends Component {
           question={quizz[this.state.counter]}
           nextQuestion={this.nextQuestion}
           usersArray={this.props.usersArray}
+          counter={this.state.counter}
         />
       </div>
     );
