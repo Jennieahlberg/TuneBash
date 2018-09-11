@@ -4,21 +4,21 @@ import { ReactSpinner } from "react-spinning-wheel";
 import "react-spinning-wheel/dist/style.css";
 import axios from "axios";
 import { VERIFY_USER, LOGOUT } from "../Events";
-import io from 'socket.io-client';
+import io from "socket.io-client";
 import Quiz from "../Quiz/Quiz";
+import QuizAnswers from "../QuizAnswers/QuizAnswers";
 
-const socketUrl = "http://localhost:3231"
+const socketUrl = "http://localhost:3231";
 class WaitForStart extends Component {
-
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       members: true,
       usersArray: [],
       socket: io(socketUrl),
       start: false,
       questions: []
-      };
+    };
   }
 
   componentWillMount() {
@@ -28,23 +28,23 @@ class WaitForStart extends Component {
   }
 
   initSocket = () => {
-    this.state.socket.on('connect', () => {
+    this.state.socket.on("connect", () => {
       console.log("Connected");
-    })
-    this.state.socket.emit('add user', this.props.name);
-  }
+    });
+    this.state.socket.emit("add user", this.props.name);
+  };
 
   onSocket = () => {
-    this.state.socket.on('user joined', (data) => {
+    this.state.socket.on("user joined", data => {
       console.log(data);
       this.setState({ usersArray: data.users });
-    }); 
-  }
+    });
+  };
 
   startgame() {
-    this.state.socket.on('gameStarts', (data, questiones, users) => {
-      this.setState({start: data, questions: questiones, usersArray: users });
-    })
+    this.state.socket.on("gameStarts", (data, questiones, users) => {
+      this.setState({ start: data, questions: questiones, usersArray: users });
+    });
     console.log("startgame " + this.state.start);
   }
 
@@ -62,9 +62,8 @@ class WaitForStart extends Component {
 
   render() {
     const members = this.state.members;
-   // let { socket, user } = this.state
+    // let { socket, user } = this.state
     console.log("userArray: " + this.state.usersArray);
-    
 
     if (members) {
       const names = {
@@ -85,13 +84,18 @@ class WaitForStart extends Component {
 
     if (this.state.start) {
       return (
-        <Quiz
-          questions={this.state.questions}
-          usersArray={this.state.usersArray}
-        />
+        <div>
+          <Quiz
+            questions={this.state.questions}
+            usersArray={this.state.usersArray}
+          />
+          <QuizAnswers
+            questions={this.state.questions}
+            usersArray={this.state.usersArray}
+          />
+        </div>
       );
     }
-    
 
     return (
       <div>
@@ -103,9 +107,7 @@ class WaitForStart extends Component {
         <div className="spinner">
           <ReactSpinner />
         </div>
-        <div className="names">
-          {this.state.usersArray}
-        </div>
+        <div className="names">{this.state.usersArray}</div>
       </div>
     );
   }
