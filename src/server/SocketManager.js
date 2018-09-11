@@ -47,6 +47,12 @@ module.exports = function(socket) {
     socket.broadcast.emit("gameStarts", startgame, questions, usersArray);
     console.log("hej!");
   });
+
+  socket.on("next", (nextquestion) => {
+    socket.broadcast.emit("next", nextquestion);
+    console.log("next");
+    console.log(nextquestion);
+  })
 };
 
 // function addUser(userList, user){
