@@ -23,7 +23,7 @@ class GameLeaderPage extends Component {
 
     axios
         .get(
-        "http://localhost:8080/questions/" + this.props.level + "/" + this.props.category + "/" + this.props.language)
+        "http://localhost:8080/getquestions/" + this.props.level + "/" + this.props.category + "/" + this.props.language)
 
       .then(response => {
         const newQuiz = response.data;

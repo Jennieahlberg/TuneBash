@@ -38,19 +38,36 @@ public class QuestionController {
     }
 
 
-    @GetMapping(value = "/getquestions/{level}/{category}/{language}/{numberOfQuestions}", produces = MediaType.APPLICATION_JSON_VALUE)
-        public List<Questions> getquestions(@PathVariable String level, @PathVariable int numberOfQuestions, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            
-            List<Questions> firstfilter = repository.getAllByCategoryAndLevelAndLanguage(category, level, language);
-            List<Questions> questions = new ArrayList<>();
-            Collections.shuffle(firstfilter);
-            for (int i = 0; i < numberOfQuestions; i++) {
-                questions.add(firstfilter.get(i));
-            }
-            return firstfilter;
+    @GetMapping(value = "/getquestions/{numberOfQuestions}/{level}/{category}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Questions> getquestions(@PathVariable Integer numberOfQuestions, @PathVariable String level, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        List<Questions> firstfilter = new ArrayList<>();
+        if (level.equals("mix")) {
+            firstfilter = repository.getAllByCategoryAndAndLanguage(category, language);
+        } else if (category.equals("mix")) {
+            firstfilter = repository.getAllByLevelAndLanguage(level, language);
+        } else if (language.equals("mix")) {
+            firstfilter = repository.getAllByLevelAndCategory(level, category);
+        } else if (level.equals("mix") && category.equals("mix")) {
+            firstfilter = repository.getAllByLanguage(language);
+        } else if ((level.equals("mix") && language.equals("mix"))) {
+            firstfilter = repository.getAllByCategory(category);
+        } else if (category.equals("mix") && language.equals("mix")) {
+            firstfilter = repository.getAllByLevel(level);
+        }
+            else if (level.equals("mix")&& category.equals("mix")&&language.equals("mix")) {
+            firstfilter=repository.findAll();
+        }
+
+        List<Questions> questions = new ArrayList<>();
+        Collections.shuffle(firstfilter);
+        for (int i = 0; i <3; i++) {
+            questions.add(firstfilter.get(i));
+        }
+        return questions;
 
     }
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/addcustomquestion", consumes = MediaType.APPLICATION_JSON_VALUE)
