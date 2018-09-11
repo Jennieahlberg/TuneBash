@@ -6,8 +6,6 @@ import HomeButton from "../HomeButton/HomeButton";
 
 class CustomGame extends Component {
     state = {
-        numberOfQuestions: 0,
-        lengthOfSong: '',
         songLink: '',
         question: '',
         correctAnswer: '',
@@ -19,15 +17,18 @@ class CustomGame extends Component {
     constructor(props) {
         super(props);
 
-        this.onClickGenerate = this.onClickGenerate.bind(this);
-        this.state = { yourCustomGame: false };
+        // this.onClickGenerate = this.onClickGenerate.bind(this);
+        this.addToQuiz = this.addToQuiz.bind(this);
+        this.state = {
+            yourCustomGame: false,
+            quizArray: []
+        };
 
     }
 
-    onClickGenerate = () => {
+    addToQuiz = () => {
+        let newArray = [];
         const customGame = {
-            numberOfQuestions: this.state.numberOfQuestions,
-            lengthOfSong: this.state.lengthOfSong,
             songLink: this.state.songLink,
             question: this.state.question,
             correctAnswer: this.state.correctAnswer,
@@ -36,8 +37,46 @@ class CustomGame extends Component {
             wrongAnswer3: this.state.wrongAnswer3
         }
 
-        axios.post('http://localhost:8080/addcustomquestion', customGame)
-        console.log(customGame);
+        newArray.push(customGame);
+
+        console.log(newArray);
+
+        this.state.quizArray.push(newArray);
+
+        console.log(this.state.quizArray);
+
+        this.setState({
+            songLink: '',
+            question: '',
+            correctAnswer: '',
+            wrongAnswer1: '',
+            wrongAnswer2: '',
+            wrongAnswer3: ''
+        })
+
+    }
+
+    onClickGenerate = () => {
+        let newArray = [];
+        const customGame = {
+            songLink: this.state.songLink,
+            question: this.state.question,
+            correctAnswer: this.state.correctAnswer,
+            wrongAnswer1: this.state.wrongAnswer1,
+            wrongAnswer2: this.state.wrongAnswer2,
+            wrongAnswer3: this.state.wrongAnswer3
+        }
+
+        newArray.push(customGame);
+
+        console.log(newArray);
+
+        this.state.quizArray.push(newArray);
+
+        console.log(this.state.quizArray);
+
+        axios.post('http://localhost:8080/addcustomquestion', this.state.quizArray)
+        console.log(this.state.quizArray);
 
         this.setState({ yourCustomGame: true });
     }
@@ -65,15 +104,6 @@ class CustomGame extends Component {
                 <div className="form">
                     <div className="select">
                         <form onSubmit={this.onClickGenerate}>
-                            <p>
-                                <select value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })} required name="numberOfQuestions">
-                                    <option value="numberOfQusetions">Antal frågor</option>
-                                    <option value="5">5 frågor</option>
-                                    <option value="10">10 frågor</option>
-                                    <option value="15">15 frågor</option>
-                                    <option value="20">20 frågor</option>
-                                </select>
-                            </p>
 
                             <p><input className="customRow" value={this.state.songLink} onChange={(event) => this.setState({ songLink: event.target.value })} required type="text" placeholder="Låtlänk från Spotify" /></p>
                             <p><input className="customRow" value={this.state.question} onChange={(event) => this.setState({ question: event.target.value })} required type="text" placeholder="Fråga" /></p>
@@ -83,13 +113,15 @@ class CustomGame extends Component {
                             <p><input className="customRow" value={this.state.wrongAnswer3} onChange={(event) => this.setState({ wrongAnswer3: event.target.value })} required type="text" placeholder="Fel svar 3" /></p>
 
                             <div>
-                                <input type="submit" value="Skapa pinkod" id="createPinCodeCustom" />
+                                <input type="submit" value="Skapa quiz" id="createPinCodeCustom" />
+                                <button id="addCustomQuestion" onClick={this.addToQuiz}>Lägg till fråga</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
 
-                <HomeButton/>
+                <HomeButton />
 
             </div>
         );

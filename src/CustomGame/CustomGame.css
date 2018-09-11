@@ -56,6 +56,29 @@ form input[type=text] {
     cursor: pointer;
 }
 
+#addCustomQuestion {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: solid 0px;
+    transition: all 0.3s ease;
+    width: 150px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 5px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+#addCustomQuestion:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 @media only screen and (min-width: 560px) {
     .playButton {
         width: 200px;
