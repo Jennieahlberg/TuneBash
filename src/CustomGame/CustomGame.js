@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CustomGame.css';
 import axios from 'axios';
 import YourCustomGame from '../YourCustomGame/YourCustomGame';
+import HomeButton from "../HomeButton/HomeButton";
 
 class CustomGame extends Component {
     state = {
@@ -87,6 +88,8 @@ class CustomGame extends Component {
                         </form>
                     </div>
                 </div>
+
+                <HomeButton/>
 
             </div>
         );

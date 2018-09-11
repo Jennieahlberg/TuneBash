@@ -3,6 +3,7 @@ import "./NewGame.css";
 import GameLeaderPage from "../GameLeaderPage/GameLeaderPage";
 import CustomGame from "../CustomGame/CustomGame";
 import axios from 'axios';
+import HomeButton from "../HomeButton/HomeButton";
 
 
 class newGame extends Component {
@@ -20,9 +21,11 @@ class newGame extends Component {
     super(props);
     this.submitDataHandler = this.submitDataHandler.bind(this);
     this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
-    this.state = { generate: false };
-    this.state = { custom: false };
-    this.state = { gameId: 0 };
+    this.state = {
+      generate: false,
+      custom: false,
+      gameId: 0
+    };
   }
 
 
@@ -124,6 +127,8 @@ class newGame extends Component {
             Eller skapa en omgång med dina egna frågor ➔
       </button>
         </div>
+
+        <HomeButton />
       </div>
     );
 
