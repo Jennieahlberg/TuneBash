@@ -28,7 +28,7 @@ class newGame extends Component {
 
   submitDataHandler = () => {
     const random = Math.floor(Math.random() * (999999 - 100000) + 100000);
-    this.setState({gameId: random});
+    this.setState({ gameId: random });
 
     this.setState({ generate: true });
     console.log(this.state.level);
@@ -45,13 +45,13 @@ class newGame extends Component {
     if (generate) {
       return (
         <div className="App">
-          <GameLeaderPage onClickStart={this.handleClickStart} gameId={this.state.gameId} 
-          level={this.state.level} category={this.state.category} 
-          numberOfQuestions={this.state.numberOfQuestions}
-          lengthOfSong={this.state.lengthOfSong}
-          language={this.state.language}
-          name={this.state.name}
-        />
+          <GameLeaderPage onClickStart={this.handleClickStart} gameId={this.state.gameId}
+            level={this.state.level} category={this.state.category}
+            numberOfQuestions={this.state.numberOfQuestions}
+            lengthOfSong={this.state.lengthOfSong}
+            language={this.state.language}
+            name={this.state.name}
+          />
         </div>
       );
       console.log(this.level);
@@ -77,9 +77,9 @@ class newGame extends Component {
               <select value={this.state.level} onChange={(event) => this.setState({ level: event.target.value })}>
                 <option value="" disabled selected>Svårighetsnivå</option>
                 <option value="mix">Blanda nivåer</option>
-                <option value="Lätt">Lätt</option>
-                <option value="Medel">Medel</option>
-                <option value="Svår">Svår</option>
+                <option value="easy">Lätt</option>
+                <option value="medium">Medel</option>
+                <option value="hard">Svår</option>
               </select>
             </p>
             <p>
@@ -102,10 +102,10 @@ class newGame extends Component {
             <p>
               <select value={this.state.language} onChange={(event) => this.setState({ language: event.target.value })}>
                 <option value="" disabled selected>Språk</option>
-                <option value="">Blanda alla språk</option>
+                <option value="mix">Blanda alla språk</option>
                 <option value="Svenska">Endast svenska</option>
                 <option value="Engelska">Endast engelska</option>
-                <option value="varkenSvenskaEllerEngelska">Varken svenska eller engelska</option>
+
               </select>
             </p>
 
