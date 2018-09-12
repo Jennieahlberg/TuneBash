@@ -28,7 +28,9 @@ class GameLeaderPage extends Component {
     axios
 
       .get(
-        "http://localhost:8080/questions/" +
+        "http://localhost:8080/getquestions/" +
+        this.props.numberOfQuestions +
+        "/" +
           this.props.level +
           "/" +
           this.props.category +
