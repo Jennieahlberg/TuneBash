@@ -1,40 +1,40 @@
 import React, { Component } from "react";
-import "./GameResults.css";
 
 class GameResults extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            results: [
-              { name: "", score: 10 },
-              { name: "lasse", score: 5 },
-              { name: "gunilla", score: 18 },
-              { name: "barbro", score: 12 }
-            ]
-          };
-    }
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: [
+          {name: "Janne", score: 18},
+          {name: "Sofia", score: 10}
+      ]
+    };
+    
+  }
 
   sortResults = () => {
     this.state.results.sort((a, b) => Number(b.score) - Number(a.score));
   };
 
   render() {
-    const resultBoard = this.props.usersArray;
-    console.log(resultBoard);
-    console.log(this.props.usersArray);
     this.sortResults();
-    console.log(this.state.resultBoard);
+    console.log(this.state.correctAnswers);
+    console.log(this.props.usersArray);
+    console.log(this.props.questions);
     return (
       <div>
-          <h1>Vinnare: {resultBoard[0][0]}</h1>
-        {this.state.results.map(result => {
-          return (
-            <p>
-              {result.name} {result.score}
-            </p>
-          );
-        })}
+          <h1>Vinnare: {this.props.usersArray[0][0]} med {this.props.usersArray[0][1]} poäng!</h1>
+        <div>
+          {this.state.results.map(result => {
+            return (
+              <div>
+                <p>
+                  {result.name} {result.score}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
