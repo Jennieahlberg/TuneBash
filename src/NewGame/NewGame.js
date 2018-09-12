@@ -4,7 +4,7 @@ import GameLeaderPage from "../GameLeaderPage/GameLeaderPage";
 import CustomGame from "../CustomGame/CustomGame";
 import axios from 'axios';
 import HomeButton from "../HomeButton/HomeButton";
-
+import CustomGameLeaderPage from "../CustomGameLeaderPage/CustomGameLeaderPage";
 
 class newGame extends Component {
   state = {
@@ -22,8 +22,13 @@ class newGame extends Component {
     this.state = {
       generate: false,
       custom: false,
-      gameId: 0
+      gameId: 0,
+      startCustomGame: false
     };
+  }
+
+  handleOpenCustomGame = () => {
+    this.setState({ startCustomGame: true});
   }
 
   submitDataHandler = () => {
@@ -41,6 +46,13 @@ class newGame extends Component {
   render() {
     const generate = this.state.generate;
     const custom = this.state.custom;
+    const startCustomGame = this.state.startCustomGame;
+
+    if(startCustomGame){
+      return(
+        <CustomGameLeaderPage/>
+      );
+    }
 
     if (generate) {
       return (
@@ -121,7 +133,7 @@ class newGame extends Component {
             Eller skapa en omgång med dina egna frågor ➔
       </button>
 
-      <button id="openCustomGame" onClick={this.handleOpenCutsomGame}>
+      <button id="openCustomGame" onClick={this.handleOpenCustomGame}>
             Har du redan gjort ett eget quiz? Starta spelomgången här!
       </button>
       

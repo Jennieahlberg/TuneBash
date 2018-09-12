@@ -96,6 +96,7 @@ option {
     cursor: pointer;
     transition: all 0.3s ease;
     line-height: 1.6;
+    margin-top: 1em;
 }
 
 #openCustomGame:hover{
