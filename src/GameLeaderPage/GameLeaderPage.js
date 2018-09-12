@@ -32,11 +32,11 @@ class GameLeaderPage extends Component {
         "http://localhost:8080/getquestions/" +
         this.props.numberOfQuestions +
         "/" +
-          this.props.level +
-          "/" +
-          this.props.category +
-          "/" +
-          this.props.language
+        this.props.level +
+        "/" +
+        this.props.category +
+        "/" +
+        this.props.language
       )
 
       .then(response => {
@@ -100,6 +100,12 @@ class GameLeaderPage extends Component {
     this.state.socket.emit("endGame", true);
   }
 
+<<<<<<< HEAD
+  finalResult() {
+    this.state.socket.on("finalResult", data => {
+      this.setState({ usersArray: data });
+      this.setState({ gameEnded: true });
+=======
   final() {
     this.state.socket.on("final", data => {
       console.log(data);
@@ -107,6 +113,7 @@ class GameLeaderPage extends Component {
       this.setState({ gameEnded: true });
       console.log(data);
       console.log(this.state.usersArray);
+>>>>>>> master
     });
   }
 
@@ -126,23 +133,27 @@ class GameLeaderPage extends Component {
       return <GameResults usersArray={this.state.newUsersArray} />;
     }
 
+
     if(gameEnded) {
       return <GameResults usersArray={this.state.newUsersArray}/>
+
     }
 
     if (start) {
       return (
         <div>
-          <MusicPlayer question={quizz[this.state.counter]} />
-          <p>
+           <p className="counter">
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
+        
           <Quiz questions={this.state.questions} />
           <AnswersInText question={quizz[this.state.counter]} />
           <div className="next">
-            <button onClick={this.nextQuestion}>Nästa fråga</button>
-            <button onClick={this.showResult}>Avsluta spel</button>
+          <button className="next_quit_button" onClick={this.showResult}>Avsluta spel</button>
+            <button className="next_quit_button" onClick={this.nextQuestion}>Nästa fråga</button>
+            
           </div>
+          <MusicPlayer question={quizz[this.state.counter]} />
         </div>
       );
     }
