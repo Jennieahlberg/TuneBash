@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import './AnswersInText.css';
 class AnswersInText extends Component {
   constructor(props) {
     super(props);
@@ -39,12 +39,11 @@ class AnswersInText extends Component {
       this.shuffleAnswers(answers);
     }
     return (
-      <div>
-        <h3>Svarsalternativ</h3>
-        {answers[0]}
-        {answers[1]}
-        {answers[2]}
-        {answers[3]}
+      <div className="AnswersDiv">
+        <p className="answerOption">{answers[0]}</p>
+        <p className="answerOption">{answers[1]}</p>
+        <p className="answerOption">{answers[2]}</p>
+        <p className="answerOption">{answers[3]}</p>
       </div>
     );
   }

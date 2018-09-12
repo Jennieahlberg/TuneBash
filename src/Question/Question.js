@@ -22,7 +22,7 @@ class Question extends Component {
     return (
       <div className="Question">
         <div className="Question_question">
-          <p>{question.question}</p>
+          <p className="Question_text">{question.question}</p>
         </div>
       </div>
     );

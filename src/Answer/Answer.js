@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
+import './Answer.css';
 
 const socketUrl = "http://localhost:3231";
 class Answer extends Component {
@@ -73,8 +74,8 @@ class Answer extends Component {
     }
 
     return (
-      <div>
-        <form>
+      <div className="buttonFormDiv">
+        <form className="buttonForm">
           <button
             className="answerButton"
             value={answers[0]}
