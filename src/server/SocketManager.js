@@ -58,21 +58,19 @@ module.exports = function(socket) {
   });
 
   socket.on("addScore", (value, correctAnswer, usersArray) => {
-    for (let user of usersArray) {
-        for (let person of users) {
-          if (user[0] === person[0]) {
-            if (value === correctAnswer) {
-              if (user) {
-                user[2]++;
-              }
-            }
-            if (user) {
-              user.push(value);
-            }
-            console.log(user[0]);
-            console.log(person[0]);
+    for (let i = 0; i < usersArray.length; i++) {
+      for (let j = 0; j < users.length; j++) {
+        if (usersArray[i][0] === users[i][0]) {
+          if (value === correctAnswer) {
+            user[2]++;
           }
         }
+        if (user) {
+          user.push(value);
+        }
+        console.log(user[0]);
+        console.log(person[0]);
+      }
     }
     console.log("tjenix");
     console.log(usersArray);
