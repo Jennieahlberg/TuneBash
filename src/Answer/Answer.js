@@ -11,6 +11,8 @@ class Answer extends Component {
       value: "",
       shuffle: true
     };
+    this.submitAnswer = this.submitAnswer.bind(this);
+    this.newScore = this.newScore.bind(this);
   }
 
   componentWillMount() {
@@ -18,12 +20,15 @@ class Answer extends Component {
   }
 
   submitAnswer(event) {
+    let value = event.target.value;
+    event.preventDefault();
     const question = this.props.question;
     console.log(question);
-    this.state.socket.emit("addScore", event.target.value, question.correctAnswer, this.state.usersArray)
+    this.state.socket.emit("addScore", value, question.correctAnswer, this.state.usersArray)
   }
 
-  newScore() {
+  newScore(e) {
+    //e.preventDefault();
     this.state.socket.on("newScore", (newUsersArray) => {
       this.setState({usersArray: newUsersArray});
     })
