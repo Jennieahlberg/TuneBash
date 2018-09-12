@@ -51,7 +51,7 @@ class GameLeaderPage extends Component {
         console.log(newQuiz);
         console.log(this.state.questions);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log('error'));
   }
 
   componentWillMount() {
