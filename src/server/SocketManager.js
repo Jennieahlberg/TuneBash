@@ -4,6 +4,7 @@ let connectUser = {};
 const { createUser } = require("../Factories");
 let numUsers = 0;
 let users = [];
+let finalUsers = [];
 let namn = "";
 module.exports = function(socket) {
   console.log("SocketId: " + socket.id);
@@ -16,7 +17,7 @@ module.exports = function(socket) {
     // we store the username in the socket session for this client
     socket.username = username;
     namn = socket.username;
-    users.push([socket.username, socket.id]);
+    users.push(socket.username);
     numUsers = users.length;
     // echo globally (all clients) that a person has connected
 
@@ -60,22 +61,34 @@ module.exports = function(socket) {
   socket.on("addScore", (value, correctAnswer, usersArray) => {
     for (let i = 0; i < usersArray.length; i++) {
       for (let j = 0; j < users.length; j++) {
-        if (usersArray[i][0] === users[i][0]) {
+        if (usersArray[i][0] === users[i]) {
           if (value === correctAnswer) {
-            user[2]++;
+            usersArray[i][1]++;
           }
         }
-        if (user) {
-          user.push(value);
-        }
-        console.log(user[0]);
-        console.log(person[0]);
+        usersArray[i].push(value);
+        console.log(usersArray[0][0]);
+        console.log(usersArray[0][1]);
+        console.log(users[0]);
+        console.log(users[0][1]);
       }
     }
     console.log("tjenix");
     console.log(usersArray);
     console.log(namn);
     socket.broadcast.emit("newScore", usersArray);
+  });
+
+  socket.on("endGame", data => {
+    socket.broadcast.emit("gameEnded", data);
+    console.log("testar");
+  });
+
+  socket.on("finalResult", data => {
+    finalUsers.push(data);
+    socket.broadcast.emit("finalResult", finalUsers);
+    console.log("data " + data);
+    console.log("finalUsers " + finalUsers);
   });
 };
 

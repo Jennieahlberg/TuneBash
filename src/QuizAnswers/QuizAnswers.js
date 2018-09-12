@@ -43,7 +43,7 @@ class QuizAnswer extends Component {
     const table = [];
     const users = this.props.usersArray;
     for (var i = 0; i < users.length; i++) {
-      table[i] = [users[i][0], users[i][1], 0];
+      table[i] = [users[i], 0];
       console.log(users[i]);
     }
     console.log(table);
@@ -64,6 +64,7 @@ class QuizAnswer extends Component {
         <Answer
           question={quizz[this.state.counter]}
           usersArray={this.state.usersArray}
+          name={this.props.name}
         />
       </div>
     );
