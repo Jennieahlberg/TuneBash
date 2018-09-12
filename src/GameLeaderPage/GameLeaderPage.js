@@ -147,7 +147,7 @@ class GameLeaderPage extends Component {
       );
     }
 
-    return (
+    return (  
       <div>
         <div>
           <p className="headline">Spelomgångens pinkod:</p>
