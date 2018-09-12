@@ -12,7 +12,7 @@ class GameResults extends Component {
     };
 
     sortResults = () =>{
-        this.state.results.sort((a, b) => Number(a.score) - Number(b.score));
+        this.state.results.sort((a, b) => Number(b.score) - Number(a.score));
     }
 
 

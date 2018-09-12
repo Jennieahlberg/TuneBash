@@ -19,7 +19,8 @@ class WaitForStart extends Component {
       socket: io(socketUrl),
       start: false,
       questions: [],
-      counter: 0
+      counter: 0,
+      gameEnded: false,
     };
   }
 
@@ -28,6 +29,7 @@ class WaitForStart extends Component {
     this.onSocket();
     this.startgame();
     this.next();
+    this.finalResult();
   }
 
   initSocket = () => {
@@ -58,11 +60,23 @@ class WaitForStart extends Component {
     console.log("startgame " + this.state.start);
   }
 
+  finalResult() {
+    this.state.socket.on("finalResult", data => {
+      this.setState({ usersArray: data });
+      this.setState({gameEnded: true});
+    });
+  }
+
   render() {
     const members = this.state.members;
+    const gameEnded = this.state.gameEnded;
     console.log("userArray: " + this.state.usersArray);
     console.log(this.state.questions.length);
     console.log(this.state.counter);
+
+    if(gameEnded){
+      return <GameResults results={this.state.usersArray}/>
+    }
 
     if (this.state.start && (this.state.counter >= this.state.questions.length)) {
       return <GameResults results={this.state.usersArray} />;
@@ -82,6 +96,7 @@ class WaitForStart extends Component {
           <QuizAnswers
             questions={this.state.questions}
             usersArray={this.state.usersArray}
+            name={this.props.name}
           />
         </div>
       );
