@@ -19,10 +19,10 @@ class GameLeaderPage extends Component {
       usersArray: [],
       socket: io(socketUrl),
       counter: 0,
-      gameEnded: false,
+      gameEnded: false
     };
     this.nextQuestion = this.nextQuestion.bind(this);
-
+    this.showResult = this.showResult.bind(this);
     const lengthOfSong = this.props.lengthOfSong;
 
     axios
@@ -35,7 +35,6 @@ class GameLeaderPage extends Component {
           "/" +
           this.props.language
       )
-
 
       .then(response => {
         const newQuiz = response.data;
@@ -55,6 +54,7 @@ class GameLeaderPage extends Component {
 
   componentWillMount() {
     this.onSocket();
+    this.finalResult();
   }
 
   onSocket = () => {
@@ -89,15 +89,26 @@ class GameLeaderPage extends Component {
     this.state.socket.emit("next", this.state.counter + 1);
   }
 
-  
   endGame = () => {
     this.setState({ gameEnded: true });
   };
+
+  showResult() {
+    this.state.socket.emit("endGame", true);
+  }
+
+  finalResult() {
+    this.state.socket.on("finalResult", data => {
+      this.setState({ usersArray: data });
+      this.setState({gameEnded: true});
+    });
+  }
 
   render() {
     const quizz = this.state.questions;
     const start = this.state.start;
     const gameId = this.props.gameId;
+    const gameEnded = this.state.gameEnded;
     console.log(this.props.level);
     console.log(this.props.category);
     console.log(this.state.questions);
@@ -105,25 +116,26 @@ class GameLeaderPage extends Component {
     console.log(this.state.counter);
     console.log(this.state.usersArray);
 
-    if(start && (this.state.counter >= quizz.length)){
-      return(
-      <GameResults results={this.state.usersArray}/>)
-  }
+    if (start && this.state.counter >= quizz.length) {
+      return <GameResults results={this.state.usersArray} />;
+    }
+
+    if(gameEnded) {
+      return <GameResults response={this.state.usersArray}/>
+    }
 
     if (start) {
       return (
         <div>
           <MusicPlayer question={quizz[this.state.counter]} />
-          <p>Fråga {this.state.counter+1} av {quizz.length}</p>
-          <Quiz
-            questions={this.state.questions}
-          />
-          <AnswersInText question={quizz[this.state.counter]}/>
+          <p>
+            Fråga {this.state.counter + 1} av {quizz.length}
+          </p>
+          <Quiz questions={this.state.questions} />
+          <AnswersInText question={quizz[this.state.counter]} />
           <div className="next">
             <button onClick={this.nextQuestion}>Nästa fråga</button>
-            <button onClick={this.props.endGame} result={this.state.usersArray}>
-              Avsluta spel
-            </button>
+            <button onClick={this.showResult}>Avsluta spel</button>
           </div>
         </div>
       );
