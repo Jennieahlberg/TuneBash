@@ -92,13 +92,13 @@ class CustomGame extends Component {
                             <p><input className="customRow" value={this.state.wrongAnswer3} onChange={(event) => this.setState({ wrongAnswer3: event.target.value })} required type="text" placeholder="Fel svar 3" /></p>
 
                             <div>
-                                <input type="submit" value="Lägg till fråga" id="createPinCodeCustom" />
-                                <button id="addCustomQuestion" onClick={this.onClickGenerate}>Skapa quiz</button>
+                                <input type="submit" value="Lägg till fråga" id="addCustomQuestion" />
+                                <button id="createPinCodeCustom" onClick={this.onClickGenerate}>Skapa quiz</button>
                             </div>
                         </form>
 
                         <div>
-                            <p>Antal frågor i quiz: {this.state.quizArray.length}</p>
+                            <p className="questionsInQuiz">Antal frågor i quiz: {this.state.quizArray.length}</p>
                         </div>
                     </div>
                 </div>
