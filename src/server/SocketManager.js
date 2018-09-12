@@ -62,11 +62,9 @@ module.exports = function(socket) {
       for (let j = 0; j < users.length; j++) {
         if (usersArray[i][0] === users[i][0]) {
           if (value === correctAnswer) {
-            user[2]++;
+            usersArray[i][1]++;
           }
-        }
-        if (user) {
-          user.push(value);
+          usersArray[i].push(value);
         }
         console.log(user[0]);
         console.log(person[0]);
