@@ -1,0 +1,21 @@
+.formDivCustomStart{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2em;
+    font-size: 1.5em;
+}
+
+#customStartButton{
+    font-size: 0.8em;
+}
+
+.infoMessage{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 4em;
+}

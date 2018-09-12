@@ -17,12 +17,12 @@ class CustomGame extends Component {
     constructor(props) {
         super(props);
 
-        // this.onClickGenerate = this.onClickGenerate.bind(this);
+        this.onClickGenerate = this.onClickGenerate.bind(this);
         this.addToQuiz = this.addToQuiz.bind(this);
         this.state = {
             yourCustomGame: false,
             quizArray: [],
-            pin: Math.floor(Math.random() * 999999) + 100000
+            pin: Math.floor(Math.random() * (999999 - 100000) + 100000)
         };
 
     }

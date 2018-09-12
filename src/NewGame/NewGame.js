@@ -19,6 +19,7 @@ class newGame extends Component {
     super(props);
     this.submitDataHandler = this.submitDataHandler.bind(this);
     this.handleClickGenerateCustomGame = this.handleClickGenerateCustomGame.bind(this);
+    this.handleOpenCustomGame = this.handleOpenCustomGame.bind(this);
     this.state = {
       generate: false,
       custom: false,
