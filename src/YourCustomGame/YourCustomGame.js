@@ -1,3 +1,4 @@
+/*Används ej
 import React, { Component } from "react";
 import "./YourCustomGame.css";
 
@@ -21,4 +22,4 @@ class YourCustomGame extends Component {
   }
 }
 
-export default YourCustomGame;
+export default YourCustomGame;*/

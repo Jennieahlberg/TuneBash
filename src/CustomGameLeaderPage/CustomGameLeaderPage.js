@@ -16,9 +16,7 @@ class CustomGameLeaderPage extends Component {
 
     }
 
-    startCustomGame = (e) => {
-        e.preventDefault();
-
+    startCustomGame = () => {
         const pinCode = {
             pin: this.state.pin
         }
@@ -42,7 +40,7 @@ class CustomGameLeaderPage extends Component {
             <div>
                 <div>
                     <p className="infoMessage">
-                        Slå in pinkoden som du fick när du gjorde ditt egna quiz
+                        Slå in pinkoden som du fick när du gjorde ditt egna quiz.
                             </p>
                 </div>
                 <div className="formDivCustomStart">

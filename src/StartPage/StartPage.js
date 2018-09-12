@@ -85,8 +85,8 @@ class StartPage extends Component {
         <div className="codeInput">
           <form className="formDiv" onSubmit={this.submitDataHandler}>
           <div className="textDiv">
-            <input className="pinCodeInput" type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska bestå av sex siffror" value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
-            <input className="nameInput" type="text" required title="Måste fyllas i" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn" />
+            <input className="pinNameInput" type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska bestå av sex siffror" value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
+            <input className="pinNameInput" type="text" required title="Måste fyllas i" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} placeholder="Namn" />
             </div>
             <div className="submitDiv">
               <input type="submit" value="Let's rock!" />

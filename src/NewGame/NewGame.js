@@ -29,7 +29,7 @@ class newGame extends Component {
   }
 
   handleOpenCustomGame = () => {
-    this.setState({ startCustomGame: true});
+    this.setState({ startCustomGame: true });
   }
 
   submitDataHandler = () => {
@@ -49,9 +49,9 @@ class newGame extends Component {
     const custom = this.state.custom;
     const startCustomGame = this.state.startCustomGame;
 
-    if(startCustomGame){
-      return(
-        <CustomGameLeaderPage/>
+    if (startCustomGame) {
+      return (
+        <CustomGameLeaderPage />
       );
     }
 
@@ -129,15 +129,19 @@ class newGame extends Component {
           </form>
         </div>
         <div className="generateCustomGameDiv">
-        
-          <button id="generateCustomGame" onClick={this.handleClickGenerateCustomGame}>
-            Eller skapa en omgång med dina egna frågor ➔
-      </button>
 
-      <button id="openCustomGame" onClick={this.handleOpenCustomGame}>
-            Har du redan gjort ett eget quiz? Starta spelomgången här!
+          <div>
+            <button id="generateCustomGame" onClick={this.handleClickGenerateCustomGame}>
+              Eller skapa en omgång med dina egna frågor ➔
       </button>
-      
+          </div>
+
+          <div>
+            <button id="openCustomGame" onClick={this.handleOpenCustomGame}>
+              Har du redan gjort ett eget quiz? Starta spelomgången här!
+      </button>
+          </div>
+
         </div>
 
         <HomeButton />
