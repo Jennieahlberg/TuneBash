@@ -21,7 +21,8 @@ class CustomGame extends Component {
         this.addToQuiz = this.addToQuiz.bind(this);
         this.state = {
             yourCustomGame: false,
-            quizArray: []
+            quizArray: [],
+            pin: Math.floor(Math.random() * 999999) + 100000
         };
 
     }
@@ -29,6 +30,7 @@ class CustomGame extends Component {
     addToQuiz = (e) => {
         e.preventDefault();
         const customGame = {
+            pin: this.state.pin,
             songLink: this.state.songLink,
             question: this.state.question,
             correctAnswer: this.state.correctAnswer,

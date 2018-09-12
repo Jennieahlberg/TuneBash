@@ -13,9 +13,7 @@ class newGame extends Component {
     numberOfQuestions: 0,
     lengthOfSong: 0,
     language: '',
-    name: ''
   }
-
 
   constructor(props) {
     super(props);
@@ -27,7 +25,6 @@ class newGame extends Component {
       gameId: 0
     };
   }
-
 
   submitDataHandler = () => {
     const random = Math.floor(Math.random() * (999999 - 100000) + 100000);
@@ -53,7 +50,6 @@ class newGame extends Component {
             numberOfQuestions={this.state.numberOfQuestions}
             lengthOfSong={this.state.lengthOfSong}
             language={this.state.language}
-            name={this.state.name}
           />
         </div>
       );
@@ -94,6 +90,7 @@ class newGame extends Component {
                 <option value="Country">Country</option>
               </select>
             </p>
+
             <p>
               <select required value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })}>
                 <option value="" disabled selected>Antal frågor</option>
@@ -102,19 +99,15 @@ class newGame extends Component {
                 <option value="15">15 frågor</option>
               </select>
             </p>
+
             <p>
               <select value={this.state.language} onChange={(event) => this.setState({ language: event.target.value })}>
                 <option value="" disabled selected>Språk</option>
                 <option value="mix">Blanda alla språk</option>
                 <option value="Svenska">Endast svenska</option>
                 <option value="Engelska">Endast engelska</option>
-
               </select>
             </p>
-
-            <div>
-              <input type="text" className="divName" required placeholder="Spelledarens namn" value={this.state.name} onChange={(event) => this.setState({ name: event.target.value })} />
-            </div>
 
             <div className="createNewPinCode">
               <input type="submit" className="createPinCodeNewGame" value="Skapa pinkod" />
