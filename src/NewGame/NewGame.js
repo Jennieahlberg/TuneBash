@@ -116,9 +116,15 @@ class newGame extends Component {
           </form>
         </div>
         <div className="generateCustomGameDiv">
+        
           <button id="generateCustomGame" onClick={this.handleClickGenerateCustomGame}>
             Eller skapa en omgång med dina egna frågor ➔
       </button>
+
+      <button id="openCustomGame" onClick={this.handleOpenCutsomGame}>
+            Har du redan gjort ett eget quiz? Starta spelomgången här!
+      </button>
+      
         </div>
 
         <HomeButton />
