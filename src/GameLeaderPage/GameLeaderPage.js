@@ -100,12 +100,6 @@ class GameLeaderPage extends Component {
     this.state.socket.emit("endGame", true);
   }
 
-<<<<<<< HEAD
-  finalResult() {
-    this.state.socket.on("finalResult", data => {
-      this.setState({ usersArray: data });
-      this.setState({ gameEnded: true });
-=======
   final() {
     this.state.socket.on("final", data => {
       console.log(data);
@@ -113,7 +107,6 @@ class GameLeaderPage extends Component {
       this.setState({ gameEnded: true });
       console.log(data);
       console.log(this.state.usersArray);
->>>>>>> master
     });
   }
 
