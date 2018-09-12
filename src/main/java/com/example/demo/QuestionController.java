@@ -100,11 +100,5 @@ public class QuestionController {
 //        repository.deleteById(id);
 //        return repository.findAll();
 //    }
-//
-//    @GetMapping("/deleteAll")
-//    public Iterable<Admin> deleteAll() {
-//        repository.deleteAll();
-//        return repository.findAll();
-//    }
-//
+
 
