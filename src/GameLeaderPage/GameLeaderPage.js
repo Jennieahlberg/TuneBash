@@ -30,13 +30,13 @@ class GameLeaderPage extends Component {
 
       .get(
         "http://localhost:8080/getquestions/" +
-          this.props.numberOfQuestions +
-          "/" +
-          this.props.level +
-          "/" +
-          this.props.category +
-          "/" +
-          this.props.language
+        this.props.numberOfQuestions +
+        "/" +
+        this.props.level +
+        "/" +
+        this.props.category +
+        "/" +
+        this.props.language
       )
 
       .then(response => {
@@ -116,10 +116,10 @@ class GameLeaderPage extends Component {
     if (start && this.state.counter < quizz.length-1) {
       return (
         <div>
-          <MusicPlayer question={quizz[this.state.counter]} />
-          <p>
+           <p className="counter">
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
+        
           <Quiz questions={this.state.questions} />
           <AnswersInText question={quizz[this.state.counter]} />
           <div className="next">
@@ -141,6 +141,7 @@ class GameLeaderPage extends Component {
           <div className="next">
             <button onClick={this.showResult}>Avsluta spel</button>
           </div>
+          <MusicPlayer question={quizz[this.state.counter]} />
         </div>
       );
     }
