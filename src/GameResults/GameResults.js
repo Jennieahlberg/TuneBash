@@ -5,18 +5,20 @@ class GameResults extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            results: [
-              { name: "", score: 10 },
-              { name: "lasse", score: 5 },
-              { name: "gunilla", score: 18 },
-              { name: "barbro", score: 12 }
+            resultBoard: [
+              ["kurt", 10, "bla", 10, "bla"],
+              ["lasse", 13, "la", 1, "blala"],
+              ["gunilla", 18, "blananan", 10, "bla"],
+              ["barbro", 12, "nanana", 1, "bla"],
             ]
           };
     }
   
 
   sortResults = () => {
-    this.state.results.sort((a, b) => Number(b.score) - Number(a.score));
+    this.state.resultBoard.sort((a, b) => {
+        return b[1] - a[1];
+    })
   };
 
   render() {
@@ -27,14 +29,11 @@ class GameResults extends Component {
     console.log(this.state.resultBoard);
     return (
       <div>
-          <h1>Vinnare: {resultBoard[0][0]}</h1>
-        {this.state.results.map(result => {
-          return (
-            <p>
-              {result.name} {result.score}
-            </p>
-          );
-        })}
+          <p> Resultat:</p>
+          {/*<h1>Vinnare: {this.state.resultBoard[0][0]} {this.state.resultBoard[0][1]}</h1>*/}
+        {this.state.resultBoard.map((result) => {
+           return(<p>{result[0]} {result[1]}</p>)})}
+
       </div>
     );
   }
