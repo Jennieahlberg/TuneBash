@@ -52,6 +52,28 @@
     margin-left: 20px;
     margin-right: 20px;
 }
+.counter{
+font-family: 'Montserrat', sans-serif;
+font-weight: bold;
+font-size: 1.5em;
+text-align: center;
+margin-top: 2em;
+}
+
+.next{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+}
+.next_quit_button{
+border: 1px solid transparent;
+border-radius: 50px;
+font-family:  'Montserrat', sans-serif;
+font-size: 1.3em;
+font-weight: bold;
+padding: 0.4em;
+margin-right: 10px;
+}
 
 @media only screen and (min-width: 560px) {
     .headline {
