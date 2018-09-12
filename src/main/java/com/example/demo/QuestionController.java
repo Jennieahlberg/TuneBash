@@ -38,8 +38,9 @@ public class QuestionController {
     }
 
 
-    @GetMapping(value = "/getquestions/5/{level}/{category}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Questions> getquestions(@PathVariable String level, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
+    @GetMapping(value = "/getquestions/{numberOfQuestions}/{level}/{category}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Questions> getquestions(@PathVariable String numberOfQuestions, @PathVariable String level, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
+       int num = Integer.parseInt(numberOfQuestions);
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> firstfilter = new ArrayList<>();
         if (level.equals("mix")) {
@@ -58,10 +59,13 @@ public class QuestionController {
             else if (level.equals("mix")&& category.equals("mix")&&language.equals("mix")) {
             firstfilter=repository.findAll();
         }
+        else {
+            firstfilter=repository.getAllByCategoryAndLevelAndLanguage(category,level,language);
+        }
 
         List<Questions> questions = new ArrayList<>();
         Collections.shuffle(firstfilter);
-        for (int i = 0; i <3; i++) {
+        for (int i = 0; i <num; i++) {
             questions.add(firstfilter.get(i));
         }
         return questions;
