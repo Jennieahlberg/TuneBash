@@ -17,6 +17,7 @@ class GameLeaderPage extends Component {
       start: false,
       questions: [],
       usersArray: [],
+      newUsersArray: [],
       socket: io(socketUrl),
       counter: 0,
       gameEnded: false
@@ -56,7 +57,7 @@ class GameLeaderPage extends Component {
 
   componentWillMount() {
     this.onSocket();
-    this.finalResult();
+    this.final();
   }
 
   onSocket = () => {
@@ -99,10 +100,20 @@ class GameLeaderPage extends Component {
     this.state.socket.emit("endGame", true);
   }
 
+<<<<<<< HEAD
   finalResult() {
     this.state.socket.on("finalResult", data => {
       this.setState({ usersArray: data });
       this.setState({ gameEnded: true });
+=======
+  final() {
+    this.state.socket.on("final", data => {
+      console.log(data);
+      this.setState({ newUsersArray: data });
+      this.setState({ gameEnded: true });
+      console.log(data);
+      console.log(this.state.usersArray);
+>>>>>>> master
     });
   }
 
@@ -119,11 +130,13 @@ class GameLeaderPage extends Component {
     console.log(this.state.usersArray);
 
     if (start && this.state.counter >= quizz.length) {
-      return <GameResults results={this.state.usersArray} />;
+      return <GameResults usersArray={this.state.newUsersArray} />;
     }
 
-    if (gameEnded) {
-      return <GameResults response={this.state.usersArray} />
+
+    if(gameEnded) {
+      return <GameResults usersArray={this.state.newUsersArray}/>
+
     }
 
     if (start) {
