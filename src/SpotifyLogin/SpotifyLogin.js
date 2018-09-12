@@ -6,7 +6,7 @@ class SpotifyLogin extends Component {
   constructor(props) {
     super(props);
     this.getAuth = this.getAuth.bind(this);
-    this.state = { login: false };
+    this.state = { loggedIn: false };
   }
 
   login = callback => {
@@ -65,18 +65,19 @@ class SpotifyLogin extends Component {
   getAuth = () => {
     this.login(function(accessToken) {
       this.getUserData(accessToken).then(function(response) {
-        console.log(response);
-        this.setState ({login: true});
+        this.setState({loggedIn: true}); 
       });
     });
   };
 
+  
 
   render() {
-    const login = this.state.login;
+    const loggedIn = this.state.loggedIn;
+    
     return (
       <div className="spotifyDiv">
-        <button className="spotifyButton" onClick={this.getAuth}>
+        <button className="spotifyButton" onClick={this.getAuth} style={ { display: loggedIn ? 'none' : 'flex'}}>
           Login to Spotify <i className="fa fa-spotify" />
         </button>
       </div>
