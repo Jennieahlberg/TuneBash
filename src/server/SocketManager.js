@@ -86,7 +86,7 @@ module.exports = function(socket) {
 
   socket.on("finalResult", data => {
     finalUsers.push(data);
-    socket.broadcast.emit("finalResult", finalUsers);
+    socket.broadcast.emit("final", finalUsers);
     console.log("data " + data);
     console.log("finalUsers " + finalUsers);
   });
