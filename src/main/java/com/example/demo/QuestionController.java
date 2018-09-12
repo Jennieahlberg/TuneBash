@@ -2,6 +2,8 @@ package com.example.demo;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.http.MediaType;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -17,9 +19,6 @@ import java.util.*;
 @RestController
 public class QuestionController {
 
-
-    @Autowired
-    private PlayerRepository prepo;
     @Autowired
     private QuestionsRepository repository;
     @Autowired
@@ -37,10 +36,9 @@ public class QuestionController {
         return questions;
     }
 
-
     @GetMapping(value = "/getquestions/{numberOfQuestions}/{level}/{category}/{language}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Questions> getquestions(@PathVariable String numberOfQuestions, @PathVariable String level, @PathVariable String category, @PathVariable String language, HttpServletResponse response) {
-       int num = Integer.parseInt(numberOfQuestions);
+        int num = Integer.parseInt(numberOfQuestions);
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> firstfilter = new ArrayList<>();
         if (level.equals("mix")) {
@@ -55,23 +53,19 @@ public class QuestionController {
             firstfilter = repository.getAllByCategory(category);
         } else if (category.equals("mix") && language.equals("mix")) {
             firstfilter = repository.getAllByLevel(level);
+        } else if (level.equals("mix") && category.equals("mix") && language.equals("mix")) {
+            firstfilter = repository.findAll();
+        } else {
+            firstfilter = repository.getAllByCategoryAndLevelAndLanguage(category, level, language);
         }
-            else if (level.equals("mix")&& category.equals("mix")&&language.equals("mix")) {
-            firstfilter=repository.findAll();
-        }
-        else {
-            firstfilter=repository.getAllByCategoryAndLevelAndLanguage(category,level,language);
-        }
-
+        int numbers = Math.min(num, firstfilter.size());
         List<Questions> questions = new ArrayList<>();
         Collections.shuffle(firstfilter);
-        for (int i = 0; i <num; i++) {
+        for (int i = 0; i < numbers; i++) {
             questions.add(firstfilter.get(i));
         }
         return questions;
-
     }
-
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/addcustomquestion", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -87,12 +81,6 @@ public class QuestionController {
         return questions;
     }
 
-    @PostMapping(value = "/members", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void newmember(@RequestBody Player player, HttpServletResponse response) {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        prepo.save(player);
-
-    }
 }
 
 //    @GetMapping("/addfromexcelfile")
