@@ -74,10 +74,11 @@ public class QuestionController {
         cqrepo.save(question);
     }
 
-    @GetMapping(value = "/getcustomquiz", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<CustomQuestion> customquiz(@PathVariable int pin, HttpServletResponse response) {
+    @GetMapping(value = "/getcustomquiz/{pin}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<CustomQuestion> customquiz(@PathVariable String  pin, HttpServletResponse response) {
+        int pincode = Integer.parseInt(pin);
         response.setHeader("Access-Control-Allow-Origin", "*");
-        List<CustomQuestion> questions = cqrepo.getAllByPin(pin);
+        List<CustomQuestion> questions = cqrepo.getAllByPin(pincode);
         return questions;
     }
 
