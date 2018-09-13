@@ -21,38 +21,65 @@ class GameLeaderPage extends Component {
       socket: io(socketUrl),
       counter: 0,
       gameEnded: false
+
     };
     this.nextQuestion = this.nextQuestion.bind(this);
     this.showResult = this.showResult.bind(this);
     const lengthOfSong = this.props.lengthOfSong;
-    
+    console.log('Pin: ' + this.props.pin);
+    console.log('GameId:' + this.props.gameId);
+
+
+    if (this.props.level !== undefined && this.props.language !== undefined) {
+      this.getNormalQuestions();
+    } else {
+      this.getCustomQuestion();
+    }
+
+  }
+
+  getCustomQuestion = () => {
+    axios.get('http://localhost:8080/getcustomquiz/' + this.props.gameId + "/")
+      .then(response => {
+        const newQuiz = response.data;
+
+        // create a new "State" object without mutating
+        // the original State object.
+        const newState = Object.assign({}, this.state, { questions: newQuiz });
+
+        this.state.initialQuestions = newState.questions;
+        // store the new state object in the component's state
+        this.setState(newState);
+      })
+      .catch(error => console.log("error"));
+  }
+
+  getNormalQuestions = () => {
     axios
+      .get(
+        "http://localhost:8080/getquestions/" +
+        this.props.numberOfQuestions +
+        "/" +
+        this.props.level +
+        "/" +
+        this.props.category +
+        "/" +
+        this.props.language
+      )
 
-    .get(
-      "http://localhost:8080/getquestions/" +
-      //"https://tune-bash.firebaseapp.com/getquestions/" +
-      this.props.numberOfQuestions +
-      "/" +
-      this.props.level +
-      "/" +
-      this.props.category +
-      "/" +
-      this.props.language
-    )
+      .then(response => {
+        const newQuiz = response.data;
 
-    .then(response => {
-      const newQuiz = response.data;
+        // create a new "State" object without mutating
+        // the original State object.
+        const newState = Object.assign({}, this.state, { questions: newQuiz });
 
-      // create a new "State" object without mutating
-      // the original State object.
-      const newState = Object.assign({}, this.state, { questions: newQuiz });
+        this.state.initialQuestions = newState.questions;
+        // store the new state object in the component's state
+        this.setState(newState);
+      })
+      .catch(error => console.log("error"));
 
-      this.state.initialQuestions = newState.questions;
-      // store the new state object in the component's state
-      this.setState(newState);
-    })
-    .catch(error => console.log("error"));
-    
   }
 
   componentWillMount() {
@@ -114,21 +141,24 @@ class GameLeaderPage extends Component {
     const quizz = this.state.questions;
     const start = this.state.start;
     const gameId = this.props.gameId;
+    const pin = this.props.pin;
     const gameEnded = this.state.gameEnded;
     console.log(this.state.questions);
 
     if (start && this.state.counter >= quizz.length) {
-      return <GameResults usersArray={this.state.newUsersArray} questions={this.state.questions}/>
+      return <GameResults usersArray={this.state.newUsersArray} questions={this.state.questions} />
     }
 
     if (gameEnded) {
       return <GameResults usersArray={this.state.newUsersArray} questions={this.state.questions} />
     }
 
-    if (start && this.state.counter < quizz.length-1) {
+    if (start && this.state.counter < quizz.length - 1) {
       return (
         <div>
+
            <p className="counter">
+
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
           <Quiz questions={this.state.questions} />
@@ -141,7 +171,7 @@ class GameLeaderPage extends Component {
       );
     }
 
-    if (this.state.counter === quizz.length-1) {
+    if (this.state.counter === quizz.length - 1) {
       return (
         <div>
           <p className="counter">
@@ -157,13 +187,14 @@ class GameLeaderPage extends Component {
       );
     }
 
-    return (  
+    return (
       <div>
         <div>
           <p className="headline">Spelomgångens pinkod:</p>
         </div>
         <div>
           <p className="random">{gameId}</p>
+          <p className="random">{pin}</p>
         </div>
         <div class="buttonStartGame">
           <button id="startGameButton" onClick={this.handleClickStart}>
