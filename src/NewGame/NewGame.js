@@ -105,20 +105,20 @@ class newGame extends Component {
             </p>
 
             <p>
-              <select required value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })}>
-                <option value="" disabled selected>Antal frågor</option>
-                <option value="5">5 frågor</option>
-                <option value="10">10 frågor</option>
-                <option value="15">15 frågor</option>
-              </select>
-            </p>
-
-            <p>
               <select required value={this.state.language} onChange={(event) => this.setState({ language: event.target.value })}>
                 <option value="" disabled selected>Språk</option>
                 <option value="mix">Blanda alla språk</option>
                 <option value="Svenska">Endast svenska</option>
                 <option value="Engelska">Endast engelska</option>
+              </select>
+            </p>
+
+            <p>
+              <select required value={this.state.numberOfQuestions} onChange={(event) => this.setState({ numberOfQuestions: event.target.value })}>
+                <option value="" disabled selected>Antal frågor</option>
+                <option value="5">5 frågor</option>
+                <option value="10">10 frågor</option>
+                <option value="15">15 frågor</option>
               </select>
             </p>
 
