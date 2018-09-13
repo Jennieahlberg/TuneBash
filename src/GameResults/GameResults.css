@@ -3,6 +3,33 @@
     text-align: center;
 }
 
-.resultHeadline{
+.headlineResult {
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 35px;
+    margin-bottom: 1em;
+}
+
+.textResult {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 35px;
+    margin-bottom: 1em;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.textQuestions {
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 35px;
+    margin-bottom: 1em;
+    padding-left: 20px;
+    padding-right: 20px;
 }

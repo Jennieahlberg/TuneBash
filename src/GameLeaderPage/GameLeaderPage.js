@@ -143,6 +143,7 @@ class GameLeaderPage extends Component {
     const gameId = this.props.gameId;
     const pin = this.props.pin;
     const gameEnded = this.state.gameEnded;
+    console.log(this.state.questions);
 
     if (start && this.state.counter >= quizz.length) {
       return <GameResults usersArray={this.state.newUsersArray} questions={this.state.questions} />
@@ -155,8 +156,9 @@ class GameLeaderPage extends Component {
     if (start && this.state.counter < quizz.length - 1) {
       return (
         <div>
-          <MusicPlayer question={quizz[this.state.counter]} />
-          <p className="counter">
+
+           <p className="counter">
+
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
           <Quiz questions={this.state.questions} />
@@ -164,6 +166,7 @@ class GameLeaderPage extends Component {
           <div className="next">
             <button onClick={this.nextQuestion}>Nästa fråga</button>
           </div>
+          <MusicPlayer question={quizz[this.state.counter]} />
         </div>
       );
     }
@@ -171,7 +174,6 @@ class GameLeaderPage extends Component {
     if (this.state.counter === quizz.length - 1) {
       return (
         <div>
-          <MusicPlayer question={quizz[this.state.counter]} />
           <p className="counter">
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
@@ -180,6 +182,7 @@ class GameLeaderPage extends Component {
           <div className="next">
             <button onClick={this.showResult}>Avsluta spel</button>
           </div>
+          <MusicPlayer question={quizz[this.state.counter]} />
         </div>
       );
     }
