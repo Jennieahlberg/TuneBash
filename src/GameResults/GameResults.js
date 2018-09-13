@@ -3,43 +3,6 @@ import HomeButton from "../HomeButton/HomeButton";
 import "./GameResults.css";
 
 class GameResults extends Component {
-<<<<<<< HEAD
-    constructor(props) {
-        super(props);
-
-    }
-
-    sortResults = () => {
-        this.props.usersArray.sort((a, b) => {
-            return b[1] - a[1];
-        })
-    };
-
-
-    render() {
-        this.sortResults();
-        return (
-            <div>
-
-                <p> Resultat:</p>
-
-                {this.props.usersArray.map((result) => {
-                    return (<p>{result[0]} {result[1]} poäng</p>)
-                })}
-
-                <p></p>
-                {this.props.questions.map((questionsAndAnwers) => {
-                        return <p>{questionsAndAnwers.question} Rätt svar: {questionsAndAnwers.correctAnswer}</p>
-                    }
-                )}
-                <HomeButton/>
-            </div>
-
-
-        );
-    }
-
-=======
   constructor(props) {
     super(props);
   }
@@ -81,7 +44,6 @@ class GameResults extends Component {
       </div>
     );
   }
->>>>>>> master
 }
 
 export default GameResults;

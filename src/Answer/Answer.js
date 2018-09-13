@@ -51,7 +51,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[0]}
             onClick={event => this.submitAnswer(event)}
-            {...disableAnswers ? <disabled/> : <normal/> }
+            disabled={disableAnswers}
           >
             {answers[0]}
           </button>
@@ -59,7 +59,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[1]}
             onClick={event => this.submitAnswer(event)}
-            {...disableAnswers ? <disabled/> : <normal/> }
+            disabled={disableAnswers}
           >
             {answers[1]}
           </button>
@@ -67,7 +67,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[2]}
             onClick={event => this.submitAnswer(event)}
-            {...disableAnswers ? <disabled/> : <normal/> }
+            disabled={disableAnswers}
           >
             {answers[2]}
           </button>
@@ -75,7 +75,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[3]}
             onClick={event => this.submitAnswer(event)}
-            {...disableAnswers ? <disabled/> : <normal/> }
+            disabled={disableAnswers}
           >
             {answers[3]}
           </button>
