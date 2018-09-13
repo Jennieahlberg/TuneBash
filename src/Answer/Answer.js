@@ -19,6 +19,7 @@ class Answer extends Component {
 
   componentWillMount() {
     this.gameEnded();
+    
   }
 
   submitAnswer(event) {
@@ -67,7 +68,7 @@ class Answer extends Component {
       question.wrongAnswer3
     ];
 
-    if (this.state.shuffle) {
+    if (!this.state.shuffle) {
       this.shuffleAnswers(answers);
     }
 
