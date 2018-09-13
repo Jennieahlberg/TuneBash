@@ -8,6 +8,7 @@
 
 #customStartButton{
     font-size: 0.8em;
+    font-weight: bold;
 }
 
 .infoMessage{
@@ -17,5 +18,31 @@
     text-align: center;
     margin-left: 2em;
     margin-right: 2em;
-    margin-top: 4em;
+    margin-top: 5em;
+}
+
+#inputCustomPin{
+    border-radius: 50px;
+    border: none;
+    padding: 0.8em;
+    font-size: 0.9em;
+    text-align: center;
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 560px) {
+    .infoMessage{
+        margin-top: 8em;
+        font-size: 2em;
+    }
+    .formDivCustomStart{
+        margin-top: 3em;
+    }
+    #customStartButton{
+        font-size: 1em;
+    }
+    #inputCustomPin{
+        padding: 1em;
+    }
+
 }

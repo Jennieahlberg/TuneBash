@@ -10,7 +10,7 @@ class QuizAnswer extends Component {
       counter: 0,
       usersArray: [],
       gameEnded: false,
-      socket: io(socketUrl)
+      socket: io(socketUrl),
     };
   }
 

@@ -100,6 +100,14 @@ class GameLeaderPage extends Component {
     });
   }
 
+  separateNames() {
+    const names = [];
+    for (let user of this.state.usersArray) {
+      names.push(user + " ");
+    }
+    return names;
+  }
+
   render() {
     const quizz = this.state.questions;
     const start = this.state.start;
@@ -117,10 +125,10 @@ class GameLeaderPage extends Component {
     if (start && this.state.counter < quizz.length-1) {
       return (
         <div>
+          <MusicPlayer question={quizz[this.state.counter]} />
            <p className="counter">
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
-        
           <Quiz questions={this.state.questions} />
           <AnswersInText question={quizz[this.state.counter]} />
           <div className="next">
@@ -134,7 +142,7 @@ class GameLeaderPage extends Component {
       return (
         <div>
           <MusicPlayer question={quizz[this.state.counter]} />
-          <p>
+          <p className="counter">
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
           <Quiz questions={this.state.questions} />
@@ -142,7 +150,6 @@ class GameLeaderPage extends Component {
           <div className="next">
             <button onClick={this.showResult}>Avsluta spel</button>
           </div>
-          <MusicPlayer question={quizz[this.state.counter]} />
         </div>
       );
     }
@@ -166,7 +173,7 @@ class GameLeaderPage extends Component {
             du på Starta spel.
           </p>
         </div>
-        <div className="names">{this.state.usersArray}</div>
+        <div className="names">{this.separateNames()}</div>
       </div>
     );
   }
