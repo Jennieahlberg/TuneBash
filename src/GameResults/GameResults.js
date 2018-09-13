@@ -13,6 +13,7 @@ class GameResults extends Component {
         })
     };
 
+
     render() {
         this.sortResults();
         console.log(this.props.usersArray);
@@ -37,6 +38,7 @@ class GameResults extends Component {
 
         );
     }
+
 }
 
 export default GameResults;
