@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './CustomGameLeaderPage.css'
 import GameLeaderPage from '../GameLeaderPage/GameLeaderPage';
 
@@ -17,8 +16,6 @@ class CustomGameLeaderPage extends Component {
     }
 
     startCustomGame = () => {
-        console.log('I metoden startCustomGame');
-        console.log(this.state.gameId);
         this.setState({ letsplay: true });
     }
 

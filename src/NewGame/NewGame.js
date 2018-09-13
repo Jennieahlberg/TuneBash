@@ -37,7 +37,6 @@ class newGame extends Component {
     this.setState({ gameId: random });
 
     this.setState({ generate: true });
-    console.log(this.state.level);
   }
 
   handleClickGenerateCustomGame = () => {
@@ -66,7 +65,7 @@ class newGame extends Component {
           />
         </div>
       );
-      console.log(this.level);
+
     }
 
     if (custom) {

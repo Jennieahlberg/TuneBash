@@ -43,7 +43,6 @@ class Answer extends Component {
     const question = this.props.question;
     const disableAnswers = this.state.disableAnswers;
     const answers = this.props.answers;
-    console.log(answers);
 
     return (
       <div className="buttonFormDiv">

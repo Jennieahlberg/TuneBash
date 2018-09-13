@@ -19,12 +19,10 @@ class QuizAnswer extends Component {
     this.onSocket();
     this.next();
     this.createArraysInArray();
-    console.log("hej");
   }
 
   onSocket = () => {
     this.state.socket.on("user joined", data => {
-      console.log(data);
       this.setState({ usersArray: data.users });
     });
   };
@@ -77,7 +75,6 @@ class QuizAnswer extends Component {
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-    console.log(array);
     return array;
   };
 

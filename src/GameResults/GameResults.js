@@ -16,8 +16,6 @@ class GameResults extends Component {
 
     render() {
         this.sortResults();
-        console.log(this.props.usersArray);
-        console.log(this.props.questions);
         return (
             <div>
 

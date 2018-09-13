@@ -15,9 +15,6 @@ class Question extends Component {
 
   render() {
     const question = this.props.question;
-    console.log(question);
-    console.log(this.props.question);
-
     
     return (
       <div className="Question">
