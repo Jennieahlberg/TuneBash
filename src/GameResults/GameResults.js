@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import HomeButton from '../HomeButton/HomeButton';
 
 class GameResults extends Component {
     constructor(props) {
@@ -33,7 +34,11 @@ class GameResults extends Component {
           {/*<h1>Vinnare: {this.state.resultBoard[0][0]} {this.state.resultBoard[0][1]}</h1>*/}
         {this.state.resultBoard.map((result) => {
            return(<p>{result[0]} {result[1]}</p>)})}
-      </div>
+      
+      <div>
+        <HomeButton/>
+        </div>
+        </div>
     );
   }
 }
