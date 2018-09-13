@@ -19,7 +19,6 @@ class Answer extends Component {
 
   componentWillMount() {
     this.gameEnded();
-    
   }
 
   submitAnswer(event) {
@@ -32,23 +31,6 @@ class Answer extends Component {
     this.setState({disableAnswers: true});
   }
 
-  shuffleAnswers = array => {
-    let currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
-
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-    this.setState({ shuffle: false });
-    return array;
-  };
-
   gameEnded() {
     this.state.socket.on("gameEnded", data => {
       this.setState({ end: data });
@@ -60,17 +42,8 @@ class Answer extends Component {
   render() {
     const question = this.props.question;
     const disableAnswers = this.state.disableAnswers;
-
-    const answers = [
-      question.correctAnswer,
-      question.wrongAnswer1,
-      question.wrongAnswer2,
-      question.wrongAnswer3
-    ];
-
-    if (!this.state.shuffle) {
-      this.shuffleAnswers(answers);
-    }
+    const answers = this.props.answers;
+    console.log(answers);
 
     return (
       <div className="buttonFormDiv">

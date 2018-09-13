@@ -7,7 +7,6 @@ class GameResults extends Component {
 
     }
 
-
     sortResults = () => {
         this.props.usersArray.sort((a, b) => {
             return b[1] - a[1];
