@@ -17,11 +17,13 @@ class CustomGameLeaderPage extends Component {
     }
 
     startCustomGame = () => {
-       /* const pin = {
-            gameId: this.state.gameId
-        }*/
-        
-       // axios.post('http://localhost:8080/getCustomQuiz/', pin)
+
+        const pinCode = {
+            pin: this.state.pin
+        }
+
+        axios.get('http://localhost:8080/getcustomquiz/', pinCode)
+
         this.setState({ letsplay: true });
     }
 
