@@ -17,7 +17,8 @@ class CustomGameLeaderPage extends Component {
     }
 
     startCustomGame = () => {
-
+        console.log('I metoden startCustomGame');
+        console.log(this.state.gameId);
         this.setState({ letsplay: true });
     }
 
@@ -40,9 +41,10 @@ class CustomGameLeaderPage extends Component {
                             </p>
                 </div>
                 <div className="formDivCustomStart">
-                    <form onSubmit={this.state.startCustomGame}>
+                    <form onSubmit={this.startCustomGame}>
                         <div>
-                            <input id="inputCustomPin" type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska bestå av sex siffror" value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
+                            <input id="inputCustomPin" type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska bestå av sex siffror" value={this.state.gameId}
+                                      onChange={(event) => this.setState({gameId: event.target.value})} placeholder="Pinkod"/>
                         </div>
                         <div>
                             <input type="submit" value="Spela!" id="customStartButton" />
