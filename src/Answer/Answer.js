@@ -11,7 +11,8 @@ class Answer extends Component {
       socket: io(socketUrl),
       value: "",
       shuffle: true,
-      end: false
+      end: false,
+      disableAnswers: false
     };
     this.submitAnswer = this.submitAnswer.bind(this);
   }
@@ -27,6 +28,7 @@ class Answer extends Component {
     if (event.target.value === question.correctAnswer) {
       this.state.usersArray[1]++;
     }
+    this.setState({disableAnswers: true});
   }
 
   shuffleAnswers = array => {
@@ -56,6 +58,7 @@ class Answer extends Component {
 
   render() {
     const question = this.props.question;
+    const disableAnswers = this.state.disableAnswers;
 
     const answers = [
       question.correctAnswer,
@@ -75,6 +78,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[0]}
             onClick={event => this.submitAnswer(event)}
+            {...disableAnswers ? <disabled/> : <normal/> }
           >
             {answers[0]}
           </button>
@@ -82,6 +86,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[1]}
             onClick={event => this.submitAnswer(event)}
+            {...disableAnswers ? <disabled/> : <normal/> }
           >
             {answers[1]}
           </button>
@@ -89,6 +94,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[2]}
             onClick={event => this.submitAnswer(event)}
+            {...disableAnswers ? <disabled/> : <normal/> }
           >
             {answers[2]}
           </button>
@@ -96,6 +102,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[3]}
             onClick={event => this.submitAnswer(event)}
+            {...disableAnswers ? <disabled/> : <normal/> }
           >
             {answers[3]}
           </button>
