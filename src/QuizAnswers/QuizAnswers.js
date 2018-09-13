@@ -43,21 +43,13 @@ class QuizAnswer extends Component {
     const table = [];
     const users = this.props.usersArray;
     for (var i = 0; i < users.length; i++) {
-      table[i] = [users[i], 0];
-      console.log(users[i]);
+      table[i] = [users[i], 0]
     }
-    console.log(table);
     this.setState({usersArray: table});
-    console.log(this.state.usersArray);
-    console.log("tjena");
   }
 
   render() {
     const quizz = this.props.questions;
-    console.log(quizz);
-    console.log(this.props.questions);
-    console.log(this.props.usersArray);
-    console.log(this.state.usersArray);
     
     return (
       <div className="questions">

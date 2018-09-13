@@ -49,10 +49,8 @@ class GameLeaderPage extends Component {
         this.state.initialQuestions = newState.questions;
         // store the new state object in the component's state
         this.setState(newState);
-        console.log(newQuiz);
-        console.log(this.state.questions);
       })
-      .catch(error => console.log('error'));
+      .catch(error => console.log("error"));
   }
 
   componentWillMount() {
@@ -62,7 +60,6 @@ class GameLeaderPage extends Component {
 
   onSocket = () => {
     this.state.socket.on("user joined", data => {
-      console.log(data);
       this.setState({ usersArray: data.users });
     });
   };
@@ -70,15 +67,10 @@ class GameLeaderPage extends Component {
   handleClickStart = () => {
     this.setState({ start: true });
     const newUsersArray = [];
-    console.log(this.state.usersArray);
     for (let user of this.state.usersArray) {
       newUsersArray.push([user, 0]);
     }
-    console.log(newUsersArray);
     this.setState({ usersArray: newUsersArray });
-    console.log(this.state.usersArray);
-    console.log(this.state.counter);
-    console.log(this.state.questions[this.state.counter]);
     this.state.socket.emit(
       "startgame",
       true,
@@ -100,20 +92,10 @@ class GameLeaderPage extends Component {
     this.state.socket.emit("endGame", true);
   }
 
-<<<<<<< HEAD
-  finalResult() {
-    this.state.socket.on("finalResult", data => {
-      this.setState({ usersArray: data });
-      this.setState({ gameEnded: true });
-=======
   final() {
     this.state.socket.on("final", data => {
-      console.log(data);
       this.setState({ newUsersArray: data });
       this.setState({ gameEnded: true });
-      console.log(data);
-      console.log(this.state.usersArray);
->>>>>>> master
     });
   }
 
@@ -122,24 +104,16 @@ class GameLeaderPage extends Component {
     const start = this.state.start;
     const gameId = this.props.gameId;
     const gameEnded = this.state.gameEnded;
-    console.log(this.props.level);
-    console.log(this.props.category);
-    console.log(this.state.questions);
-    console.log(quizz[0]);
-    console.log(this.state.counter);
-    console.log(this.state.usersArray);
 
     if (start && this.state.counter >= quizz.length) {
-      return <GameResults usersArray={this.state.newUsersArray} />;
+      return <GameResults usersArray={this.state.newUsersArray} questions={this.state.questions}/>
     }
 
-
-    if(gameEnded) {
-      return <GameResults usersArray={this.state.newUsersArray}/>
-
+    if (gameEnded) {
+      return <GameResults usersArray={this.state.newUsersArray} questions={this.state.questions} />
     }
 
-    if (start) {
+    if (start && this.state.counter < quizz.length-1) {
       return (
         <div>
            <p className="counter">
@@ -149,9 +123,23 @@ class GameLeaderPage extends Component {
           <Quiz questions={this.state.questions} />
           <AnswersInText question={quizz[this.state.counter]} />
           <div className="next">
-          <button className="next_quit_button" onClick={this.showResult}>Avsluta spel</button>
-            <button className="next_quit_button" onClick={this.nextQuestion}>Nästa fråga</button>
-            
+            <button onClick={this.nextQuestion}>Nästa fråga</button>
+          </div>
+        </div>
+      );
+    }
+
+    if (this.state.counter === quizz.length-1) {
+      return (
+        <div>
+          <MusicPlayer question={quizz[this.state.counter]} />
+          <p>
+            Fråga {this.state.counter + 1} av {quizz.length}
+          </p>
+          <Quiz questions={this.state.questions} />
+          <AnswersInText question={quizz[this.state.counter]} />
+          <div className="next">
+            <button onClick={this.showResult}>Avsluta spel</button>
           </div>
           <MusicPlayer question={quizz[this.state.counter]} />
         </div>
