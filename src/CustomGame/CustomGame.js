@@ -42,8 +42,6 @@ class CustomGame extends Component {
 
         this.state.quizArray.push(customGame);
 
-        console.log(this.state.quizArray);
-
         this.setState({
             songLink: '',
             question: '',
@@ -58,16 +56,15 @@ class CustomGame extends Component {
     onClickGenerate = () => {
 
         axios.post('http://localhost:8080/addcustomquestion', this.state.quizArray)
-        console.log(this.state.quizArray);
+        
 
         this.setState({yourCustomGame: true});
+
     }
 
 
     render() {
         const yourCustomGame = this.state.yourCustomGame;
-        console.log(this.state.songLink);
-
 
         if (yourCustomGame) {
             return (

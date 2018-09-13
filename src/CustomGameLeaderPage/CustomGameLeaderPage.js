@@ -11,17 +11,17 @@ class CustomGameLeaderPage extends Component {
 
         this.state = {
             letsplay: false,
-            pin: ''
+            gameId: ''
         }
 
     }
 
     startCustomGame = () => {
-        const pinCode = {
-            pin: this.state.pin
-        }
-
-        axios.post('http://localhost:8080/getCustomQuiz/', pinCode)
+       /* const pin = {
+            gameId: this.state.gameId
+        }*/
+        
+       // axios.post('http://localhost:8080/getCustomQuiz/', pin)
         this.setState({ letsplay: true });
     }
 
@@ -31,7 +31,7 @@ class CustomGameLeaderPage extends Component {
         if (letsplay) {
             return (
                 <div>
-                    <GameLeaderPage gameId={this.state.pin} />
+                    <GameLeaderPage gameId={this.state.gameId} />
                 </div>
             );
         }
@@ -45,8 +45,12 @@ class CustomGameLeaderPage extends Component {
                 </div>
                 <div className="formDivCustomStart">
                     <form onSubmit={this.state.startCustomGame}>
-                        <input type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska bestå av sex siffror" value={this.state.pin} onChange={(event) => this.setState({ pin: event.target.value })} placeholder="Pinkod" />
-                        <input type="submit" value="Klicka!" id="customStartButton" />
+                    <div>
+                        <input id="inputCustomPin" type="text" required pattern="[0-9]{6,6}" title="Pinkoden ska bestå av sex siffror" value={this.state.gameId} onChange={(event) => this.setState({ gameId: event.target.value })} placeholder="Pinkod" />
+                        </div>
+                        <div>
+                        <input type="submit" value="Spela!" id="customStartButton" />
+                        </div>
                     </form>
                 </div>
             </div>
