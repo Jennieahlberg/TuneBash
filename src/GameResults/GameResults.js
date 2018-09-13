@@ -32,11 +32,11 @@ class GameResults extends Component {
               return <p>{questionsAndAnwers.question} Rätt svar: {questionsAndAnwers.correctAnswer}</p>
               }
           )}
+           <HomeButton/>
       </div>
 
-        <HomeButton/>
-        </div>
-        </div>
+       
+    
     );
   }
 }

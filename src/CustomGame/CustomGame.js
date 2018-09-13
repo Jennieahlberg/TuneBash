@@ -21,7 +21,7 @@ class CustomGame extends Component {
         this.addToQuiz = this.addToQuiz.bind(this);
         this.state = {
             yourCustomGame: false,
-            quizArray: [],
+            counter: 0,
             pin: Math.floor(Math.random() * (999999 - 100000) + 100000)
         };
 
@@ -40,7 +40,12 @@ class CustomGame extends Component {
             wrongAnswer3: this.state.wrongAnswer3
         }
 
-        this.state.quizArray.push(customGame);
+        //this.state.quizArray.push(customGame);
+        console.log(customGame);
+
+        axios.post('http://localhost:8080/addcustomquestion', customGame)
+
+        this.setState({counter: this.state.counter+1});
 
         this.setState({
             songLink: '',
@@ -54,17 +59,13 @@ class CustomGame extends Component {
     }
 
     onClickGenerate = () => {
-
-        axios.post('http://localhost:8080/addcustomquestion', this.state.quizArray)
-        
-
         this.setState({yourCustomGame: true});
-
     }
 
 
     render() {
         const yourCustomGame = this.state.yourCustomGame;
+        const counter = this.state.counter;
 
         if (yourCustomGame) {
             return (
@@ -112,7 +113,7 @@ class CustomGame extends Component {
                         </form>
 
                         <div>
-                            <p className="questionsInQuiz">Antal frågor i quiz: {this.state.quizArray.length}</p>
+                            <p className="questionsInQuiz">Antal frågor i quiz: {counter}</p>
                         </div>
                     </div>
                 </div>
