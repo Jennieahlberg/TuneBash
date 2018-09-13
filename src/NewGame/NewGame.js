@@ -86,7 +86,7 @@ class newGame extends Component {
         <div className="form">
           <form className="select" onSubmit={this.submitDataHandler}>
             <p>
-              <select value={this.state.level} onChange={(event) => this.setState({ level: event.target.value })}>
+              <select required value={this.state.level} onChange={(event) => this.setState({ level: event.target.value })}>
                 <option value="" disabled selected>Svårighetsnivå</option>
                 <option value="mix">Blanda nivåer</option>
                 <option value="easy">Lätt</option>
@@ -95,7 +95,7 @@ class newGame extends Component {
               </select>
             </p>
             <p>
-              <select value={this.state.category} onChange={(event) => this.setState({ category: event.target.value })}>
+              <select required value={this.state.category} onChange={(event) => this.setState({ category: event.target.value })}>
                 <option value="" disabled selected>Genre</option>
                 <option value="mix">Blanda genrer</option>
                 <option value="Pop">Pop</option>
@@ -114,7 +114,7 @@ class newGame extends Component {
             </p>
 
             <p>
-              <select value={this.state.language} onChange={(event) => this.setState({ language: event.target.value })}>
+              <select required value={this.state.language} onChange={(event) => this.setState({ language: event.target.value })}>
                 <option value="" disabled selected>Språk</option>
                 <option value="mix">Blanda alla språk</option>
                 <option value="Svenska">Endast svenska</option>

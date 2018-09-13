@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import HomeButton from '../HomeButton/HomeButton';
 
 class GameResults extends Component {
@@ -6,7 +6,6 @@ class GameResults extends Component {
         super(props);
 
     }
-
 
     sortResults = () => {
         this.props.usersArray.sort((a, b) => {
@@ -19,31 +18,22 @@ class GameResults extends Component {
         console.log(this.props.usersArray);
         console.log(this.props.questions);
         return (
-            <div className="resultDiv">
-                {/*<h1>Vinnare:{this.props.usersArray[0][0]} med {this.props.usersArray[0][1]} poäng!</h1>*/}
+            <div>
 
-                <p className="resultHeadline">Resultat:</p>
+                <p> Resultat:</p>
 
-                <div>
-                    {this.props.usersArray.map((result) => {
-                        return (<p>{result[0]} {result[1]} poäng</p>)
-                    })}
-                </div>
+                {this.props.usersArray.map((result) => {
+                    return (<p>{result[0]} {result[1]} poäng</p>)
+                })}
 
-                <div>
-                    {this.props.questions.map((questionsAndAnwers) => {
+                <p></p>
+                {this.props.questions.map((questionsAndAnwers) => {
                         return <p>{questionsAndAnwers.question} Rätt svar: {questionsAndAnwers.correctAnswer}</p>
                     }
-                    )}
-                </div>
-
-                <div>
-                    <HomeButton />
-                </div>
-
-                
-
+                )}
+                <HomeButton/>
             </div>
+
 
         );
     }
