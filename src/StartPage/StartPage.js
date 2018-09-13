@@ -29,7 +29,6 @@ class StartPage extends Component {
     }
 
     axios.post('http://localhost:8080/members', player)
-    console.log(player);
 
     this.setState({ formFilled: true });
   }

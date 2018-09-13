@@ -28,7 +28,7 @@ module.exports = function(socket) {
     socket.emit("login", {
       numUsers: numUsers
     });
-    console.log(users);
+
   });
 
   setInterval(() => {
@@ -49,13 +49,10 @@ module.exports = function(socket) {
 
   socket.on("startgame", (startgame, questions, usersArray) => {
     socket.broadcast.emit("gameStarts", startgame, questions, usersArray);
-    console.log("hej!");
   });
 
   socket.on("next", nextquestion => {
     socket.broadcast.emit("next", nextquestion);
-    console.log("next");
-    console.log(nextquestion);
   });
 
   socket.on("addScore", (value, correctAnswer, usersArray) => {
@@ -67,21 +64,15 @@ module.exports = function(socket) {
           }
         }
         usersArray[i].push(value);
-        console.log(usersArray[0][0]);
-        console.log(usersArray[0][1]);
-        console.log(users[0]);
-        console.log(users[0][1]);
+     
       }
     }
-    console.log("tjenix");
-    console.log(usersArray);
-    console.log(namn);
+
     socket.broadcast.emit("newScore", usersArray);
   });
 
   socket.on("endGame", data => {
     socket.broadcast.emit("gameEnded", data);
-    console.log("testar");
   });
 
   socket.on("finalResult", data => {
