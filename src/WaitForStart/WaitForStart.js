@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./WaitForStart.css";
 import { ReactSpinner } from "react-spinning-wheel";
 import "react-spinning-wheel/dist/style.css";
-import axios from "axios";
-import { VERIFY_USER, LOGOUT } from "../Events";
 import io from "socket.io-client";
 import Quiz from "../Quiz/Quiz";
 import QuizAnswers from "../QuizAnswers/QuizAnswers";
