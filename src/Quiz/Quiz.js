@@ -14,8 +14,6 @@ class Quiz extends Component {
       usersArray: this.props.usersArray,
       socket: io(socketUrl), 
     };
-
-    console.log(this.state.usersArray);
   }
 
    

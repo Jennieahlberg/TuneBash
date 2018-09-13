@@ -21,10 +21,8 @@ class Answer extends Component {
   }
 
   submitAnswer(event) {
-    let value = event.target.value;
     event.preventDefault();
     const question = this.props.question;
-    console.log(question);
     this.state.usersArray.push(event.target.value);
     if (event.target.value === question.correctAnswer) {
       this.state.usersArray[1]++;
@@ -58,9 +56,6 @@ class Answer extends Component {
 
   render() {
     const question = this.props.question;
-    console.log(question);
-    console.log(this.state.usersArray);
-    console.log(this.props.usersArray);
 
     const answers = [
       question.correctAnswer,
