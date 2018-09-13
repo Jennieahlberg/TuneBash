@@ -79,6 +79,7 @@ class WaitForStart extends Component {
   render() {
     const members = this.state.members;
     const gameEnded = this.state.gameEnded;
+    console.log(this.state.questions);
 
     if(gameEnded){
       return <GameResults usersArray={this.state.newUsersArray} questions={this.state.questions}/>
