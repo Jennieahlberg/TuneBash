@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./GameResults.css";
 
 class GameResults extends Component {
     constructor(props) {
@@ -13,7 +12,7 @@ class GameResults extends Component {
             ]
           };
     }
-  
+
 
   sortResults = () => {
     this.state.resultBoard.sort((a, b) => {
@@ -22,18 +21,18 @@ class GameResults extends Component {
   };
 
   render() {
-    const resultBoard = this.props.usersArray;
-    console.log(resultBoard);
-    console.log(this.props.usersArray);
     this.sortResults();
-    console.log(this.state.resultBoard);
+    console.log(this.state.correctAnswers);
+    console.log(this.props.usersArray);
+    console.log(this.props.questions);
     return (
       <div>
+          <h1>Vinnare: {this.props.usersArray[0][0]} med {this.props.usersArray[0][1]} poäng!</h1>
+
           <p> Resultat:</p>
           {/*<h1>Vinnare: {this.state.resultBoard[0][0]} {this.state.resultBoard[0][1]}</h1>*/}
         {this.state.resultBoard.map((result) => {
            return(<p>{result[0]} {result[1]}</p>)})}
-
       </div>
     );
   }
