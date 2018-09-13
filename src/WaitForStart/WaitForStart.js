@@ -68,6 +68,16 @@ class WaitForStart extends Component {
     });
   }
 
+  separateNames() {
+    const names = [];
+    for (let user of this.state.usersArray) {
+      names.push(user + " ");
+    }
+    console.log(names);
+    console.log(this.state.usersArray);
+    return names;
+  }
+
   render() {
     const members = this.state.members;
     const gameEnded = this.state.gameEnded;
@@ -110,7 +120,7 @@ class WaitForStart extends Component {
         <div className="spinner">
           <ReactSpinner />
         </div>
-        <div className="names">{this.state.usersArray}</div>
+        <div className="names">{this.separateNames()}</div>
       </div>
     );
   }
