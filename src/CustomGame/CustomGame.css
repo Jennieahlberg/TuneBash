@@ -8,9 +8,23 @@
     padding: 10px;
 }
 
-form input[type=text] {
+.customRow {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
     min-width: 300px;
-    font-size: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: -15px;
+    border: 1px solid transparent;
+    border-radius: 50px;
+    padding: 1em;
+    margin-bottom: 4px;
+}
+
+::placeholder{
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
 }
 
 #createPinCodeCustom {
@@ -24,8 +38,8 @@ form input[type=text] {
     border: solid 0px;
     transition: all 0.3s ease;
     width: 150px;
-    margin-top: 1em;
     margin-bottom: 1em;
+    margin-left: 5px;
     padding: 0.85em;
 }
 
@@ -41,13 +55,18 @@ form input[type=text] {
 }
 
 @media only screen and (min-width: 560px) {
-    .playButton {
-        width: 200px;
-    }
-
     .headlineCustomGame{
         margin-top: 2.8em;
         margin-bottom: 1em;
         font-size: 2.5em;
+    }
+
+    .customRow{
+        font-size: 1em;
+    }
+
+    #addCustomQuestion{
+        font-size: 1.2em;
+        padding-left: 15px;
     }
 }

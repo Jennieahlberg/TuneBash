@@ -42,7 +42,11 @@ svg {
     text-align: center;
 }
 
-input[type=text] {
+.pinNameInput {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
     padding: 1em;
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
@@ -129,7 +133,7 @@ textarea:focus, input:focus {
         margin-top: 2em;
     }
 
-    .pinCodeInput{
+    .pinNameInput{
         margin-right: 1em;
     }
 

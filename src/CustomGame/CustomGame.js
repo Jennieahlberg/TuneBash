@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './CustomGame.css';
 import axios from 'axios';
-import YourCustomGame from '../YourCustomGame/YourCustomGame';
 import HomeButton from "../HomeButton/HomeButton";
+import GameLeaderPage from "../GameLeaderPage/GameLeaderPage";
 
 class CustomGame extends Component {
     state = {
@@ -17,12 +17,12 @@ class CustomGame extends Component {
     constructor(props) {
         super(props);
 
-        // this.onClickGenerate = this.onClickGenerate.bind(this);
+        this.onClickGenerate = this.onClickGenerate.bind(this);
         this.addToQuiz = this.addToQuiz.bind(this);
         this.state = {
             yourCustomGame: false,
             quizArray: [],
-            pin: Math.floor(Math.random() * 999999) + 100000
+            pin: Math.floor(Math.random() * (999999 - 100000) + 100000)
         };
 
     }
@@ -72,7 +72,7 @@ class CustomGame extends Component {
         if (yourCustomGame) {
             return (
                 <div>
-                    <YourCustomGame/>
+                    <GameLeaderPage gameId={this.state.pin}/>
                 </div>
             )
         }

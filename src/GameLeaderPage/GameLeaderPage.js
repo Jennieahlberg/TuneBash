@@ -96,6 +96,7 @@ class GameLeaderPage extends Component {
     this.state.socket.on("final", data => {
       this.setState({ newUsersArray: data });
       this.setState({ gameEnded: true });
+
     });
   }
 
@@ -146,7 +147,7 @@ class GameLeaderPage extends Component {
       );
     }
 
-    return (
+    return (  
       <div>
         <div>
           <p className="headline">Spelomgångens pinkod:</p>

@@ -26,8 +26,8 @@ handleHome = () => {
         }
 
         return (
-            <div onClick={this.handleHome} className="homeButtonDiv">
-            <a href="" className="homeButtonSymbol">⌂</a>
+            <div className="homeButtonDiv">
+            <a onClick={this.handleHome} href="" className="homeButtonSymbol">⌂</a>
             </div>
         );
 
