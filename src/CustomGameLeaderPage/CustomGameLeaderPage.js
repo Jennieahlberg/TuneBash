@@ -21,7 +21,7 @@ class CustomGameLeaderPage extends Component {
             pin: this.state.pin
         }
 
-        axios.post('http://localhost:8080/getCustomQuiz/', pinCode)
+        axios.get('http://localhost:8080/getcustomquiz/', pinCode)
         this.setState({ letsplay: true });
     }
 
