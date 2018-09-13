@@ -25,32 +25,34 @@ class GameLeaderPage extends Component {
     this.nextQuestion = this.nextQuestion.bind(this);
     this.showResult = this.showResult.bind(this);
     const lengthOfSong = this.props.lengthOfSong;
-
+    
     axios
 
-      .get(
-        "http://localhost:8080/getquestions/" +
-        this.props.numberOfQuestions +
-        "/" +
-        this.props.level +
-        "/" +
-        this.props.category +
-        "/" +
-        this.props.language
-      )
+    .get(
+      "http://localhost:8080/getquestions/" +
+      //"https://tune-bash.firebaseapp.com/getquestions/" +
+      this.props.numberOfQuestions +
+      "/" +
+      this.props.level +
+      "/" +
+      this.props.category +
+      "/" +
+      this.props.language
+    )
 
-      .then(response => {
-        const newQuiz = response.data;
+    .then(response => {
+      const newQuiz = response.data;
 
-        // create a new "State" object without mutating
-        // the original State object.
-        const newState = Object.assign({}, this.state, { questions: newQuiz });
+      // create a new "State" object without mutating
+      // the original State object.
+      const newState = Object.assign({}, this.state, { questions: newQuiz });
 
-        this.state.initialQuestions = newState.questions;
-        // store the new state object in the component's state
-        this.setState(newState);
-      })
-      .catch(error => console.log("error"));
+      this.state.initialQuestions = newState.questions;
+      // store the new state object in the component's state
+      this.setState(newState);
+    })
+    .catch(error => console.log("error"));
+    
   }
 
   componentWillMount() {
@@ -113,6 +115,7 @@ class GameLeaderPage extends Component {
     const start = this.state.start;
     const gameId = this.props.gameId;
     const gameEnded = this.state.gameEnded;
+    console.log(this.state.questions);
 
     if (start && this.state.counter >= quizz.length) {
       return <GameResults usersArray={this.state.newUsersArray} questions={this.state.questions}/>
@@ -125,7 +128,6 @@ class GameLeaderPage extends Component {
     if (start && this.state.counter < quizz.length-1) {
       return (
         <div>
-          <MusicPlayer question={quizz[this.state.counter]} />
            <p className="counter">
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
@@ -134,6 +136,7 @@ class GameLeaderPage extends Component {
           <div className="next">
             <button onClick={this.nextQuestion}>Nästa fråga</button>
           </div>
+          <MusicPlayer question={quizz[this.state.counter]} />
         </div>
       );
     }
@@ -141,7 +144,6 @@ class GameLeaderPage extends Component {
     if (this.state.counter === quizz.length-1) {
       return (
         <div>
-          <MusicPlayer question={quizz[this.state.counter]} />
           <p className="counter">
             Fråga {this.state.counter + 1} av {quizz.length}
           </p>
@@ -150,6 +152,7 @@ class GameLeaderPage extends Component {
           <div className="next">
             <button onClick={this.showResult}>Avsluta spel</button>
           </div>
+          <MusicPlayer question={quizz[this.state.counter]} />
         </div>
       );
     }
