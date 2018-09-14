@@ -64,7 +64,6 @@ class Answer extends Component {
             value={answers[0]}
             onClick={event => this.submitAnswer(event)}
             disabled={this.state.disableButton}
-
           >
             {answers[0]}
           </button>
