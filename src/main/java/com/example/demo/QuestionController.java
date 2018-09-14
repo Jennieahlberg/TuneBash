@@ -41,19 +41,19 @@ public class QuestionController {
         int num = Integer.parseInt(numberOfQuestions);
         response.setHeader("Access-Control-Allow-Origin", "*");
         List<Questions> firstfilter = new ArrayList<>();
-        if (level.equals("mix")) {
+        if(level.equals("mix")) {
             firstfilter = repository.getAllByCategoryAndAndLanguage(category, language);
-        } else if (category.equals("mix")) {
+        } if (category.equals("mix")) {
             firstfilter = repository.getAllByLevelAndLanguage(level, language);
-        } else if (language.equals("mix")) {
+        }if (language.equals("mix")) {
             firstfilter = repository.getAllByLevelAndCategory(level, category);
-        } else if (level.equals("mix") && category.equals("mix")) {
+        }if (level.equals("mix") && category.equals("mix")) {
             firstfilter = repository.getAllByLanguage(language);
-        } else if ((level.equals("mix") && language.equals("mix"))) {
+        }if ((level.equals("mix") && language.equals("mix"))) {
             firstfilter = repository.getAllByCategory(category);
-        } else if (category.equals("mix") && language.equals("mix")) {
+        }if (category.equals("mix") && language.equals("mix")) {
             firstfilter = repository.getAllByLevel(level);
-        } else if (level.equals("mix") && category.equals("mix") && language.equals("mix")) {
+        }if (level.equals("mix") && category.equals("mix") && language.equals("mix")) {
             firstfilter = repository.findAll();
         } else {
             firstfilter = repository.getAllByCategoryAndLevelAndLanguage(category, level, language);
