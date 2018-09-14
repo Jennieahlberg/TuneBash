@@ -11,7 +11,8 @@ class QuizAnswer extends Component {
       usersArray: [],
       gameEnded: false,
       socket: io(socketUrl),
-      answerArray: []
+      answerArray: [],
+      disableButton: false,
     };
   }
 
@@ -80,14 +81,17 @@ class QuizAnswer extends Component {
 
   render() {
     const quizz = this.props.questions;
+    
 
     return (
       <div className="questions">
         <Answer
           question={quizz[this.state.counter]}
+          disableButton={this.state.disableButton}
           answers={this.state.answerArray}
           usersArray={this.state.usersArray}
           name={this.props.name}
+          counter={this.state.counter}
         />
       </div>
     );
