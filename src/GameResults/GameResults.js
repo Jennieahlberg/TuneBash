@@ -33,7 +33,7 @@ class GameResults extends Component {
             return (
               <div>
                 <p className="textQuestions">{questionsAndAnwers.question}</p>
-                <p className="textQuestions">
+                <p className="textCorrectAnswer">
                   Rätt svar: {questionsAndAnwers.correctAnswer}
                 </p>
               </div>

@@ -26,9 +26,7 @@ class GameLeaderPage extends Component {
     this.nextQuestion = this.nextQuestion.bind(this);
     this.showResult = this.showResult.bind(this);
     const lengthOfSong = this.props.lengthOfSong;
-    console.log('Pin: ' + this.props.pin);
-    console.log('GameId:' + this.props.gameId);
-
+    
 
     if (this.props.level !== undefined && this.props.language !== undefined) {
       this.getNormalQuestions();

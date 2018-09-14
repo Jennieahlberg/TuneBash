@@ -27,7 +27,7 @@ class Answer extends Component {
     if (event.target.value === question.correctAnswer) {
       this.state.usersArray[1]++;
     }
-    
+
   }
 
   gameEnded() {
@@ -55,7 +55,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[1]}
             onClick={event => this.submitAnswer(event)}
-            
+
           >
             {answers[1]}
           </button>
@@ -63,7 +63,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[2]}
             onClick={event => this.submitAnswer(event)}
-        
+
           >
             {answers[2]}
           </button>
@@ -71,7 +71,7 @@ class Answer extends Component {
             className="answerButton"
             value={answers[3]}
             onClick={event => this.submitAnswer(event)}
-           
+
           >
             {answers[3]}
           </button>
