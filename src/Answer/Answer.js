@@ -37,24 +37,24 @@ class Answer extends Component {
     if (event.target.value === question.correctAnswer) {
       this.state.usersArray[1]++;
     }
-    const targetValue = event.target.value;
   }
 
   gameEnded() {
     this.state.socket.on("gameEnded", data => {
       this.setState({ end: data });
       this.state.socket.emit("finalResult", this.state.usersArray);
-      console.log(this.state.usersArray);
     });
   }
 
   render() {
+
     const answers = this.props.answers;
   
     console.log(answers);
     console.log(this.props.disableButton);
     console.log(this.state.disableButton);
     console.log(this.state.usersArray);
+
 
     return (
       <div className="buttonFormDiv">
@@ -64,6 +64,7 @@ class Answer extends Component {
             value={answers[0]}
             onClick={event => this.submitAnswer(event)}
             disabled={this.state.disableButton}
+
           >
             {answers[0]}
           </button>

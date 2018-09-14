@@ -26,9 +26,7 @@ class GameLeaderPage extends Component {
     this.nextQuestion = this.nextQuestion.bind(this);
     this.showResult = this.showResult.bind(this);
     const lengthOfSong = this.props.lengthOfSong;
-    console.log('Pin: ' + this.props.pin);
-    console.log('GameId:' + this.props.gameId);
-
+    
 
     if (this.props.level !== undefined && this.props.language !== undefined) {
       this.getNormalQuestions();
@@ -164,7 +162,7 @@ class GameLeaderPage extends Component {
           <Quiz questions={this.state.questions} />
           <AnswersInText question={quizz[this.state.counter]} />
           <div className="next">
-            <button onClick={this.nextQuestion}>Nästa fråga</button>
+            <button className="next_quit_button" onClick={this.nextQuestion}>Nästa fråga</button>
           </div>
           <MusicPlayer question={quizz[this.state.counter]} />
         </div>
@@ -180,7 +178,7 @@ class GameLeaderPage extends Component {
           <Quiz questions={this.state.questions} />
           <AnswersInText question={quizz[this.state.counter]} />
           <div className="next">
-            <button onClick={this.showResult}>Avsluta spel</button>
+            <button className="next_quit_button" onClick={this.showResult}>Avsluta spel</button>
           </div>
           <MusicPlayer question={quizz[this.state.counter]} />
         </div>

@@ -1,4 +1,4 @@
-.resultDiv{
+.resultDiv {
     display: block;
     text-align: center;
 }
@@ -6,19 +6,23 @@
 .headlineResult {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    font-size: 30px;
-    font-weight: 700;
-    margin-top: 35px;
-    margin-bottom: 1em;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 1em;
+    margin-left: 3em;
+    margin-right: 3em;
+    border: 5px dotted black;
+    border-radius: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .textResult {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    font-size: 24px;
+    font-size: 1.6em;
     font-weight: 700;
-    margin-top: 35px;
-    margin-bottom: 1em;
+    margin-top: 1em;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -26,10 +30,38 @@
 .textQuestions {
     font-family: 'Montserrat', sans-serif;
     text-align: left;
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 35px;
+    font-size: 1.6em;
+    font-weight: bold;
+    margin-top: 1em;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.textCorrectAnswer {
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+    font-size: 1.4em;
     margin-bottom: 1em;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+@media only screen and (min-width: 560px) {
+    .headlineResult {
+        margin-top: 4em;
+        margin-left: 30em;
+        margin-right: 30em;
+    }
+
+    .textResult{
+        margin-bottom: -2em;
+    }
+
+    .textQuestions{
+        text-align: center;
+    }
+
+    .textCorrectAnswer{
+        text-align: center;
+    }
 }

@@ -40,9 +40,6 @@ class CustomGame extends Component {
             wrongAnswer3: this.state.wrongAnswer3
         }
 
-        //this.state.quizArray.push(customGame);
-        console.log(customGame);
-
         axios.post('http://localhost:8080/addcustomquestion', customGame)
 
         this.setState({counter: this.state.counter+1});
