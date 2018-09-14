@@ -55,7 +55,8 @@ class GameLeaderPage extends Component {
   getNormalQuestions = () => {
     axios
       .get(
-        "http://localhost:8080/getquestions/" +
+        //"http://localhost:8080/getquestions/" +
+        "https://tune-bash.firebaseapp.com/getquestions/" + 
         this.props.numberOfQuestions +
         "/" +
         this.props.level +
